@@ -111,7 +111,7 @@
                 <a href="#mission" class="hover:text-teal transition-colors">Mission</a>
                 <a href="#benefits" class="hover:text-teal transition-colors">Benefits</a>
                 <a href="#infrastructure" class="hover:text-teal transition-colors">Compliance</a>
-                <button class="bg-navy text-white px-5 py-2 rounded-full text-xs hover:bg-teal transition-all">Portal Login</button>
+                <a href="mailto:scalphealthalliance@gmail.com" class="bg-navy text-white px-5 py-2 rounded-full text-xs hover:bg-teal transition-all text-center">Contact Us</a>
             </div>
 
             <div class="md:hidden text-navy">
@@ -126,6 +126,7 @@
             <a href="#mission" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Mission</a>
             <a href="#benefits" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Benefits</a>
             <a href="#infrastructure" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Compliance</a>
+            <a href="mailto:scalphealthalliance@gmail.com" class="text-teal">Contact Us</a>
         </div>
     </nav>
 
@@ -135,7 +136,7 @@
             <div class="text-center max-w-4xl mx-auto">
                 <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white border border-gold/30 mb-8 shadow-sm">
                     <span class="flex h-2 w-2 rounded-full bg-teal status-pulse"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-navy">Pre-Launch Dashboard v1.0</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-navy">Launching 2026</span>
                 </div>
                 
                 <h1 class="text-5xl md:text-7xl font-extrabold text-navy leading-tight mb-8">
@@ -148,31 +149,23 @@
                 
                 <div class="gold-accent-line"></div>
 
-                <!-- 3 Action Buttons -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-                    <button class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
-                        <div class="mb-4 bg-white/20 p-3 rounded-xl">
-                            <i class="fas fa-paper-plane text-2xl"></i>
-                        </div>
-                        <span class="text-lg font-bold">Contact Us</span>
-                        <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">Direct Liaison Access</span>
-                    </button>
-                    
-                    <button class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
+                <!-- 2 Action Buttons (Mission Card Removed) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-2xl mx-auto">
+                    <a href="mailto:scalphealthalliance@gmail.com" class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
                         <div class="mb-4 bg-white/20 p-3 rounded-xl">
                             <i class="fas fa-handshake text-2xl"></i>
                         </div>
                         <span class="text-lg font-bold">Partnership Info</span>
                         <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">B2B2C Growth Model</span>
-                    </button>
+                    </a>
                     
-                    <button class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
+                    <a href="#infrastructure" class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
                         <div class="mb-4 bg-white/20 p-3 rounded-xl">
                             <i class="fas fa-shield-halved text-2xl"></i>
                         </div>
                         <span class="text-lg font-bold">Compliance Infra</span>
                         <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">MSO & ZK-Bridge Details</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -210,6 +203,7 @@
                     </div>
                 </div>
 
+                <!-- Filled Bubble Section -->
                 <div class="grid grid-cols-2 gap-6">
                     <div class="stats-box p-8 rounded-3xl text-center">
                         <span class="text-4xl font-black text-navy">50%</span>
@@ -218,6 +212,17 @@
                     <div class="stats-box p-8 rounded-3xl text-center border-b-4 border-gold">
                         <span class="text-4xl font-black text-navy">$13k+</span>
                         <p class="text-[10px] font-bold text-teal uppercase mt-2">Annual Partner Value</p>
+                    </div>
+                    <!-- New Community Info Bubble -->
+                    <div class="stats-box p-8 rounded-3xl text-center flex flex-col justify-center items-center">
+                        <i class="fas fa-users-viewfinder text-teal text-2xl mb-2"></i>
+                        <span class="text-2xl font-black text-navy">100%</span>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-1">Peer-to-Peer Trust</p>
+                    </div>
+                    <div class="stats-box p-8 rounded-3xl text-center flex flex-col justify-center items-center">
+                        <i class="fas fa-dna text-teal text-2xl mb-2"></i>
+                        <span class="text-2xl font-black text-navy">Science</span>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-1">Outcome Centric</p>
                     </div>
                     <div class="stats-box p-8 rounded-3xl text-center col-span-2 bg-navy text-white">
                         <p class="text-sm font-medium leading-relaxed">"We are rebuilding excellence by transforming the salon chair into a sophisticated point of diagnostic observation."</p>
@@ -276,10 +281,7 @@
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="bg-teal text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:brightness-110 transition-all">
-                            Partner Portal
-                        </button>
-                        <button class="bg-white border-2 border-silver text-navy px-8 py-4 rounded-xl font-bold hover:bg-silver transition-all">
+                        <button class="bg-white border-2 border-silver text-navy px-8 py-4 rounded-xl font-bold hover:bg-silver transition-all w-full sm:w-auto">
                             Whitepaper
                         </button>
                     </div>
@@ -296,6 +298,7 @@
             <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-[10px] text-white/30 tracking-widest uppercase">
                 <p>&copy; 2024 SCALP HEALTH ALLIANCE. ALL RIGHTS RESERVED.</p>
                 <div class="flex space-x-8 mt-4 md:mt-0">
+                    <a href="mailto:scalphealthalliance@gmail.com" class="hover:text-white transition-colors">Contact Us</a>
                     <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
                 </div>
