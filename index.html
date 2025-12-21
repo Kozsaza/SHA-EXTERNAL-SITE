@@ -84,7 +84,6 @@
             background: white;
         }
 
-        /* Modal Styles */
         #contact-modal {
             transition: opacity 0.3s ease;
         }
@@ -133,12 +132,13 @@
         .code-block {
             background: #001226;
             color: #10b981;
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 12px;
             font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
             margin: 1rem 0;
             border: 1px solid rgba(16, 185, 129, 0.2);
+            line-height: 1.6;
         }
         
         .fmv-tag {
@@ -159,7 +159,6 @@
 </head>
 <body class="antialiased">
 
-    <!-- Contact Modal -->
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-navy/60 backdrop-blur-sm" onclick="toggleModal()"></div>
         <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
@@ -196,7 +195,6 @@
         </div>
     </div>
 
-    <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -234,7 +232,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header id="mission" class="hero-gradient pt-20 pb-24 overflow-hidden border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-6 relative">
             <div class="text-center max-w-4xl mx-auto">
@@ -274,7 +271,6 @@
         </div>
     </header>
 
-    <!-- Problem & Solution Section -->
     <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -340,7 +336,6 @@
         </div>
     </section>
 
-    <!-- Partnership Section -->
     <section id="benefits" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -349,7 +344,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- For Hair Professionals -->
                 <div class="bg-white p-10 rounded-3xl border-t-8 border-gold shadow-sm">
                     <div class="flex items-center space-x-4 mb-6">
                         <div class="icon-circle"><i class="fas fa-scissors text-xl"></i></div>
@@ -374,7 +368,6 @@
                     </div>
                 </div>
 
-                <!-- For Dermatologists -->
                 <div class="bg-white p-10 rounded-3xl border-t-8 border-teal shadow-sm">
                     <div class="flex items-center space-x-4 mb-6">
                         <div class="icon-circle"><i class="fas fa-stethoscope text-xl"></i></div>
@@ -402,7 +395,6 @@
         </div>
     </section>
 
-    <!-- Compliance/Infrastructure Section -->
     <section id="infrastructure" class="py-24 bg-navy relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="compliance-card p-12 rounded-3xl shadow-2xl">
@@ -413,90 +405,11 @@
                             Standard lead-gen models are illegal in healthcare due to AKS. Our infrastructure ensures every touchpoint is compliant-by-design.
                         </p>
                         
-                        <!-- NEW Technical Trigger Button -->
                         <button onclick="openWhitepaper()" class="group flex items-center space-x-3 bg-navy text-white px-8 py-4 rounded-2xl text-sm font-bold hover:bg-teal transition-all shadow-lg hover:shadow-teal/20">
-    <i class="fas fa-file-code text-teal group-hover:text-white transition-colors"></i>
-    <span>Technical Whitepaper</span>
-</button>
-
-                        <!-- Whitepaper Section (Initially Hidden) -->
-                        <div id="whitepaperSection">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b">
-        <div>
-            <h2 class="text-2xl font-black text-navy uppercase tracking-tight">Compliance Infrastructure v1.0</h2>
-            <p class="text-teal font-bold text-xs uppercase tracking-widest">Scalp Health Alliance Protocol</p>
-        </div>
-        <button onclick="closeWhitepaper()" class="text-gray-400 hover:text-navy transition-all">
-            <i class="fas fa-times-circle text-2xl"></i>
-        </button>
-    </div>
-
-    <div class="mb-10">
-        <h3 class="text-lg font-bold text-navy flex items-center">
-            <i class="fas fa-shield-halved text-gold mr-3"></i> I. Regulatory Moat: MSO Framework
-        </h3>
-        <p class="text-sm text-gray-500 mt-2">Operating under <strong>42 CFR § 1001.952(d)</strong> to eliminate Anti-Kickback (AKS) risk.</p>
-        
-        <div class="moat-grid">
-            <div class="tech-card">
-                <span class="fmv-tag mb-3 inline-block">FIXED FMV MODEL</span>
-                <h4 class="font-bold text-navy">Non-Volume Based</h4>
-                <p class="text-xs text-gray-500 mt-2">Fees are calculated on tech licensing and LMS administration. We never pay per patient, ensuring total Safe Harbor compliance.</p>
-            </div>
-            <div class="tech-card">
-                <span class="fmv-tag mb-3 inline-block">LMS GATED ACCESS</span>
-                <h4 class="font-bold text-navy">Scalp Health 101</h4>
-                <p class="text-xs text-gray-500 mt-2">Professionals must complete clinical certification before accessing the referral bridge, moving the role from "Sales" to "Education."</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-10">
-        <h3 class="text-lg font-bold text-navy flex items-center">
-            <i class="fas fa-microchip text-teal mr-3"></i> II. Technical Moat: The ZK-Bridge
-        </h3>
-        <p class="text-sm text-gray-500 mt-2">A "HIPAA-Blind" architecture that treats SHA as a Traffic Controller, not a Data Repository.</p>
-        
-        <div class="code-block">
-            // SHA-ZK-SNARK PROOF GENERATION<br>
-            [INPUT] Referral_Event_ID: UUID_9912<br>
-            [LOGIC] Verify(Proof, Public_Signal)<br>
-            [STATUS] <span style="color: #fff">VALIDATED (0 PII EXPOSURE)</span>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 mt-4">
-            <div class="p-4 border-l-2 border-teal bg-gray-50">
-                <h5 class="text-xs font-bold text-navy uppercase">Edge-Based Control</h5>
-                <p class="text-[11px] text-gray-500">Cloudflare Workers process redirects instantly. No IP addresses or browser fingerprints are logged, keeping SHA outside the "Business Associate" definition.</p>
-            </div>
-            <div class="p-4 border-l-2 border-teal bg-gray-50">
-                <h5 class="text-xs font-bold text-navy uppercase">One-Way Hashing</h5>
-                <p class="text-[11px] text-gray-500">The bridge uses disposable, random tokens. Even if the system were breached, there is no identity data to steal.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-navy p-8 rounded-3xl text-white">
-        <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-bold">Clinical Value Projection</h3>
-            <span class="text-teal font-bold">$13,400+ Annual Value</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div class="p-4 border border-white/10 rounded-xl">
-                <span class="block text-2xl font-black text-teal">30% → 10%</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-60">No-Show Reduction</span>
-            </div>
-            <div class="p-4 border border-white/10 rounded-xl">
-                <span class="block text-2xl font-black text-teal">FHIR Ready</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-60">Tech Savings</span>
-            </div>
-            <div class="p-4 border border-white/10 rounded-xl">
-                <span class="block text-2xl font-black text-teal">Audit-Ready</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-60">Compliance Logs</span>
-            </div>
-        </div>
-    </div>
-</div>
+                            <i class="fas fa-file-code text-teal group-hover:text-white transition-colors"></i>
+                            <span>Technical Whitepaper</span>
+                        </button>
+                    </div>
                     
                     <div class="lg:col-span-2 grid sm:grid-cols-2 gap-8">
                         <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-gold/30 transition-all">
@@ -517,7 +430,87 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div id="whitepaperSection">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b">
+                        <div>
+                            <h2 class="text-2xl font-black text-navy uppercase tracking-tight">Compliance Infrastructure v1.0</h2>
+                            <p class="text-teal font-bold text-xs uppercase tracking-widest">Safe Harbor & Zero-Knowledge Protocol</p>
+                        </div>
+                        <button onclick="closeWhitepaper()" class="text-gray-400 hover:text-navy transition-all">
+                            <i class="fas fa-times-circle text-2xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="mb-10">
+                        <h3 class="text-lg font-bold text-navy flex items-center">
+                            <i class="fas fa-shield-halved text-gold mr-3"></i> I. Regulatory Moat: MSO Framework
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-2">
+                            SHA eliminates Anti-Kickback Statute (AKS) risk by operating under <strong>42 CFR § 1001.952(d)</strong>.
+                        </p>
+                        
+                        <div class="moat-grid">
+                            <div class="tech-card">
+                                <span class="fmv-tag mb-3 inline-block">FIXED FMV MODEL</span>
+                                <h4 class="font-bold text-navy">Professional Services</h4>
+                                <p class="text-xs text-gray-500 mt-2">Fees are calculated based on technology licenses and administrative modules—never on patient volume or referral value.</p>
+                            </div>
+                            <div class="tech-card">
+                                <span class="fmv-tag mb-3 inline-block">LMS GATED ACCESS</span>
+                                <h4 class="font-bold text-navy">Educational Safeguards</h4>
+                                <p class="text-xs text-gray-500 mt-2">Affiliate Educators must complete a Scalp Health 101 Certification, ensuring triage is based on clinical standards, not financial incentives.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-10">
+                        <h3 class="text-lg font-bold text-navy flex items-center">
+                            <i class="fas fa-microchip text-teal mr-3"></i> II. Technical Moat: The ZK-Bridge
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-2">A "HIPAA-Blind" architecture that treats SHA as a Traffic Controller, not a data repository.</p>
+                        
+                        <div class="code-block">
+                            // SHA-ZK-SNARK CRYPTOGRAPHIC PROOF<br>
+                            &gt; GENERATING PROOF FOR REFERRAL_ID: SHA-UUID-9912<br>
+                            &gt; VALIDATING WITHOUT PII EXPOSURE...<br>
+                            &gt; [SUCCESS] MATHEMATICAL CERTAINTY LOGGED (0ms)
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mt-4">
+                            <div class="p-4 border-l-2 border-teal bg-gray-50">
+                                <h5 class="text-xs font-bold text-navy uppercase">Edge-Based Traffic</h5>
+                                <p class="text-[11px] text-gray-500">Cloudflare Workers process tokens at the serverless edge. No IP addresses or browser fingerprints are logged, keeping SHA outside the "Business Associate" definition.</p>
+                            </div>
+                            <div class="p-4 border-l-2 border-teal bg-gray-50">
+                                <h5 class="text-xs font-bold text-navy uppercase">Differential Privacy</h5>
+                                <p class="text-[11px] text-gray-500">The Intel Engine adds mathematical noise to small datasets, protecting individual identities while providing providers with 100% accurate ROI trends.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy p-8 rounded-3xl text-white">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold">Clinical Value Projection</h3>
+                            <span class="text-teal font-bold">$13,400+ Total Annual Value</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                            <div class="p-4 border border-white/10 rounded-xl">
+                                <span class="block text-2xl font-black text-teal">30% &rarr; 10%</span>
+                                <span class="text-[10px] uppercase tracking-widest opacity-60">No-Show Reduction</span>
+                            </div>
+                            <div class="p-4 border border-white/10 rounded-xl">
+                                <span class="block text-2xl font-black text-teal">FHIR Ready</span>
+                                <span class="text-[10px] uppercase tracking-widest opacity-60">Tech Savings</span>
+                            </div>
+                            <div class="p-4 border border-white/10 rounded-xl">
+                                <span class="block text-2xl font-black text-teal">Audit-Ready</span>
+                                <span class="text-[10px] uppercase tracking-widest opacity-60">Compliance Logs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
             
             <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-white/40 text-[10px] tracking-widest uppercase font-bold">
                 <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>HIPAA Compliant</span></div>
@@ -534,9 +527,10 @@
             </div>
         </div>
         
-        <!-- Background Decoration -->
         <div class="absolute top-0 right-0 w-1/3 h-full bg-teal/5 skew-x-12 transform origin-top-right"></div>
     </section>
+
+    
 
     <script>
         function toggleModal() {
@@ -562,7 +556,7 @@
             toggleModal();
         }
 
-        /* FIXED Technical Whitepaper Logic */
+        /* Technical Whitepaper Logic */
         function openWhitepaper() {
             const section = document.getElementById('whitepaperSection');
             section.style.display = 'block';
@@ -576,7 +570,10 @@
         function closeWhitepaper() {
             const section = document.getElementById('whitepaperSection');
             section.style.display = 'none';
-            // Optional: Scroll back up to the button when closing
+            // Scroll back up to the main section button when closing
             document.getElementById('infrastructure').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
+
+</body>
+</html>
