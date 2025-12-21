@@ -97,6 +97,38 @@
         .status-pulse {
             animation: pulse-teal 2s infinite;
         }
+
+        /* --- UPDATED: Whitepaper Section CSS --- */
+        #whitepaperSection {
+            display: none; 
+            border-top: 1px solid #334155;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .moat-card {
+            background: rgba(15, 23, 42, 0.5); /* Semi-transparent dark */
+            border: 1px solid #334155;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .tech-code-block {
+            background: #000;
+            color: #10b981; /* Terminal Green */
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border: 1px solid #1e293b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -268,7 +300,6 @@
                         <span class="text-lg font-black text-navy uppercase leading-tight">Regulatory Moat</span>
                         <p class="text-[9px] font-bold text-gray-400 uppercase mt-1">De-Risking Referrals</p>
                     </div>
-                    <!-- New Common Theme Bubble -->
                     <div class="stats-box p-8 rounded-3xl text-center col-span-2 flex items-center justify-between border-t-2 border-gold/20">
                         <div class="text-left">
                             <span class="text-2xl font-black text-navy">99.4%</span>
@@ -356,9 +387,40 @@
                         <p class="text-gray-500 text-sm leading-relaxed mb-6">
                             Standard lead-gen models are illegal in healthcare due to AKS. Our infrastructure ensures every touchpoint is compliant-by-design.
                         </p>
-                        <button onclick="toggleModal()" class="bg-navy text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-teal transition-all">
+                        <!-- Updated Trigger to use the new JS function -->
+                        <button onclick="openWhitepaper()" class="bg-navy text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-teal transition-all">
                             Technical Whitepaper
                         </button>
+
+                        <!-- --- UPDATED: Whitepaper Section HTML --- -->
+                        <div id="whitepaperSection">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                                <h2 style="color: #f8fafc; font-weight: 800; font-size: 1.25rem;">SHA Protocol Spec v1.0</h2>
+                                <button onclick="closeWhitepaper()" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size: 1.2rem;">✕</button>
+                            </div>
+
+                            <div class="moat-card">
+                                <h4 style="color: #3b82f6; margin-top:0; font-weight: 700;">01. Regulatory Infrastructure (MSO)</h4>
+                                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">
+                                    To navigate the Anti-Kickback Statute (AKS), we utilize a Management Services Organization (MSO) framework. 
+                                    All fees are fixed Fair Market Value (FMV) for technology licensing, not referral volume.
+                                </p>
+                            </div>
+
+                            <div class="moat-card">
+                                <h4 style="color: #3b82f6; margin-top:0; font-weight: 700;">02. Cryptographic ZK-Bridge</h4>
+                                <div class="tech-code-block">
+                                    // SHA-PRIVACY-PROTOCOL <br>
+                                    VALIDATE: REFERRAL_TOKEN_ID <br>
+                                    STATUS: HIPAA_BLIND_DESIGN <br>
+                                    PII_DATA: [REDACTED_BY_HASH]
+                                </div>
+                                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px; line-height: 1.5;">
+                                    SHA remains a "Traffic Controller." We validate referral success events at the Edge (Cloudflare Workers) 
+                                    without ever seeing or storing Patient Identity (PII).
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="lg:col-span-2 grid sm:grid-cols-2 gap-8">
@@ -423,6 +485,18 @@
 
             window.location.href = `mailto:scalphealthalliance@gmail.com?subject=${subject}&body=${body}`;
             toggleModal();
+        }
+
+        /* --- UPDATED: Whitepaper Section JavaScript --- */
+        function openWhitepaper() {
+            const section = document.getElementById('whitepaperSection');
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function closeWhitepaper() {
+            const section = document.getElementById('whitepaperSection');
+            section.style.display = 'none';
         }
     </script>
 
