@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scalp Health Alliance | Pre-Launch Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --oxford-navy: #002147;
+            --mist-teal: #71B2C1;
+            --champagne-gold: #D4AF37;
+            --clinical-silver: #F3F4F6;
+            --clinical-border: #E5E7EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--oxford-navy);
+            background-color: #FFFFFF;
+        }
+
+        .bg-navy { background-color: var(--oxford-navy); }
+        .text-navy { color: var(--oxford-navy); }
+        .text-teal { color: var(--mist-teal); }
+        .bg-teal { background-color: var(--mist-teal); }
+        .bg-gold { background-color: var(--champagne-gold); }
+        .border-gold { border-color: var(--champagne-gold); }
+        
+        .hero-gradient {
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--clinical-silver) 100%);
+        }
+
+        .btn-action {
+            background-color: var(--mist-teal);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .btn-action:hover {
+            background-color: var(--oxford-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 33, 71, 0.2);
+        }
+
+        .gold-accent-line {
+            height: 3px;
+            width: 60px;
+            background: linear-gradient(90deg, var(--champagne-gold), #F1D592);
+            margin: 1.5rem auto;
+        }
+
+        .compliance-card {
+            border-left: 4px solid var(--champagne-gold);
+            background: white;
+        }
+
+        .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(113, 178, 193, 0.1);
+            color: var(--mist-teal);
+        }
+
+        .stats-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--clinical-border);
+        }
+
+        /* Pulse Animation for Status Dot */
+        @keyframes pulse-teal {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(113, 178, 193, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(113, 178, 193, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(113, 178, 193, 0); }
+        }
+        .status-pulse {
+            animation: pulse-teal 2s infinite;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-navy rounded-lg shadow-sm">
+                    <i class="fas fa-microscope text-white text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-navy">SCALP HEALTH ALLIANCE</span>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-[9px] uppercase tracking-[0.2em] text-teal font-bold">Standard of Excellence</span>
+                        <div class="h-[1px] w-4 bg-gold"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-navy/70">
+                <a href="#mission" class="hover:text-teal transition-colors">Mission</a>
+                <a href="#benefits" class="hover:text-teal transition-colors">Benefits</a>
+                <a href="#infrastructure" class="hover:text-teal transition-colors">Compliance</a>
+                <button class="bg-navy text-white px-5 py-2 rounded-full text-xs hover:bg-teal transition-all">Portal Login</button>
+            </div>
+
+            <div class="md:hidden text-navy">
+                <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 p-6 flex flex-col space-y-4 font-bold text-navy">
+            <a href="#mission" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Mission</a>
+            <a href="#benefits" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Benefits</a>
+            <a href="#infrastructure" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Compliance</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="mission" class="hero-gradient pt-20 pb-24 overflow-hidden border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white border border-gold/30 mb-8 shadow-sm">
+                    <span class="flex h-2 w-2 rounded-full bg-teal status-pulse"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-navy">Pre-Launch Dashboard v1.0</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold text-navy leading-tight mb-8">
+                    Bridging Wellness & <br><span class="text-teal">Clinical Care</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed italic mb-12">
+                    "To bridge the gap in specialized scalp care through a trusted alliance of hair professionals and dermatologists, providing clear direction and empowering individuals with personalized solutions for lasting wellness and confidence."
+                </p>
+                
+                <div class="gold-accent-line"></div>
+
+                <!-- 3 Action Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    <button class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
+                        <div class="mb-4 bg-white/20 p-3 rounded-xl">
+                            <i class="fas fa-paper-plane text-2xl"></i>
+                        </div>
+                        <span class="text-lg font-bold">Contact Us</span>
+                        <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">Direct Liaison Access</span>
+                    </button>
+                    
+                    <button class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
+                        <div class="mb-4 bg-white/20 p-3 rounded-xl">
+                            <i class="fas fa-handshake text-2xl"></i>
+                        </div>
+                        <span class="text-lg font-bold">Partnership Info</span>
+                        <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">B2B2C Growth Model</span>
+                    </button>
+                    
+                    <button class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
+                        <div class="mb-4 bg-white/20 p-3 rounded-xl">
+                            <i class="fas fa-shield-halved text-2xl"></i>
+                        </div>
+                        <span class="text-lg font-bold">Compliance Infra</span>
+                        <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">MSO & ZK-Bridge Details</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem & Solution Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-sm font-bold text-teal uppercase tracking-[0.3em] mb-3">The Common Problem</h2>
+                        <h3 class="text-4xl font-extrabold text-navy">Stepping up where the system fails.</h3>
+                    </div>
+                    
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Currently, 50% of adults suffer from chronic scalp conditions. They are trapped in a loop of ineffective products because the <strong>Point of Observation</strong> (the salon) is disconnected from the <strong>Point of Care</strong> (the clinic).
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-silver transition-colors">
+                            <i class="fas fa-user-doctor text-teal text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-navy">Closing the Acquisition Gap</h4>
+                                <p class="text-sm text-gray-500">Dermatologists face 18-30% no-show rates. We provide high-intent, pre-qualified patients through trusted professional referrals.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-silver transition-colors">
+                            <i class="fas fa-scissors text-teal text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-navy">Empowering the Hair Professional</h4>
+                                <p class="text-sm text-gray-500">Moving beyond basic state licensure to create a verifiable standard of excellence and a compliant revenue path.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="stats-box p-8 rounded-3xl text-center">
+                        <span class="text-4xl font-black text-navy">50%</span>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-2">Adult Global Impact</p>
+                    </div>
+                    <div class="stats-box p-8 rounded-3xl text-center border-b-4 border-gold">
+                        <span class="text-4xl font-black text-navy">$13k+</span>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-2">Annual Partner Value</p>
+                    </div>
+                    <div class="stats-box p-8 rounded-3xl text-center col-span-2 bg-navy text-white">
+                        <p class="text-sm font-medium leading-relaxed">"We are rebuilding excellence by transforming the salon chair into a sophisticated point of diagnostic observation."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Non-Financial Benefits -->
+    <section id="benefits" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-teal uppercase tracking-[0.3em] mb-3">Holistic Impact</h2>
+                <h3 class="text-4xl font-extrabold text-navy">Beyond the Bottom Line</h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="icon-circle mb-8"><i class="fas fa-award text-2xl"></i></div>
+                    <h4 class="text-xl font-bold text-navy mb-4">Elevated Standards</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        We don't replace the state license; we build a "Standard of Excellence" on top of it. Our curriculum ensures professionals are equipped with science-backed protocols.
+                    </p>
+                </div>
+                <!-- Benefit 2 -->
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="icon-circle mb-8"><i class="fas fa-fingerprint text-2xl"></i></div>
+                    <h4 class="text-xl font-bold text-navy mb-4">Privacy Architecture</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Utilizing <strong>Zero-Knowledge (ZK) Proofs</strong>, we validate referrals and successful outcomes without SHA ever seeing or storing sensitive patient identity data.
+                    </p>
+                </div>
+                <!-- Benefit 3 -->
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="icon-circle mb-8"><i class="fas fa-shield-halved text-2xl"></i></div>
+                    <h4 class="text-xl font-bold text-navy mb-4">Regulatory Moat</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Our <strong>MSO Framework</strong> operates within Safe Harbor personal services contracts, protecting partners from Anti-Kickback Statute (AKS) risks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infrastructure Section -->
+    <section id="infrastructure" class="py-24 bg-navy relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="compliance-card p-12 rounded-3xl shadow-2xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-navy mb-4">Compliance-by-Design</h2>
+                        <p class="text-gray-500 max-w-xl">
+                            In a highly regulated market, compliance isn't a hurdle—it's our competitive advantage. Access the SHA Technical Moat documentation below.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-teal text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:brightness-110 transition-all">
+                            Partner Portal
+                        </button>
+                        <button class="bg-white border-2 border-silver text-navy px-8 py-4 rounded-xl font-bold hover:bg-silver transition-all">
+                            Whitepaper
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-white/40 text-[10px] tracking-widest uppercase font-bold">
+                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>HIPAA Compliant</span></div>
+                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>MSO Structured</span></div>
+                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>ZK-Bridge Enabled</span></div>
+                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>FMV Service Validated</span></div>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-[10px] text-white/30 tracking-widest uppercase">
+                <p>&copy; 2024 SCALP HEALTH ALLIANCE. ALL RIGHTS RESERVED.</p>
+                <div class="flex space-x-8 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Decoration -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-teal/5 skew-x-12 transform origin-top-right"></div>
+    </header>
+
+</body>
+</html>
