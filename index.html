@@ -84,10 +84,51 @@
             background: white;
         }
 
-        /* Modal Styles */
+        /* Modal Styles (Contact) */
         #contact-modal {
             transition: opacity 0.3s ease;
         }
+
+        /* Whitepaper Modal Styling */
+        .sha-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 33, 71, 0.9); /* SHA Dark Blue Overlay */
+            backdrop-filter: blur(8px);
+        }
+        .sha-modal-content {
+            background-color: #fff;
+            margin: 2% auto;
+            width: 90%;
+            max-width: 1100px;
+            height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sha-modal-header {
+            padding: 1.25rem 2rem;
+            background: var(--oxford-navy); 
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sha-close {
+            color: #94a3b8;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .sha-close:hover { color: #fff; }
 
         @keyframes pulse-teal {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(113, 178, 193, 0.7); }
@@ -135,6 +176,21 @@
                     </button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Whitepaper Modal -->
+    <div id="whitepaperModal" class="sha-modal">
+        <div class="sha-modal-content">
+            <div class="sha-modal-header">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-file-shield text-teal"></i>
+                    <h2 class="font-bold text-sm tracking-wider uppercase">SHA Infrastructure: Technical Whitepaper v1.0</h2>
+                </div>
+                <span class="sha-close" id="closeModal">&times;</span>
+            </div>
+            <!-- Note: src should be the actual path to your hosted PDF -->
+            <iframe src="/docs/SHA_Technical_Whitepaper.pdf" width="100%" height="100%" style="border:none;" title="Technical Whitepaper Viewer"></iframe>
         </div>
     </div>
 
@@ -268,7 +324,6 @@
                         <span class="text-lg font-black text-navy uppercase leading-tight">Regulatory Moat</span>
                         <p class="text-[9px] font-bold text-gray-400 uppercase mt-1">De-Risking Referrals</p>
                     </div>
-                    <!-- New Common Theme Bubble -->
                     <div class="stats-box p-8 rounded-3xl text-center col-span-2 flex items-center justify-between border-t-2 border-gold/20">
                         <div class="text-left">
                             <span class="text-2xl font-black text-navy">99.4%</span>
@@ -356,7 +411,8 @@
                         <p class="text-gray-500 text-sm leading-relaxed mb-6">
                             Standard lead-gen models are illegal in healthcare due to AKS. Our infrastructure ensures every touchpoint is compliant-by-design.
                         </p>
-                        <button onclick="toggleModal()" class="bg-navy text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-teal transition-all">
+                        <!-- Updated button with trigger ID -->
+                        <button id="wpTrigger" class="bg-navy text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-teal transition-all">
                             Technical Whitepaper
                         </button>
                     </div>
@@ -402,6 +458,7 @@
     </header>
 
     <script>
+        /* Contact Form Logic */
         function toggleModal() {
             const modal = document.getElementById('contact-modal');
             modal.classList.toggle('hidden');
@@ -424,7 +481,31 @@
             window.location.href = `mailto:scalphealthalliance@gmail.com?subject=${subject}&body=${body}`;
             toggleModal();
         }
+
+        /* Whitepaper Modal Logic */
+        const wpModal = document.getElementById("whitepaperModal");
+        const wpBtn = document.getElementById("wpTrigger");
+        const wpClose = document.getElementById("closeModal");
+
+        wpBtn.onclick = function() {
+            wpModal.style.display = "block";
+            console.log("Whitepaper viewed: Accessing ZK-Bridge Specs");
+        }
+
+        wpClose.onclick = function() {
+            wpModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            // Close Whitepaper modal if clicking outside
+            if (event.target == wpModal) {
+                wpModal.style.display = "none";
+            }
+            // Close Contact modal if clicking outside (already handled by overlay click in HTML)
+        }
     </script>
 
+</body>
+</html>
 </body>
 </html>
