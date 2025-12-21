@@ -79,22 +79,18 @@
             background: rgba(255,255,255,0.07);
         }
 
-        .ecosystem-container {
-            background-color: #f8fafc;
-            border-top: 1px solid var(--clinical-border);
-            border-bottom: 1px solid var(--clinical-border);
-        }
-
         .pillar-card {
             background: white;
             border-radius: 32px;
-            box-shadow: 0 20px 50px -12px rgba(0, 33, 71, 0.08);
-            transition: transform 0.4s ease;
-            height: 100%;
+            box-shadow: 0 20px 50px -12px rgba(0, 33, 71, 0.12);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .pillar-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px -12px rgba(0, 33, 71, 0.2);
         }
 
         .code-block {
@@ -302,61 +298,114 @@
         </div>
     </section>
 
-    <!-- Partner Ecosystem -->
-    <section id="benefits" class="ecosystem-container py-32">
+    <!-- Partnership Value Section -->
+    <section id="benefits" class="py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                <div class="max-w-2xl">
-                    <div class="inline-block bg-navy px-4 py-1.5 rounded-lg text-[10px] font-bold text-white uppercase tracking-[0.3em] mb-4">Pillar Strategy</div>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-navy">The Value Handshake</h3>
-                </div>
-                <p class="text-gray-500 font-medium text-sm mt-4 md:mt-0 italic border-l-2 border-gold pl-4">Mutual Growth through Clinical Integrity</p>
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-teal font-black uppercase tracking-[0.3em] text-xs">Mutual Ecosystem</span>
+                <h2 class="text-5xl font-black text-navy mt-4">The Value Handshake</h2>
+                <p class="text-gray-500 mt-6 text-lg">SHA bridges the gap with a "Compliant-by-Design" infrastructure that empowers both sides of the care spectrum.</p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Professional -->
-                <div class="pillar-card p-1">
-                    <div class="bg-white p-10 md:p-14 rounded-[30px] h-full">
-                        <div class="w-20 h-20 rounded-3xl bg-soft-navy flex items-center justify-center mb-10">
-                            <i class="fas fa-scissors text-navy text-3xl"></i>
-                        </div>
-                        <h4 class="text-3xl font-extrabold text-navy mb-6">The Professional Pillar</h4>
-                        <div class="space-y-6">
-                            <div class="p-5 rounded-2xl bg-gray-50 hover:bg-navy hover:text-white transition-all">
-                                <h5 class="font-bold mb-1">Verifiable Excellence</h5>
-                                <p class="text-xs opacity-70">A secondary credential establishment to establish immediate clinical trust.</p>
+            <div class="grid lg:grid-cols-2 gap-10">
+                <!-- Hair Professional Card -->
+                <div class="pillar-card group">
+                    <div class="p-12">
+                        <div class="flex items-center justify-between mb-10">
+                            <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center text-white shadow-lg shadow-navy/20">
+                                <i class="fas fa-scissors text-2xl"></i>
                             </div>
-                            <div class="p-5 rounded-2xl bg-gray-50 hover:bg-navy hover:text-white transition-all">
-                                <h5 class="font-bold mb-1">Affiliate Education</h5>
-                                <p class="text-xs opacity-70">Monetize expertise through compliant triage and education-based referrals.</p>
+                            <span class="text-navy/20 font-black text-6xl italic group-hover:text-navy/5 transition-colors">01</span>
+                        </div>
+                        
+                        <h3 class="text-3xl font-black text-navy mb-2">Hair Professionals</h3>
+                        <p class="text-teal font-bold uppercase tracking-widest text-xs mb-8">The Point of Observation</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="mt-1 bg-soft-navy p-2 rounded-lg text-navy"><i class="fas fa-certificate"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy">Clinical Credibility</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Establish verifiable trust through our "Scalp Health 101" Certification and clinical alliance badge.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="mt-1 bg-soft-navy p-2 rounded-lg text-navy"><i class="fas fa-chart-line"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy">New Revenue Streams</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Monetize your expertise through compliant "Affiliate Educator" fees for triage and education services.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="mt-1 bg-soft-navy p-2 rounded-lg text-navy"><i class="fas fa-users"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy">Client Retention</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Provide an elite level of care that solves chronic scalp issues, turning clients into lifelong advocates.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12 pt-8 border-t border-gray-100">
+                            <div class="flex items-center space-x-2 text-navy/40 font-bold text-[10px] uppercase tracking-widest">
+                                <i class="fas fa-shield-check"></i>
+                                <span>MSO Protected Affiliate Model</span>
                             </div>
                         </div>
                     </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1.5 bg-navy"></div>
                 </div>
-                <!-- Clinical -->
-                <div class="pillar-card p-1">
-                    <div class="bg-white p-10 md:p-14 rounded-[30px] h-full">
-                        <div class="w-20 h-20 rounded-3xl bg-teal/10 flex items-center justify-center mb-10">
-                            <i class="fas fa-stethoscope text-teal text-3xl"></i>
-                        </div>
-                        <h4 class="text-3xl font-extrabold text-navy mb-6">The Clinical Pillar</h4>
-                        <div class="space-y-6">
-                            <div class="p-5 rounded-2xl bg-gray-50 hover:bg-teal hover:text-white transition-all">
-                                <h5 class="font-bold mb-1">Qualified Pipeline</h5>
-                                <p class="text-xs opacity-70">High-intent patients pre-screened at point of observation.</p>
+
+                <!-- Dermatologist Card -->
+                <div class="pillar-card group">
+                    <div class="p-12">
+                        <div class="flex items-center justify-between mb-10">
+                            <div class="w-16 h-16 bg-teal rounded-2xl flex items-center justify-center text-white shadow-lg shadow-teal/20">
+                                <i class="fas fa-stethoscope text-2xl"></i>
                             </div>
-                            <div class="p-5 rounded-2xl bg-gray-50 hover:bg-teal hover:text-white transition-all">
-                                <h5 class="font-bold mb-1">Audit-Ready Docs</h5>
-                                <p class="text-xs opacity-70">Referral chains logged in a compliance-first format for regulatory review.</p>
+                            <span class="text-teal/20 font-black text-6xl italic group-hover:text-teal/5 transition-colors">02</span>
+                        </div>
+                        
+                        <h3 class="text-3xl font-black text-navy mb-2">Medical Partners</h3>
+                        <p class="text-teal font-bold uppercase tracking-widest text-xs mb-8">The Point of Care</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="mt-1 bg-teal/5 p-2 rounded-lg text-teal"><i class="fas fa-user-check"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy">High-LTV Patient Pipeline</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Receive clinically pre-qualified referrals from trusted peers, reducing marketing waste.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="mt-1 bg-teal/5 p-2 rounded-lg text-teal"><i class="fas fa-calendar-check"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy">No-Show Reduction</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Guided pathways and education-first referrals reduce no-show rates from 30% to less than 10%.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="mt-1 bg-teal/5 p-2 rounded-lg text-teal"><i class="fas fa-file-shield"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy">Audit-Ready Compliance</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Every touchpoint is logged in a compliance-first format, ensuring full HIPAA and AKS regulatory safety.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 pt-8 border-t border-gray-100">
+                            <div class="flex items-center space-x-2 text-teal font-bold text-[10px] uppercase tracking-widest">
+                                <i class="fas fa-database"></i>
+                                <span>FHIR-Enabled Tech License Included</span>
                             </div>
                         </div>
                     </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1.5 bg-teal"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Infrastructure & Detailed Whitepaper -->
+    <!-- Infrastructure Section -->
     <section id="infrastructure" class="py-24 bg-navy relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl">
