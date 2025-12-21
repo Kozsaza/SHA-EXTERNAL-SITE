@@ -1,22 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scalp Health Alliance | Pre-Launch Dashboard</title>
-    
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#002147">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* SCROLL SPACING FIX */
-        html { 
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px; 
-        }
-
         :root {
             --oxford-navy: #002147;
             --mist-teal: #71B2C1;
@@ -27,13 +17,16 @@
             --dark-surface: #001a35;
         }
 
+
         html { scroll-behavior: smooth; }
+
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: var(--oxford-navy);
             background-color: #FFFFFF;
         }
+
 
         .bg-navy { background-color: var(--oxford-navy); }
         .text-navy { color: var(--oxford-navy); }
@@ -46,12 +39,14 @@
             background-image: radial-gradient(circle at 20% 150%, #003366 0%, transparent 50%);
         }
 
+
         .problem-section-bg {
             background-color: var(--dark-surface);
             background-image: linear-gradient(180deg, var(--oxford-navy) 0%, var(--dark-surface) 100%);
             color: white;
             position: relative;
         }
+
 
         .section-header-pill {
             background-color: rgba(255,255,255,0.05);
@@ -62,6 +57,7 @@
             backdrop-filter: blur(10px);
         }
 
+
         .btn-action {
             background-color: var(--mist-teal);
             color: white;
@@ -70,12 +66,14 @@
             text-align: center;
         }
 
+
         .btn-action:hover {
             background-color: white;
             color: var(--oxford-navy);
             transform: translateY(-3px);
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.3);
         }
+
 
         .stats-box {
             background: rgba(255,255,255,0.03);
@@ -89,6 +87,7 @@
             background: rgba(255,255,255,0.07);
         }
 
+
         .pillar-card {
             background: white;
             border-radius: 32px;
@@ -98,10 +97,12 @@
             overflow: hidden;
         }
 
+
         .pillar-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 30px 60px -12px rgba(0, 33, 71, 0.2);
         }
+
 
         .code-block {
             background: #001226;
@@ -116,15 +117,18 @@
             overflow-x: auto;
         }
 
+
         .status-pulse {
             animation: pulse-teal 2s infinite;
         }
+
 
         @keyframes pulse-teal {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(113, 178, 193, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(113, 178, 193, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(113, 178, 193, 0); }
         }
+
 
         #whitepaperSection {
             display: none; 
@@ -137,6 +141,7 @@
             animation: slideUp 0.5s ease-out;
         }
 
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -144,6 +149,7 @@
     </style>
 </head>
 <body class="antialiased">
+
 
     <!-- Modal Form -->
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
@@ -179,14 +185,14 @@
         </div>
     </div>
 
+
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-gray-100 py-4">
-<div class="flex items-center space-x-3">
-    <div class="flex-shrink-0">
-        <a href="/">
-            <img src="logo.svg" alt="Scalp Health Alliance Logo" class="h-12 w-auto object-contain" onerror="this.style.display='none'">
-        </a>
-    </div>
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-navy rounded-lg">
+                    <i class="fas fa-microscope text-white text-xl"></i>
+                </div>
                 <div>
                     <span class="text-xl font-bold tracking-tight text-navy uppercase">Scalp Health Alliance</span>
                     <div class="flex items-center space-x-2">
@@ -203,6 +209,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- Hero Header -->
     <header id="mission" class="main-header-bg pt-24 pb-32 relative text-white overflow-hidden">
@@ -231,6 +238,7 @@
                         <span class="text-[9px] opacity-80 uppercase tracking-widest mt-1">Understanding the Loop</span>
                     </a>
 
+
                     <a href="#benefits" class="btn-action p-6 rounded-2xl shadow-xl flex flex-col items-center group">
                         <div class="mb-4 bg-white/20 p-3 rounded-xl group-hover:bg-navy/10 transition-all border border-white/10">
                             <i class="fas fa-handshake text-2xl"></i>
@@ -251,6 +259,7 @@
         </div>
     </header>
 
+
     <!-- Common Problem Section -->
     <section id="common-problem" class="problem-section-bg py-32">
         <div class="max-w-7xl mx-auto px-6">
@@ -264,6 +273,7 @@
                     <p class="text-xl text-gray-300 leading-relaxed font-light">
                         Currently, 50% of adults suffer from chronic scalp conditions. They are trapped in a loop because the <strong>Point of Observation</strong> (the salon) is disconnected from the <strong>Point of Care</strong> (the clinic).
                     </p>
+
 
                     <div class="space-y-6">
                         <div class="flex items-start space-x-6 p-6 rounded-3xl bg-white/5 border border-white/10">
@@ -282,6 +292,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <div class="lg:w-1/2 grid grid-cols-2 gap-6">
                     <div class="stats-box p-10 rounded-3xl text-center">
@@ -309,6 +320,7 @@
         </div>
     </section>
 
+
     <!-- Partnership Value Section -->
     <section id="benefits" class="py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
@@ -317,6 +329,7 @@
                 <h2 class="text-5xl font-black text-navy mt-4">The Value Handshake</h2>
                 <p class="text-gray-500 mt-6 text-lg">SHA bridges the gap with a "Compliant-by-Design" infrastructure that empowers both sides of the care spectrum.</p>
             </div>
+
 
             <div class="grid lg:grid-cols-2 gap-10">
                 <!-- Hair Professional Card -->
@@ -366,6 +379,7 @@
                     <div class="absolute bottom-0 left-0 w-full h-1.5 bg-navy"></div>
                 </div>
 
+
                 <!-- Dermatologist Card -->
                 <div class="pillar-card group">
                     <div class="p-12">
@@ -403,6 +417,7 @@
                             </div>
                         </div>
 
+
                         <div class="mt-12 pt-8 border-t border-gray-100">
                             <div class="flex items-center space-x-2 text-teal font-bold text-[10px] uppercase tracking-widest">
                                 <i class="fas fa-database"></i>
@@ -415,6 +430,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Infrastructure Section -->
     <section id="infrastructure" class="py-24 bg-navy relative overflow-hidden">
@@ -447,6 +463,7 @@
                     </div>
                 </div>
 
+
                 <!-- Expanded Technical Whitepaper Content -->
                 <div id="whitepaperSection" class="mt-12">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b-2 border-gray-100">
@@ -456,6 +473,7 @@
                         </div>
                         <button onclick="closeWhitepaper()" class="text-gray-400 hover:text-navy"><i class="fas fa-times-circle text-2xl"></i></button>
                     </div>
+
 
                     <div class="prose prose-sm max-w-none text-gray-700 space-y-12">
                         <!-- Section I: MSO -->
@@ -479,6 +497,7 @@
                             </div>
                         </div>
 
+
                         <!-- Section II: Technical -->
                         <div class="grid md:grid-cols-3 gap-8 pt-10 border-t border-gray-100">
                             <div class="md:col-span-1">
@@ -497,6 +516,7 @@
                                 <p class="text-xs text-gray-500 italic">Edge-based traffic control via Cloudflare Workers ensures no browser fingerprints or IP addresses are logged in our referral redirector.</p>
                             </div>
                         </div>
+
 
                         <!-- Section III: Comparison Table -->
                         <div class="pt-10 border-t border-gray-100">
@@ -531,6 +551,7 @@
                             </div>
                         </div>
 
+
                         <!-- Section IV: Value -->
                         <div class="bg-navy p-8 rounded-3xl text-white">
                             <h3 class="text-xl font-bold mb-4">Value Proposition for Medical Partners</h3>
@@ -556,6 +577,7 @@
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="bg-navy py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
@@ -569,11 +591,13 @@
         </div>
     </footer>
 
+
     <script>
         function toggleModal() {
             const m = document.getElementById('contact-modal');
             m.classList.toggle('hidden');
         }
+
 
         function handleFormSubmit(event) {
             event.preventDefault();
@@ -586,6 +610,7 @@
             toggleModal();
         }
 
+
         function openWhitepaper() {
             const wp = document.getElementById('whitepaperSection');
             wp.style.display = 'block';
@@ -593,6 +618,7 @@
                 wp.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 50);
         }
+
 
         function closeWhitepaper() {
             document.getElementById('whitepaperSection').style.display = 'none';
