@@ -13,6 +13,7 @@
             --champagne-gold: #D4AF37;
             --clinical-silver: #F3F4F6;
             --clinical-border: #E5E7EB;
+            --soft-navy: #f0f4f8;
         }
 
         html {
@@ -22,7 +23,7 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: var(--oxford-navy);
-            background-color: #FFFFFF;
+            background-color: var(--clinical-silver);
         }
 
         .bg-navy { background-color: var(--oxford-navy); }
@@ -31,6 +32,14 @@
         .bg-teal { background-color: var(--mist-teal); }
         .bg-gold { background-color: var(--champagne-gold); }
         
+        .section-header-pill {
+            background-color: var(--soft-navy);
+            border-left: 4px solid var(--mist-teal);
+            padding: 0.5rem 1.5rem;
+            display: inline-block;
+            border-radius: 0 12px 12px 0;
+        }
+
         .hero-gradient {
             background: linear-gradient(180deg, #FFFFFF 0%, var(--clinical-silver) 100%);
         }
@@ -39,26 +48,29 @@
             background-color: var(--mist-teal);
             color: white;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
+            border: 2px solid rgba(255,255,255,0.2);
             text-align: center;
         }
 
         .btn-action:hover {
             background-color: var(--oxford-navy);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 33, 71, 0.2);
+            box-shadow: 0 10px 20px -5px rgba(0, 33, 71, 0.3);
         }
 
         .gold-accent-line {
-            height: 3px;
-            width: 60px;
+            height: 4px;
+            width: 80px;
             background: linear-gradient(90deg, var(--champagne-gold), #F1D592);
             margin: 1.5rem auto;
+            border-radius: 2px;
         }
 
         .compliance-card {
-            border-left: 4px solid var(--champagne-gold);
+            border: 1px solid var(--clinical-border);
+            border-left: 6px solid var(--champagne-gold);
             background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
         .icon-circle {
@@ -68,20 +80,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(113, 178, 193, 0.1);
+            background: var(--soft-navy);
             color: var(--mist-teal);
+            border: 1px solid var(--clinical-border);
         }
 
         .stats-box {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
+            background: white;
             border: 1px solid var(--clinical-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         
         .stats-box:hover {
             border-color: var(--mist-teal);
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card {
             background: white;
+            border: 1px solid var(--clinical-border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         }
 
         #contact-modal {
@@ -97,36 +119,23 @@
             animation: pulse-teal 2s infinite;
         }
 
-        /* Technical Whitepaper Enhanced UI */
         #whitepaperSection {
             display: none; 
-            border: 1px solid var(--clinical-border);
+            border: 2px solid var(--mist-teal);
             background: #ffffff;
             margin-top: 2rem;
             padding: 2.5rem;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-radius: 32px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
             animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .moat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
         .tech-card {
-            background: var(--clinical-silver);
+            background: #fafbfc;
             border: 1px solid var(--clinical-border);
             padding: 1.5rem;
             border-radius: 20px;
             transition: all 0.3s ease;
-        }
-        
-        .tech-card:hover {
-            border-color: var(--mist-teal);
-            transform: translateY(-5px);
         }
         
         .code-block {
@@ -141,16 +150,6 @@
             line-height: 1.6;
         }
         
-        .fmv-tag {
-            background: white;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 800;
-            border: 1px solid var(--clinical-border);
-            color: var(--oxford-navy);
-        }
-        
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -162,7 +161,7 @@
     <!-- Modal Background & Form -->
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-[#002147]/60 backdrop-blur-sm" onclick="toggleModal()"></div>
-        <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden">
             <div class="p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-2xl font-bold text-navy">Inquiry Form</h3>
@@ -197,10 +196,10 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-gray-100 py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="p-2 bg-navy rounded-lg shadow-sm">
+                <div class="p-2 bg-navy rounded-lg shadow-md">
                     <i class="fas fa-microscope text-white text-xl"></i>
                 </div>
                 <div>
@@ -216,29 +215,16 @@
                 <a href="#mission" class="hover:text-teal transition-colors">Mission</a>
                 <a href="#benefits" class="hover:text-teal transition-colors">Partnership</a>
                 <a href="#infrastructure" class="hover:text-teal transition-colors">Compliance</a>
-                <button onclick="toggleModal()" class="bg-navy text-white px-5 py-2 rounded-full text-xs hover:bg-teal transition-all text-center">Contact Us</button>
+                <button onclick="toggleModal()" class="bg-navy text-white px-6 py-2.5 rounded-full text-xs hover:bg-teal transition-all shadow-md">Contact Us</button>
             </div>
-
-            <div class="md:hidden text-navy">
-                <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 p-6 flex flex-col space-y-4 font-bold text-navy">
-            <a href="#mission" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Mission</a>
-            <a href="#benefits" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Partnership</a>
-            <a href="#infrastructure" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Compliance</a>
-            <button onclick="toggleModal()" class="text-teal text-left">Contact Us</button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="mission" class="hero-gradient pt-20 pb-24 overflow-hidden border-b border-gray-100">
+    <header id="mission" class="hero-gradient pt-20 pb-24 border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 relative">
             <div class="text-center max-w-4xl mx-auto">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white border border-gold/30 mb-8 shadow-sm">
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white border-2 border-teal/20 mb-8 shadow-sm">
                     <span class="flex h-2 w-2 rounded-full bg-teal status-pulse"></span>
                     <span class="text-[10px] font-bold uppercase tracking-widest text-navy">Launching 2026</span>
                 </div>
@@ -248,29 +234,26 @@
                 </h1>
                 
                 <p class="text-xl md:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed italic mb-12">
-                    "To bridge the gap in specialized scalp care through a trusted alliance of hair professionals and dermatologists, providing clear direction and empowering individuals with personalized solutions for lasting wellness and confidence."
+                    "To bridge the gap in specialized scalp care through a trusted alliance of hair professionals and dermatologists, providing clear direction and empowering individuals with personalized solutions."
                 </p>
                 
                 <div class="gold-accent-line"></div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-2xl mx-auto">
-                    <!-- Partnership Button -->
                     <a href="#benefits" class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
-                        <div class="mb-4 bg-white/20 p-3 rounded-xl group-hover:bg-white/30 transition-all">
+                        <div class="mb-4 bg-white/20 p-3 rounded-xl group-hover:bg-white/40 transition-all border border-white/30">
                             <i class="fas fa-handshake text-2xl"></i>
                         </div>
                         <span class="text-lg font-bold">Partnership Value</span>
-                        <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">For Professionals & Clinicians</span>
+                        <span class="text-[10px] opacity-80 uppercase tracking-widest mt-1">Professionals & Clinicians</span>
                     </a>
                     
-                    <!-- Compliance Button (Updated with identical graphic style) -->
                     <a href="#infrastructure" class="btn-action p-8 rounded-2xl shadow-xl flex flex-col items-center group">
-                        <div class="mb-4 bg-white/20 p-3 rounded-xl group-hover:bg-white/30 transition-all">
-                            <!-- Note: Requires Font Awesome 6 for 'shield-halved' -->
+                        <div class="mb-4 bg-white/20 p-3 rounded-xl group-hover:bg-white/40 transition-all border border-white/30">
                             <i class="fa-solid fa-shield-halved text-2xl"></i>
                         </div>
-                        <span class="text-lg font-bold">Compliance Infrastructure</span>
-                        <span class="text-[10px] opacity-70 uppercase tracking-tighter mt-1">MSO & ZK-Bridge Architecture</span>
+                        <span class="text-lg font-bold">Infrastructure</span>
+                        <span class="text-[10px] opacity-80 uppercase tracking-widest mt-1">MSO & ZK-Bridge</span>
                     </a>
                 </div>
             </div>
@@ -282,59 +265,59 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8">
-                    <div>
-                        <h2 class="text-sm font-bold text-teal uppercase tracking-[0.3em] mb-3">The Common Problem</h2>
-                        <h3 class="text-4xl font-extrabold text-navy">Stepping up where the system fails.</h3>
+                    <div class="section-header-pill">
+                        <h2 class="text-xs font-bold text-teal uppercase tracking-[0.3em]">The Common Problem</h2>
                     </div>
+                    <h3 class="text-4xl font-extrabold text-navy">Stepping up where the <br>system fails.</h3>
                     
                     <p class="text-lg text-gray-600 leading-relaxed">
                         Currently, 50% of adults suffer from chronic scalp conditions. They are trapped in a loop of ineffective products because the <strong>Point of Observation</strong> (the salon) is disconnected from the <strong>Point of Care</strong> (the clinic).
                     </p>
 
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                            <i class="fas fa-user-doctor text-teal text-xl mt-1"></i>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-teal/30 transition-all">
+                            <div class="bg-white p-3 rounded-xl shadow-sm"><i class="fas fa-user-doctor text-teal"></i></div>
                             <div>
                                 <h4 class="font-bold text-navy">Closing the Acquisition Gap</h4>
-                                <p class="text-sm text-gray-500">Dermatologists face 18-30% no-show rates. We provide high-intent, pre-qualified patients through trusted professional referrals.</p>
+                                <p class="text-sm text-gray-500 mt-1">Reducing no-show rates by providing high-intent, pre-qualified patients.</p>
                             </div>
                         </div>
-                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                            <i class="fas fa-scissors text-teal text-xl mt-1"></i>
+                        <div class="flex items-start space-x-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-teal/30 transition-all">
+                            <div class="bg-white p-3 rounded-xl shadow-sm"><i class="fas fa-scissors text-teal"></i></div>
                             <div>
-                                <h4 class="font-bold text-navy">Empowering the Hair Professional</h4>
-                                <p class="text-sm text-gray-500">Moving beyond basic state licensure to create a verifiable standard of excellence and a compliant revenue path.</p>
+                                <h4 class="font-bold text-navy">Empowering the Professional</h4>
+                                <p class="text-sm text-gray-500 mt-1">Creating a verifiable standard of excellence and a compliant revenue path.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 gap-4">
                     <div class="stats-box p-8 rounded-3xl text-center">
                         <span class="text-4xl font-black text-navy">50%</span>
-                        <p class="text-[10px] font-bold text-teal uppercase mt-2">Adult Global Impact</p>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-2">Adult Impact</p>
                     </div>
                     <div class="stats-box p-8 rounded-3xl text-center border-b-4 border-gold">
                         <span class="text-4xl font-black text-navy">$13k+</span>
-                        <p class="text-[10px] font-bold text-teal uppercase mt-2">Annual Partner Value</p>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-2">Annual Value</p>
                     </div>
                     <div class="stats-box p-8 rounded-3xl text-center flex flex-col justify-center items-center">
                         <i class="fas fa-users-viewfinder text-teal text-2xl mb-2"></i>
                         <span class="text-2xl font-black text-navy">100%</span>
-                        <p class="text-[10px] font-bold text-teal uppercase mt-1">Peer-to-Peer Trust</p>
+                        <p class="text-[10px] font-bold text-teal uppercase mt-1">Peer Trust</p>
                     </div>
                     <div class="stats-box p-8 rounded-3xl text-center flex flex-col justify-center items-center border-l-4 border-teal">
                         <i class="fas fa-gavel text-teal text-2xl mb-2"></i>
                         <span class="text-lg font-black text-navy uppercase leading-tight">Regulatory Moat</span>
-                        <p class="text-[9px] font-bold text-gray-400 uppercase mt-1">De-Risking Referrals</p>
+                        <p class="text-[9px] font-bold text-gray-400 uppercase mt-1">De-Risked</p>
                     </div>
-                    <div class="stats-box p-8 rounded-3xl text-center col-span-2 flex items-center justify-between border-t-2 border-gold/20">
+                    <div class="stats-box p-6 rounded-3xl text-center col-span-2 flex items-center justify-between border-t-2 border-gold/10">
                         <div class="text-left">
                             <span class="text-2xl font-black text-navy">99.4%</span>
-                            <p class="text-[10px] font-bold text-teal uppercase">Clinical Accuracy Rate</p>
+                            <p class="text-[10px] font-bold text-teal uppercase">Clinical Accuracy</p>
                         </div>
                         <div class="h-10 w-[1px] bg-gray-200"></div>
-                        <p class="text-[11px] text-gray-500 italic max-w-[60%] leading-tight text-right">
+                        <p class="text-[10px] text-gray-500 italic max-w-[50%] leading-tight text-right">
                             Transforming the chair into a sophisticated point of diagnostic observation.
                         </p>
                     </div>
@@ -344,59 +327,57 @@
     </section>
 
     <!-- Partnership Pillars -->
-    <section id="benefits" class="py-24 bg-gray-50">
+    <section id="benefits" class="py-24 bg-[#f8fafc]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-sm font-bold text-teal uppercase tracking-[0.3em] mb-3">Partner Ecosystem</h2>
+                <div class="section-header-pill inline-block mx-auto mb-4 border-l-0 border-b-4 rounded-none px-8">
+                    <h2 class="text-sm font-bold text-teal uppercase tracking-[0.3em]">Partner Ecosystem</h2>
+                </div>
                 <h3 class="text-4xl font-extrabold text-navy">Intrinsic Value & Expectations</h3>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-white p-10 rounded-3xl border-t-8 border-gold shadow-sm">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="icon-circle"><i class="fas fa-scissors text-xl"></i></div>
-                        <h4 class="text-2xl font-bold text-navy">The Professional Pillar</h4>
-                    </div>
-                    <ul class="space-y-4 text-gray-600 mb-8">
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-check text-teal mt-1"></i>
-                            <span><strong>Verifiable Excellence:</strong> A secondary credential on top of state licensure.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-check text-teal mt-1"></i>
-                            <span><strong>Compliant Monetization:</strong> New revenue streams for medical-wellness liaison services.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-check text-teal mt-1"></i>
-                            <span><strong>Client Retention:</strong> Solve chronic scalp issues to build lifetime loyalty.</span>
-                        </li>
-                    </ul>
-                    <div class="p-4 bg-gray-50 rounded-xl text-xs text-navy font-semibold italic border border-gray-100">
-                        "Elevating the role from Stylist to Scalp Health Specialist."
+                <div class="content-card border-t-8 border-gold">
+                    <div class="p-10">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="icon-circle shadow-sm"><i class="fas fa-scissors text-xl"></i></div>
+                            <h4 class="text-2xl font-bold text-navy">The Professional Pillar</h4>
+                        </div>
+                        <ul class="space-y-4 text-gray-600 mb-8">
+                            <li class="flex items-start space-x-3 bg-gray-50 p-4 rounded-xl">
+                                <i class="fas fa-check-circle text-teal mt-1"></i>
+                                <span><strong>Verifiable Excellence:</strong> A secondary credential on top of state licensure.</span>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-gray-50 p-4 rounded-xl">
+                                <i class="fas fa-check-circle text-teal mt-1"></i>
+                                <span><strong>Compliant Monetization:</strong> New revenue streams for medical-wellness liaison services.</span>
+                            </li>
+                        </ul>
+                        <div class="p-4 bg-navy text-white rounded-xl text-xs font-semibold italic">
+                            "Elevating the role from Stylist to Scalp Health Specialist."
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-10 rounded-3xl border-t-8 border-teal shadow-sm">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="icon-circle"><i class="fas fa-stethoscope text-xl"></i></div>
-                        <h4 class="text-2xl font-bold text-navy">The Clinical Pillar</h4>
-                    </div>
-                    <ul class="space-y-4 text-gray-600 mb-8">
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-check text-teal mt-1"></i>
-                            <span><strong>Qualified Pipeline:</strong> High-intent patients pre-screened at the point of observation.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-check text-teal mt-1"></i>
-                            <span><strong>Efficiency Gains:</strong> Massive reduction in patient acquisition costs and no-show rates.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-check text-teal mt-1"></i>
-                            <span><strong>Strategic Insights:</strong> Access to the SHA analytics suite for patient outcome tracking.</span>
-                        </li>
-                    </ul>
-                    <div class="p-4 bg-gray-50 rounded-xl text-xs text-navy font-semibold italic border border-gray-100">
-                        "Optimizing clinical schedules with medical-grade, motivated referrals."
+                <div class="content-card border-t-8 border-teal">
+                    <div class="p-10">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="icon-circle shadow-sm"><i class="fas fa-stethoscope text-xl"></i></div>
+                            <h4 class="text-2xl font-bold text-navy">The Clinical Pillar</h4>
+                        </div>
+                        <ul class="space-y-4 text-gray-600 mb-8">
+                            <li class="flex items-start space-x-3 bg-gray-50 p-4 rounded-xl">
+                                <i class="fas fa-check-circle text-teal mt-1"></i>
+                                <span><strong>Qualified Pipeline:</strong> High-intent patients pre-screened at point of observation.</span>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-gray-50 p-4 rounded-xl">
+                                <i class="fas fa-check-circle text-teal mt-1"></i>
+                                <span><strong>Efficiency Gains:</strong> Massive reduction in patient acquisition costs and no-shows.</span>
+                            </li>
+                        </ul>
+                        <div class="p-4 bg-teal text-white rounded-xl text-xs font-semibold italic">
+                            "Optimizing clinical schedules with medical-grade, motivated referrals."
+                        </div>
                     </div>
                 </div>
             </div>
@@ -406,195 +387,118 @@
     <!-- Infrastructure & Compliance -->
     <section id="infrastructure" class="py-24 bg-[#002147] relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="compliance-card p-12 rounded-3xl shadow-2xl">
+            <div class="compliance-card p-12 rounded-[2rem]">
                 <div class="grid lg:grid-cols-3 gap-12">
                     <div class="lg:col-span-1">
-                        <h2 class="text-3xl font-extrabold text-navy mb-4">The Multi-Level Moat</h2>
+                        <div class="section-header-pill mb-6 bg-gray-100">
+                             <h2 class="text-sm font-bold text-navy uppercase tracking-widest">Compliance</h2>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-navy mb-4">The Multi-Level Moat</h3>
                         <p class="text-gray-500 text-sm leading-relaxed mb-8">
-                            Standard lead-gen models are illegal in healthcare due to AKS. Our infrastructure ensures every touchpoint is compliant-by-design.
+                            Standard lead-gen models are often non-compliant in healthcare. Our MSO infrastructure ensures every touchpoint is legal-by-design.
                         </p>
                         
-                        <button onclick="openWhitepaper()" class="group flex items-center space-x-3 bg-navy text-white px-8 py-4 rounded-2xl text-sm font-bold hover:bg-teal transition-all shadow-lg hover:shadow-teal/20">
-                            <i class="fas fa-file-code text-teal group-hover:text-white transition-colors"></i>
-                            <span>Technical Whitepaper</span>
+                        <button onclick="openWhitepaper()" class="group flex items-center space-x-3 bg-navy text-white px-8 py-4 rounded-2xl text-sm font-bold hover:bg-teal transition-all shadow-xl">
+                            <i class="fas fa-file-code text-teal group-hover:text-white"></i>
+                            <span>View Technical Whitepaper</span>
                         </button>
                     </div>
                     
-                    <div class="lg:col-span-2 grid sm:grid-cols-2 gap-8">
-                        <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-gold/30 transition-all">
-                            <h4 class="font-bold text-navy flex items-center mb-4">
+                    <div class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+                        <div class="p-8 rounded-3xl bg-gray-50 border-2 border-gray-100 hover:border-gold/30 transition-all">
+                            <h4 class="font-bold text-navy flex items-center mb-4 text-lg">
                                 <i class="fas fa-sitemap text-gold mr-3"></i> MSO Structure
                             </h4>
-                            <p class="text-sm text-gray-500 leading-relaxed">
-                                Management Services Organization (MSO) framework operates within Safe Harbor personal services contracts. Fees are for FMV technology and marketing, ensuring complete legal de-risking for clinicians.
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                Management Services Organization (MSO) framework operates within Safe Harbor personal services contracts. Fees are for technology and marketing—de-risking clinicians.
                             </p>
                         </div>
-                        <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-teal/30 transition-all">
-                            <h4 class="font-bold text-navy flex items-center mb-4">
+                        <div class="p-8 rounded-3xl bg-gray-50 border-2 border-gray-100 hover:border-teal/30 transition-all">
+                            <h4 class="font-bold text-navy flex items-center mb-4 text-lg">
                                 <i class="fas fa-bridge text-teal mr-3"></i> ZK-Bridge
                             </h4>
-                            <p class="text-sm text-gray-500 leading-relaxed">
-                                Zero-Knowledge Bridge ensures HIPAA compliance by design. We validate "proof of referral" using cryptographic hashes without ever holding sensitive patient identity data.
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                Zero-Knowledge Bridge ensures HIPAA compliance. We validate "proof of referral" using cryptographic hashes without holding patient identity data.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hidden Whitepaper Section -->
                 <div id="whitepaperSection">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b-2">
                         <div>
-                            <h2 class="text-2xl font-black text-navy uppercase tracking-tight">Compliance Infrastructure v1.0</h2>
+                            <h2 class="text-2xl font-black text-navy uppercase">Infrastructure v1.0</h2>
                             <p class="text-teal font-bold text-xs uppercase tracking-widest">Safe Harbor & Zero-Knowledge Protocol</p>
                         </div>
-                        <button onclick="closeWhitepaper()" class="text-gray-400 hover:text-navy transition-all">
-                            <i class="fas fa-times-circle text-2xl"></i>
-                        </button>
+                        <button onclick="closeWhitepaper()" class="text-gray-400 hover:text-navy"><i class="fas fa-times-circle text-2xl"></i></button>
                     </div>
 
-                    <div class="mb-10">
-                        <h3 class="text-lg font-bold text-navy flex items-center">
-                            <i class="fas fa-shield-halved text-gold mr-3"></i> I. Regulatory Moat: MSO Framework
-                        </h3>
-                        <p class="text-sm text-gray-500 mt-2">
-                            SHA eliminates Anti-Kickback Statute (AKS) risk by operating under <strong>42 CFR § 1001.952(d)</strong>.
-                        </p>
-                        
-                        <div class="moat-grid">
-                            <div class="tech-card">
-                                <span class="fmv-tag mb-3 inline-block">FIXED FMV MODEL</span>
-                                <h4 class="font-bold text-navy">Professional Services</h4>
-                                <p class="text-xs text-gray-500 mt-2">Fees are calculated based on technology licenses and administrative modules—never on patient volume or referral value.</p>
-                            </div>
-                            <div class="tech-card">
-                                <span class="fmv-tag mb-3 inline-block">LMS GATED ACCESS</span>
-                                <h4 class="font-bold text-navy">Educational Safeguards</h4>
-                                <p class="text-xs text-gray-500 mt-2">Affiliate Educators must complete a Scalp Health 101 Certification, ensuring triage is based on clinical standards, not financial incentives.</p>
-                            </div>
+                    <div class="grid md:grid-cols-2 gap-8 mb-10">
+                        <div class="tech-card border-l-4 border-gold">
+                             <span class="bg-white border px-3 py-1 rounded text-[10px] font-bold mb-3 inline-block">MSO FRAMEWORK</span>
+                             <h4 class="font-bold text-navy">Legal Safeguards</h4>
+                             <p class="text-xs text-gray-500 mt-2 leading-relaxed">Eliminating AKS risk via 42 CFR § 1001.952(d). Fees are fixed for FMV tech licenses, not volume-based.</p>
+                        </div>
+                        <div class="tech-card border-l-4 border-teal">
+                             <span class="bg-white border px-3 py-1 rounded text-[10px] font-bold mb-3 inline-block">HIPAA PRIVACY</span>
+                             <h4 class="font-bold text-navy">Blind Architecture</h4>
+                             <p class="text-xs text-gray-500 mt-2 leading-relaxed">SHA acts as a traffic controller. Sensitive PII stays within clinical EHRs; SHA only handles encrypted validation tokens.</p>
                         </div>
                     </div>
 
-                    <div class="mb-10">
-                        <h3 class="text-lg font-bold text-navy flex items-center">
-                            <i class="fas fa-microchip text-teal mr-3"></i> II. Technical Moat: The ZK-Bridge
-                        </h3>
-                        <p class="text-sm text-gray-500 mt-2">A "HIPAA-Blind" architecture that treats SHA as a Traffic Controller, not a data repository.</p>
-                        
-                        <div class="code-block">
-                            // SHA-ZK-SNARK CRYPTOGRAPHIC PROOF<br>
-                            &gt; GENERATING PROOF FOR REFERRAL_ID: SHA-UUID-9912<br>
-                            &gt; VALIDATING WITHOUT PII EXPOSURE...<br>
-                            &gt; [SUCCESS] MATHEMATICAL CERTAINTY LOGGED (0ms)
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-6 mt-4">
-                            <div class="p-4 border-l-2 border-teal bg-gray-50">
-                                <h5 class="text-xs font-bold text-navy uppercase">Edge-Based Traffic</h5>
-                                <p class="text-[11px] text-gray-500">Cloudflare Workers process tokens at the serverless edge. No IP addresses or browser fingerprints are logged, keeping SHA outside the "Business Associate" definition.</p>
-                            </div>
-                            <div class="p-4 border-l-2 border-teal bg-gray-50">
-                                <h5 class="text-xs font-bold text-navy uppercase">Differential Privacy</h5>
-                                <p class="text-[11px] text-gray-500">The Intel Engine adds mathematical noise to small datasets, protecting individual identities while providing providers with 100% accurate ROI trends.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-navy p-8 rounded-3xl text-white">
-                        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                            <h3 class="text-xl font-bold">Clinical Value Projection</h3>
-                            <span class="text-teal font-bold">$13,400+ Total Annual Value</span>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                            <div class="p-4 border border-white/10 rounded-xl">
-                                <span class="block text-2xl font-black text-teal">30% &rarr; 10%</span>
-                                <span class="text-[10px] uppercase tracking-widest opacity-60">No-Show Reduction</span>
-                            </div>
-                            <div class="p-4 border border-white/10 rounded-xl">
-                                <span class="block text-2xl font-black text-teal">FHIR Ready</span>
-                                <span class="text-[10px] uppercase tracking-widest opacity-60">Tech Savings</span>
-                            </div>
-                            <div class="p-4 border border-white/10 rounded-xl">
-                                <span class="block text-2xl font-black text-teal">Audit-Ready</span>
-                                <span class="text-[10px] uppercase tracking-widest opacity-60">Compliance Logs</span>
-                            </div>
-                        </div>
+                    <div class="code-block">
+                        // SHA-ZK-SNARK CRYPTOGRAPHIC PROOF GENERATION<br>
+                        &gt; VALIDATING REFERRAL_ID: SHA-UUID-9912...<br>
+                        &gt; [SUCCESS] PROOF OF SERVICE LOGGED (FIXED FEE MODULE)<br>
+                        &gt; TOTAL PATIENT IDENTITY REVEALED: 0.0%
                     </div>
                 </div>
             </div>
             
-            <!-- Trust Badges -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-white/40 text-[10px] tracking-widest uppercase font-bold">
-                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>HIPAA Compliant</span></div>
-                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>MSO Structured</span></div>
-                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>ZK-Bridge Enabled</span></div>
-                <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-teal"></i> <span>FMV Service Validated</span></div>
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-white/40 text-[10px] tracking-widest uppercase font-bold text-center">
+                <div class="p-4 border border-white/10 rounded-xl"><i class="fas fa-check-circle text-teal mr-2"></i> HIPAA Compliant</div>
+                <div class="p-4 border border-white/10 rounded-xl"><i class="fas fa-check-circle text-teal mr-2"></i> MSO Structured</div>
+                <div class="p-4 border border-white/10 rounded-xl"><i class="fas fa-check-circle text-teal mr-2"></i> ZK-Bridge Enabled</div>
+                <div class="p-4 border border-white/10 rounded-xl"><i class="fas fa-check-circle text-teal mr-2"></i> FMV Validated</div>
             </div>
 
-            <!-- Footer Small -->
             <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-[10px] text-white/30 tracking-widest uppercase">
                 <p>&copy; 2025 SCALP HEALTH ALLIANCE. ALL RIGHTS RESERVED.</p>
                 <div class="flex space-x-8 mt-4 md:mt-0">
-                    <button onclick="toggleModal()" class="hover:text-white transition-colors">Contact Us</button>
+                    <button onclick="toggleModal()" class="hover:text-white transition-colors">Partner Inquiry</button>
+                    <a href="#" class="hover:text-white transition-colors">Legal Terms</a>
                 </div>
             </div>
         </div>
-        
         <div class="absolute top-0 right-0 w-1/3 h-full bg-teal/5 skew-x-12 transform origin-top-right"></div>
     </section>
 
     <script>
         function toggleModal() {
             const modal = document.getElementById('contact-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
+            modal.classList.toggle('hidden');
+            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
+        }
+
+        function openWhitepaper() {
+            document.getElementById('whitepaperSection').style.display = 'block';
+            document.getElementById('whitepaperSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeWhitepaper() {
+            document.getElementById('whitepaperSection').style.display = 'none';
         }
 
         function handleFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('form-name').value;
-            const profession = document.getElementById('form-profession').value;
-            const message = document.getElementById('form-message').value;
-
-            const subject = encodeURIComponent(`SHA Inquiry: ${name} (${profession})`);
-            const body = encodeURIComponent(
-                `Name: ${name}\n` +
-                `Profession: ${profession}\n\n` +
-                `Message:\n${message}\n\n` +
-                `---\nSent via SHA Dashboard Inquiry Form`
-            );
-
-            window.location.href = `mailto:scalphealthalliance@gmail.com?subject=${subject}&body=${body}`;
+            const prof = document.getElementById('form-profession').value;
+            const msg = document.getElementById('form-message').value;
+            
+            const mailto = `mailto:hello@scalphealthalliance.com?subject=SHA Inquiry: ${prof}&body=Name: ${name}%0D%0AProfession: ${prof}%0D%0AMessage: ${msg}`;
+            window.location.href = mailto;
             toggleModal();
         }
-
-        /* Technical Whitepaper Logic */
-        function openWhitepaper() {
-            const section = document.getElementById('whitepaperSection');
-            section.style.display = 'block';
-            
-            setTimeout(() => {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 50);
-        }
-
-        function closeWhitepaper() {
-            const section = document.getElementById('whitepaperSection');
-            section.style.display = 'none';
-            document.getElementById('infrastructure').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Close modal on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('contact-modal');
-                if (!modal.classList.contains('hidden')) toggleModal();
-            }
-        });
     </script>
 </body>
 </html>
