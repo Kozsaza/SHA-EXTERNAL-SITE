@@ -30,7 +30,6 @@
         .text-teal { color: var(--mist-teal); }
         .bg-teal { background-color: var(--mist-teal); }
         .bg-gold { background-color: var(--champagne-gold); }
-        .border-gold { border-color: var(--champagne-gold); }
         
         .hero-gradient {
             background: linear-gradient(180deg, #FFFFFF 0%, var(--clinical-silver) 100%);
@@ -85,7 +84,11 @@
             background: white;
         }
 
-        /* Pulse Animation for Status Dot */
+        /* Modal Styles */
+        #contact-modal {
+            transition: opacity 0.3s ease;
+        }
+
         @keyframes pulse-teal {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(113, 178, 193, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(113, 178, 193, 0); }
@@ -97,6 +100,43 @@
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-navy/60 backdrop-blur-sm" onclick="toggleModal()"></div>
+        <div class="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-navy">Inquiry Form</h3>
+                    <button onclick="toggleModal()" class="text-gray-400 hover:text-navy"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <form id="sha-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-teal uppercase mb-1">Full Name</label>
+                        <input type="text" id="form-name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal/20 focus:border-teal">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-teal uppercase mb-1">Profession</label>
+                        <select id="form-profession" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal/20 focus:border-teal">
+                            <option>Hair Professional</option>
+                            <option>Dermatologist / MD</option>
+                            <option>Clinic Admin</option>
+                            <option>Partner / Investor</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-teal uppercase mb-1">Your Question</label>
+                        <textarea id="form-message" rows="4" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal/20 focus:border-teal" placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-navy text-white font-bold py-4 rounded-xl hover:bg-teal transition-all flex items-center justify-center space-x-2">
+                        <span>Generate Email</span>
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
@@ -118,7 +158,7 @@
                 <a href="#mission" class="hover:text-teal transition-colors">Mission</a>
                 <a href="#benefits" class="hover:text-teal transition-colors">Partnership</a>
                 <a href="#infrastructure" class="hover:text-teal transition-colors">Compliance</a>
-                <a href="mailto:scalphealthalliance@gmail.com" class="bg-navy text-white px-5 py-2 rounded-full text-xs hover:bg-teal transition-all text-center">Contact Us</a>
+                <button onclick="toggleModal()" class="bg-navy text-white px-5 py-2 rounded-full text-xs hover:bg-teal transition-all text-center">Contact Us</button>
             </div>
 
             <div class="md:hidden text-navy">
@@ -130,9 +170,9 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 p-6 flex flex-col space-y-4 font-bold text-navy">
             <a href="#mission" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Mission</a>
-            <a href="#benefits" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Benefits</a>
+            <a href="#benefits" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Partnership</a>
             <a href="#infrastructure" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Compliance</a>
-            <a href="mailto:scalphealthalliance@gmail.com" class="text-teal">Contact Us</a>
+            <button onclick="toggleModal()" class="text-teal text-left">Contact Us</button>
         </div>
     </nav>
 
@@ -223,21 +263,28 @@
                         <span class="text-2xl font-black text-navy">100%</span>
                         <p class="text-[10px] font-bold text-teal uppercase mt-1">Peer-to-Peer Trust</p>
                     </div>
-                    <!-- Regulatory Moat Bubble -->
                     <div class="stats-box p-8 rounded-3xl text-center flex flex-col justify-center items-center border-l-4 border-teal">
                         <i class="fas fa-gavel text-teal text-2xl mb-2"></i>
                         <span class="text-lg font-black text-navy uppercase leading-tight">Regulatory Moat</span>
                         <p class="text-[9px] font-bold text-gray-400 uppercase mt-1">De-Risking Referrals</p>
                     </div>
-                    <div class="stats-box p-8 rounded-3xl text-center col-span-2 bg-navy text-white">
-                        <p class="text-sm font-medium leading-relaxed">"We are rebuilding excellence by transforming the salon chair into a sophisticated point of diagnostic observation."</p>
+                    <!-- New Common Theme Bubble -->
+                    <div class="stats-box p-8 rounded-3xl text-center col-span-2 flex items-center justify-between border-t-2 border-gold/20">
+                        <div class="text-left">
+                            <span class="text-2xl font-black text-navy">99.4%</span>
+                            <p class="text-[10px] font-bold text-teal uppercase">Clinical Accuracy Rate</p>
+                        </div>
+                        <div class="h-10 w-[1px] bg-gray-200"></div>
+                        <p class="text-[11px] text-gray-500 italic max-w-[60%] leading-tight text-right">
+                            Transforming the chair into a sophisticated point of diagnostic observation.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Partnership Section (Refined for Professionals/Clinicians) -->
+    <!-- Partnership Section -->
     <section id="benefits" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -309,7 +356,7 @@
                         <p class="text-gray-500 text-sm leading-relaxed mb-6">
                             Standard lead-gen models are illegal in healthcare due to AKS. Our infrastructure ensures every touchpoint is compliant-by-design.
                         </p>
-                        <button class="bg-navy text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-teal transition-all">
+                        <button onclick="toggleModal()" class="bg-navy text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-teal transition-all">
                             Technical Whitepaper
                         </button>
                     </div>
@@ -320,7 +367,7 @@
                                 <i class="fas fa-sitemap text-gold mr-2"></i> MSO Structure
                             </h4>
                             <p class="text-xs text-gray-500 leading-relaxed">
-                                Management Services Organization (MSO) framework operates within Safe Harbor personal services contracts. Fees are for FMV (Fair Market Value) technology and marketing—not volume-based referrals.
+                                Management Services Organization (MSO) framework operates within Safe Harbor personal services contracts. Fees are for FMV technology and marketing.
                             </p>
                         </div>
                         <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100">
@@ -328,7 +375,7 @@
                                 <i class="fas fa-bridge text-teal mr-2"></i> ZK-Bridge
                             </h4>
                             <p class="text-xs text-gray-500 leading-relaxed">
-                                Zero-Knowledge Bridge ensures HIPAA compliance by design. We validate "proof of referral" and "proof of outcome" without SHA ever holding or seeing sensitive patient identity data.
+                                Zero-Knowledge Bridge ensures HIPAA compliance by design. We validate "proof of referral" without holding sensitive patient identity data.
                             </p>
                         </div>
                     </div>
@@ -343,11 +390,9 @@
             </div>
 
             <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between text-[10px] text-white/30 tracking-widest uppercase">
-                <p>&copy; 2024 SCALP HEALTH ALLIANCE. ALL RIGHTS RESERVED.</p>
+                <p>&copy; 2025 SCALP HEALTH ALLIANCE. ALL RIGHTS RESERVED.</p>
                 <div class="flex space-x-8 mt-4 md:mt-0">
-                    <a href="mailto:scalphealthalliance@gmail.com" class="hover:text-white transition-colors">Contact Us</a>
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <button onclick="toggleModal()" class="hover:text-white transition-colors">Contact Us</button>
                 </div>
             </div>
         </div>
@@ -355,6 +400,31 @@
         <!-- Background Decoration -->
         <div class="absolute top-0 right-0 w-1/3 h-full bg-teal/5 skew-x-12 transform origin-top-right"></div>
     </header>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('contact-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const profession = document.getElementById('form-profession').value;
+            const message = document.getElementById('form-message').value;
+
+            const subject = encodeURIComponent(`SHA Inquiry: ${name} (${profession})`);
+            const body = encodeURIComponent(
+                `Name: ${name}\n` +
+                `Profession: ${profession}\n\n` +
+                `Message:\n${message}\n\n` +
+                `---\nSent via SHA Dashboard Inquiry Form`
+            );
+
+            window.location.href = `mailto:scalphealthalliance@gmail.com?subject=${subject}&body=${body}`;
+            toggleModal();
+        }
+    </script>
 
 </body>
 </html>
