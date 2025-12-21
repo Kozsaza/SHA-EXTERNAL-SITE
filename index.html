@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scalp Health Alliance | Pre-Launch Dashboard</title>
+    
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#002147">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* SCROLL SPACING FIX */
+        html { 
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px; 
+        }
+
         :root {
             --oxford-navy: #002147;
             --mist-teal: #71B2C1;
@@ -171,11 +181,12 @@
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-gray-100 py-4">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="p-2 bg-navy rounded-lg">
-                    <i class="fas fa-microscope text-white text-xl"></i>
-                </div>
+<div class="flex items-center space-x-3">
+    <div class="flex-shrink-0">
+        <a href="/">
+            <img src="logo.svg" alt="Scalp Health Alliance Logo" class="h-12 w-auto object-contain" onerror="this.style.display='none'">
+        </a>
+    </div>
                 <div>
                     <span class="text-xl font-bold tracking-tight text-navy uppercase">Scalp Health Alliance</span>
                     <div class="flex items-center space-x-2">
