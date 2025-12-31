@@ -65,34 +65,35 @@
 <body class="bg-slate-50 text-oxford">
 
     <!-- Navigation -->
-<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 glass-nav border-b-2 border-champagne/30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        
-        <div class="flex items-center gap-4 group cursor-pointer">
-            <div class="relative">
-                <div class="absolute inset-0 bg-champagne/20 blur-lg rounded-full opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                <img src="logo.svg" alt="SHA Logo" class="relative w-[50px] h-[50px] drop-shadow-[0_0_5px_rgba(227,213,184,0.5)]">
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 glass-nav border-b border-champagne/10 shadow-2xl">
+        <div class="absolute inset-0 bg-gradient-to-r from-oxford via-[#24334d] to-oxford opacity-95 -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <div class="flex items-center gap-5 group cursor-pointer">
+                <div class="relative">
+                    <img src="logo.svg" onerror="this.src='data:image/svg+xml;base64,...';" alt="SHA Logo" class="relative w-[52px] h-[52px] rounded-xl border border-champagne/20 shadow-sm transition-transform group-hover:scale-105">
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="text-2xl font-black tracking-tight text-white leading-none">
+                        SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
+                    </h1>
+                    <span class="text-[9px] text-mist font-black uppercase tracking-[0.4em] mt-1.5 opacity-90">
+                        Join the 2026 Clinical Vanguard
+                    </span>
+                </div>
             </div>
             
-            <div class="flex flex-col">
-                <span class="text-xl md:text-2xl font-black tracking-tighter text-white leading-none">
-                    SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
-                </span>
-                <span class="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-mist uppercase mt-1.5 opacity-90">
-                    The Standard in Clinical Sanctuary
-                </span>
-            </div>
-        </div>
-        
-        <div class="hidden md:flex items-center gap-8">
-            <a href="#innovation" class="text-silver hover:text-white font-bold transition-colors text-xs uppercase tracking-[0.2em]">Protocol</a>
-            <button onclick="document.getElementById('apply').scrollIntoView()" 
-                class="bg-champagne border-2 border-champagne text-oxford px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest hover:bg-transparent hover:text-champagne transition-all shadow-[0_0_15px_rgba(227,213,184,0.3)]">
-                Apply to Join
-            </button>
-        </div>
-    </div>
-</nav>
+            <div class="hidden md:flex items-center gap-10">
+                <div class="flex gap-8 border-r border-white/10 pr-8">
+                    <a href="#innovation" class="text-silver hover:text-champagne font-bold transition-all text-xs uppercase tracking-[0.2em] relative group">
+                        Protocol
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-champagne transition-all group-hover:w-full"></span>
+                    </a>
+                </div>
+                <button onclick="document.getElementById('apply').scrollIntoView()" class="relative overflow-hidden group bg-transparent border-2 border-champagne/50 text-champagne px-8 py-2.5 rounded-full font-black text-sm uppercase tracking-widest hover:text-oxford transition-all">
+                    <span class="relative z-10">Apply to Join</span>
+                    <div class="absolute inset-0 bg-champagne translate-y-[102%] group-hover:translate-y-0 transition-transform duration-300"></div>
+                </button>
 
     <!-- Hero Section -->
     <header class="relative pt-40 pb-24 bg-oxford text-white overflow-hidden">
