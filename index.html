@@ -65,30 +65,34 @@
 <body class="bg-slate-50 text-oxford">
 
     <!-- Navigation -->
-<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 border-b border-champagne/20 shadow-2xl overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#141d2b] via-oxford to-[#141d2b] opacity-98 -z-10"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <img src="logo.svg" onerror="this.src='data:image/svg+xml;base64,...';" alt="SHA Logo" class="w-[52px] h-[52px] rounded-lg">
-                <div class="flex flex-col justify-center">
-                    <span class="text-xl font-black tracking-tighter text-white leading-none">
-                        SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
-                    </span>
-                    <span class="text-[9px] text-mist font-bold uppercase tracking-[0.3em] mt-1.5">
-                        2026 Clinical Vanguard Recruitment
-                    </span>
-                </div>
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 glass-nav border-b border-champagne/10 shadow-xl">
+    <div class="absolute inset-0 bg-oxford/90 backdrop-blur-md -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div class="flex items-center gap-5">
+            <div class="relative flex items-center justify-center">
+                <div class="absolute inset-0 bg-champagne/5 rounded-full blur-xl"></div>
+                <img src="logo.svg" onerror="this.src='data:image/svg+xml;base64,...';" alt="SHA Logo" class="relative w-[52px] h-[52px] rounded-xl object-contain">
             </div>
             
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#innovation" class="text-silver hover:text-champagne font-medium transition-colors text-sm uppercase tracking-widest">Protocol</a>
-                <button onclick="document.getElementById('apply').scrollIntoView()" class="bg-champagne text-oxford px-8 py-2.5 rounded-full font-black text-sm uppercase tracking-widest hover:brightness-110 transition-all shadow-lg">
-                    Apply to Join
-                </button>
+            <div class="flex flex-col">
+                <h1 class="text-2xl font-black tracking-tighter text-white leading-none">
+                    SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
+                </h1>
+                <span class="text-[10px] text-champagne/70 font-bold uppercase tracking-[0.4em] mt-2">
+                    2026 Clinical Vanguard Recruitment
+                </span>
             </div>
         </div>
-    </nav>
+        
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#innovation" class="text-silver hover:text-champagne font-bold transition-all text-xs uppercase tracking-widest">Protocol</a>
+            <button onclick="document.getElementById('apply').scrollIntoView()" class="bg-champagne text-oxford px-8 py-2.5 rounded-full font-black text-sm uppercase tracking-widest hover:brightness-110 transition-all shadow-lg">
+                Apply to Join
+            </button>
+        </div>
+    </div>
+</nav>
     <!-- Hero Section -->
     <header class="relative pt-40 pb-24 bg-oxford text-white overflow-hidden">
         <div class="absolute inset-0 opacity-20">
