@@ -303,7 +303,7 @@
     </section>
 
     <!-- Footer -->
- <footer class="bg-oxford text-white pt-20 pb-12 border-t border-white/5">
+<footer class="bg-oxford text-white pt-20 pb-12 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex flex-col items-center mb-16 text-center">
             <div class="mb-8">
@@ -321,15 +321,16 @@
             </p>
         </div>
 
-      <div class="flex flex-wrap justify-center gap-10 text-silver text-[10px] uppercase tracking-[0.3em]">
-    <a href="javascript:void(0)" onclick="openCompliance('hipaa')" class="hover:text-champagne transition-colors cursor-pointer">HIPAA Policy</a>
-    <a href="javascript:void(0)" onclick="openCompliance('fmv')" class="hover:text-champagne transition-colors cursor-pointer">FMV Protocol</a>
-    <a href="javascript:void(0)" onclick="openCompliance('baa')" class="hover:text-champagne transition-colors cursor-pointer">BAA Terms</a>
-    <a href="javascript:void(0)" onclick="openCompliance('support')" class="hover:text-champagne transition-colors cursor-pointer">Support</a>
-</div>
-            
-            <div class="text-silver/20 text-[9px] uppercase tracking-[0.4em] font-mono">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12">
+            <div class="text-silver/20 text-[9px] uppercase tracking-[0.4em] font-mono order-2 md:order-1">
                 Stateless Bridge v2.5 | HL7 FHIR Compliant | © 2026 SHA, LLC
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-10 text-silver text-[10px] uppercase tracking-[0.3em] order-1 md:order-2">
+                <a href="javascript:void(0)" onclick="openCompliance('hipaa')" class="hover:text-champagne transition-colors">HIPAA Policy</a>
+                <a href="javascript:void(0)" onclick="openCompliance('fmv')" class="hover:text-champagne transition-colors">FMV Protocol</a>
+                <a href="javascript:void(0)" onclick="openCompliance('baa')" class="hover:text-champagne transition-colors">BAA Terms</a>
+                <a href="javascript:void(0)" onclick="openCompliance('support')" class="hover:text-champagne transition-colors">Support</a>
             </div>
         </div>
     </div>
