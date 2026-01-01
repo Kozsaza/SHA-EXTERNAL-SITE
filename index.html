@@ -241,7 +241,8 @@
     </section>
 <footer class="bg-oxford text-white pt-16 pb-12 border-t border-white/10 px-6">
     <div class="max-w-7xl mx-auto text-center">
-        <div class="flex flex-col items-center mb-10">
+        
+        <div class="flex flex-col items-center mb-12">
             <img src="logo.svg" alt="SHA Logo" class="w-[90px] h-[90px] rounded-2xl mb-6 brightness-0 invert opacity-90">
             <h1 class="text-5xl font-black tracking-tighter text-white leading-none mb-3">
                 SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
@@ -251,20 +252,17 @@
             </span>
         </div>
         
-        <div class="max-w-2xl mx-auto py-6 px-10 bg-white/5 rounded-2xl border border-white/10 mb-10">
-            <p class="text-[13px] text-silver/80 uppercase tracking-wider leading-relaxed font-mono">
+        <div class="max-w-2xl mx-auto py-8 px-10 bg-white/5 rounded-3xl border border-white/10 mb-12">
+            <p class="text-[14px] text-silver/80 uppercase tracking-widest leading-relaxed font-mono">
                 <span class="text-champagne font-bold">Compliance:</span> MSO model utilizing Zero-Knowledge architecture. All fees are FMV compliant. SHA does not provide medical diagnosis or store PHI.
-            </p>
-            <p class="text-[10px] text-silver/40 font-mono tracking-[0.3em] mt-4">
-                Stateless Bridge | HL7 FHIR | © 2026 Scalp Health Alliance
             </p>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4 text-[13px] font-black uppercase tracking-[0.2em] text-silver/60">
-            <a href="javascript:void(0)" onclick="openModal('legal')" class="hover:text-champagne transition-colors">HIPAA Policy</a>
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4 text-[14px] font-black uppercase tracking-[0.2em] text-silver/60">
+            <a href="javascript:void(0)" onclick="openModal('hipaa')" class="hover:text-champagne transition-colors">HIPAA Policy</a>
             <a href="javascript:void(0)" onclick="openModal('earnings')" class="hover:text-champagne transition-colors">FMV Protocol</a>
-            <a href="javascript:void(0)" onclick="openModal('legal')" class="hover:text-champagne transition-colors">BAA Terms</a>
-            <a href="javascript:void(0)" onclick="openModal('legal')" class="hover:text-champagne transition-colors">Support</a>
+            <a href="javascript:void(0)" onclick="openModal('baa')" class="hover:text-champagne transition-colors">BAA Terms</a>
+            <a href="javascript:void(0)" onclick="openModal('support')" class="hover:text-champagne transition-colors">Support</a>
         </div>
     </div>
 </footer>
@@ -289,11 +287,12 @@
             document.getElementById('general-field').classList.toggle('hidden-content', type !== 'general');
         }
         
-        const complianceData = {
-            legal: { title: "Compliance Notice", text: "SHA operates under a Management Services Organization (MSO) model. We ensure all interactions and data transits meet federal standards." },
-            data: { title: "Zero-Risk Protocol", text: "PHI is never stored. Data exists only as a transient signal during transit to the clinical provider." },
-            earnings: { title: "FMV Protocol", text: "All administrative fees are benchmarked against Fair Market Value (FMV) to ensure compliance with AKS and Stark Law." }
-            support: { title: "Alliance Support",text: "For technical assistance or partnership inquiries, please contact our 2026 Vanguard Support team at support@scalphealthalliance.com."};
+const complianceData = {
+    hipaa: { title: "HIPAA Policy", text: "SHA utilizes stateless architecture to ensure PHI is never stored, only transmitted." },
+    earnings: { title: "FMV Protocol", text: "Administrative fees are benchmarked to Fair Market Value standards." },
+    baa: { title: "BAA Terms", text: "Standard Business Associate Agreements are provided for all clinical anchors." },
+    support: { title: "Support", text: "Contact support@scalphealthalliance.com for technical assistance." }
+};
         
         function openModal(type) {
             const data = complianceData[type] || complianceData['legal'];
