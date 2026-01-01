@@ -60,6 +60,30 @@
         .terminal-glow {
             box-shadow: 0 0 20px rgba(168, 208, 198, 0.15);
         }
+        @keyframes dataPulse {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+}
+
+.pulse-line {
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #A8D0C6, transparent);
+    z-index: 1;
+}
+
+.pulse-line.top {
+    bottom: 100%;
+    animation: dataPulse 2s infinite ease-in-out;
+}
+
+.pulse-line.bottom {
+    top: 100%;
+    animation: dataPulse 2s infinite ease-in-out reverse;
+}
     </style>
 </head>
 <body class="bg-slate-50 text-oxford">
@@ -171,66 +195,104 @@
     </div>
 </section>
     <!-- Innovation Architecture -->
-    <section id="innovation" class="py-24 bg-oxford text-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div>
-                    <h2 class="text-champagne font-bold uppercase tracking-widest text-sm mb-6">The SHA Bridge Architecture</h2>
-                    <h3 class="text-4xl md:text-5xl font-serif mb-8">Stateless. Secure. <br/><span class="text-mist">Compliant.</span></h3>
-                    <p class="text-silver mb-8 text-lg leading-relaxed">Unlike traditional platforms that hoard data, the SHA functions as a <strong>Conduit</strong>. Our architecture ensures that Protected Health Information (PHI) is never stored permanently on our servers, mitigating liability for every Alliance partner.</p>
-                    
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-                            <i class="fas fa-fingerprint text-champagne text-xl mb-4"></i>
-                            <h5 class="font-bold text-white mb-2">Non-Persistent</h5>
-                            <p class="text-xs text-silver/60">Data is purged instantly upon clinical confirmation.</p>
+   <section id="innovation" class="py-24 bg-oxford relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#A8D0C6 0.5px, transparent 0.5px); background-size: 30px 30px;"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            
+            <div>
+                <h2 class="text-champagne font-black text-xs uppercase tracking-[0.5em] mb-6">Security Protocol v2.5</h2>
+                <h3 class="text-5xl font-serif text-white leading-tight mb-8">A Conduit, <br/><span class="text-mist italic">Not a Warehouse.</span></h3>
+                <p class="text-silver/70 text-lg leading-relaxed mb-10">
+                    Our architecture is built on a "Zero-Persistence" philosophy. By separating clinical transit from business logic, we eliminate the primary risk of healthcare data: <strong>Storage.</strong>
+                </p>
+                
+                <div class="grid gap-6">
+                    <div class="flex items-start gap-5 p-6 rounded-3xl bg-white/5 border border-white/10">
+                        <div class="w-12 h-12 rounded-xl bg-mist/20 flex items-center justify-center text-mist shrink-0">
+                            <i class="fas fa-shield-halved text-xl"></i>
                         </div>
-                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-                            <i class="fas fa-microchip text-mist text-xl mb-4"></i>
-                            <h5 class="font-bold text-white mb-2">FHIR-Ready</h5>
-                            <p class="text-xs text-silver/60">Seamless JSON packets for medical interoperability.</p>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">The "Dirty Pipe" Logic</h4>
+                            <p class="text-sm text-silver/50 uppercase tracking-widest font-mono">Isolated PHI Transit Layer</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5 p-6 rounded-3xl bg-white/5 border border-white/10">
+                        <div class="w-12 h-12 rounded-xl bg-champagne/20 flex items-center justify-center text-champagne shrink-0">
+                            <i class="fas fa-vault text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">The "Clean Vault" Logic</h4>
+                            <p class="text-sm text-silver/50 uppercase tracking-widest font-mono">Persistent Business Intelligence</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Advanced Visualization (Aggressive Recruitment Tone) -->
-                <div class="relative">
-                    <div class="bg-slate-900 terminal-glow border border-champagne/30 rounded-[40px] p-10 relative">
-                        <div class="flex items-center justify-between mb-12">
-                            <div class="px-3 py-1 bg-champagne/10 border border-champagne/20 rounded text-[10px] text-champagne font-mono uppercase tracking-widest">Clinical_Tunnel_v2.5</div>
-                            <div class="flex gap-2">
-                                <span class="text-[10px] font-mono text-mist uppercase">Uptime: 99.9%</span>
-                                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></div>
+            <div class="relative">
+                <div class="absolute -inset-10 bg-mist/10 blur-[100px] rounded-full"></div>
+                
+                <div class="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-[48px] p-10 shadow-2xl">
+                    <div class="flex justify-between items-center mb-16 border-b border-white/5 pb-6">
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/40"></div>
+                        </div>
+                        <div class="text-[9px] font-mono text-mist/60 uppercase tracking-[0.4em]">SHA_BRIDGE_ENCRYPTED</div>
+                    </div>
+
+                    <div class="relative py-10 space-y-20">
+                        <div class="flex items-center gap-6 relative">
+                            <div class="z-20 w-16 h-16 rounded-2xl bg-oxford border border-white/20 flex items-center justify-center shadow-lg">
+                                <i class="fas fa-mobile-screen text-2xl text-mist"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm tracking-wide">OBSERVER CAPTURE</h5>
+                                <p class="text-[9px] font-mono text-silver/40 uppercase">Encrypted Source Node</p>
+                            </div>
+                            
+                            <div class="absolute left-8 top-full h-20 w-px bg-gradient-to-b from-mist to-transparent"></div>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <div class="relative group">
+                                <div class="absolute inset-0 bg-mist/20 rounded-full blur-xl animate-pulse"></div>
+                                <div class="relative z-10 w-24 h-24 rounded-full bg-oxford border-2 border-mist/50 flex flex-col items-center justify-center text-center p-2">
+                                    <i class="fas fa-bolt text-mist mb-1"></i>
+                                    <span class="text-[8px] font-black text-white uppercase leading-none">Stateless<br/>Bridge</span>
+                                </div>
+                                <div class="pulse-line top"></div>
+                                <div class="pulse-line bottom"></div>
                             </div>
                         </div>
 
-                        <div class="space-y-12 relative z-10">
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white border border-white/20"><i class="fas fa-scissors"></i></div>
-                                <div class="flex-1 relative h-6 bg-white/5 rounded-full overflow-hidden border border-white/5">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-mist/40 to-transparent animate-flow"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center text-[8px] font-mono text-mist font-bold uppercase tracking-widest">Encrypting_Observation</div>
-                                </div>
+                        <div class="flex items-center gap-6 relative justify-end">
+                            <div class="text-right">
+                                <h5 class="text-white font-bold text-sm tracking-wide">CLINICAL VAULT</h5>
+                                <p class="text-[9px] font-mono text-silver/40 uppercase">FHIR_v4.0 COMPLIANT</p>
                             </div>
-                            <div class="flex justify-center">
-                                <div class="px-8 py-3 rounded-2xl bg-champagne/20 border border-champagne/40 text-champagne text-xs font-black font-mono text-center tracking-tighter">
-                                    <i class="fas fa-shield-halved mr-2"></i> STATELESS_HANDSHAKE
-                                </div>
+                            <div class="z-20 w-16 h-16 rounded-2xl bg-oxford border border-white/20 flex items-center justify-center shadow-lg">
+                                <i class="fas fa-stethoscope text-2xl text-champagne"></i>
                             </div>
-                            <div class="flex items-center gap-6">
-                                <div class="flex-1 relative h-6 bg-white/5 rounded-full overflow-hidden border border-white/5">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-champagne/40 to-transparent animate-flow"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center text-[8px] font-mono text-champagne font-bold uppercase tracking-widest">Inbound_FHIR_Packet</div>
-                                </div>
-                                <div class="w-12 h-12 rounded-xl bg-champagne/20 flex items-center justify-center text-champagne border border-champagne/40"><i class="fas fa-stethoscope"></i></div>
-                            </div>
+                            
+                            <div class="absolute right-8 bottom-full h-20 w-px bg-gradient-to-t from-champagne to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 pt-8 border-t border-white/5 flex justify-between items-center opacity-40">
+                        <span class="text-[8px] font-mono text-silver uppercase tracking-[0.4em]">AES-256 GCM</span>
+                        <div class="flex gap-4">
+                            <span class="text-[8px] font-mono text-silver uppercase border border-white/20 px-2 py-0.5 rounded">HL7 FHIR</span>
+                            <span class="text-[8px] font-mono text-silver uppercase border border-white/20 px-2 py-0.5 rounded">HIPAA BAA</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Application Portal -->
    <section id="apply" class="py-24 bg-slate-100">
         <div class="max-w-4xl mx-auto px-4">
