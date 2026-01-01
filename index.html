@@ -229,25 +229,28 @@
                     <button onclick="toggleForm('general')" id="btn-general" class="persona-btn flex-1 py-4 rounded-[24px] font-bold text-xs uppercase tracking-wider transition-all whitespace-nowrap px-4">General Inquiry</button>
                 </div>
                 <div class="px-8 pb-10">
-                    <form id="sha-form" class="space-y-6">
-                        <div class="grid sm:grid-cols-2 gap-6">
-                            <input type="text" placeholder="Full Name" required class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
-                            <input type="email" placeholder="Work Email" required class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
-                        </div>
-                        
-                        <div id="hp-field">
-                            <input type="text" placeholder="Salon/Shop/Business Name" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
-                        </div>
-                        <div id="derm-field" class="hidden-content">
-                            <input type="text" placeholder="Clinic or Practice Name" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
-                        </div>
-                        <div id="general-field" class="hidden-content">
-                            <input type="text" placeholder="Organization or Purpose" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
-                        </div>
+                   <form id="sha-form" action="https://formspree.io/f/mwvppboa" method="POST" class="space-y-6">
+    <div class="grid sm:grid-cols-2 gap-6">
+        <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
+        <input type="email" name="email" placeholder="Work Email" required class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
+    </div>
+    
+    <div id="hp-field">
+        <input type="text" name="salon_name" placeholder="Salon/Shop/Business Name" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
+    </div>
+    <div id="derm-field" class="hidden-content">
+        <input type="text" name="clinic_name" placeholder="Clinic or Practice Name" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
+    </div>
+    <div id="general-field" class="hidden-content">
+        <input type="text" name="org_name" placeholder="Organization or Purpose" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none">
+    </div>
 
-                        <textarea rows="4" placeholder="How can we collaborate?" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none"></textarea>
-                        <button type="submit" class="w-full bg-oxford text-white py-5 rounded-2xl font-black text-xl hover:bg-slate-800 transition-all">Submit Request</button>
-                    </form>
+    <textarea rows="4" name="message" placeholder="How can we collaborate?" class="w-full bg-white border border-slate-200 p-4 rounded-xl outline-none"></textarea>
+    
+    <input type="hidden" name="_subject" value="New Alliance Inquiry">
+    
+    <button type="submit" class="w-full bg-oxford text-white py-5 rounded-2xl font-black text-xl hover:bg-slate-800 transition-all">Submit Request</button>
+</form>
                     <div id="success-message" class="hidden-content text-center py-10">
                         <h4 class="text-3xl font-serif mb-4">Request Received</h4>
                         <p class="text-slate-600">Our team will be in touch shortly.</p>
@@ -351,10 +354,11 @@
         }
         
         document.getElementById('sha-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            this.classList.add('hidden-content');
-            document.getElementById('success-message').classList.remove('hidden-content');
-        });
+    // We remove e.preventDefault() to let the form actually post to Formspree.
+    // The "Success Message" logic below will trigger as the page starts its redirect.
+    this.classList.add('hidden-content');
+    document.getElementById('success-message').classList.remove('hidden-content');
+});
     </script>
 </body>
 </html>
