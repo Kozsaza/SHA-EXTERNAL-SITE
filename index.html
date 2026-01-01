@@ -276,7 +276,7 @@
         </div>
     </div>
 
-    <script>
+   <script>
         function toggleForm(type) {
             document.getElementById('btn-hp').classList.toggle('active', type === 'hp');
             document.getElementById('btn-derm').classList.toggle('active', type === 'derm');
@@ -287,19 +287,51 @@
             document.getElementById('general-field').classList.toggle('hidden-content', type !== 'general');
         }
         
-const complianceData = {
-    hipaa: { title: "HIPAA Policy", text: "SHA utilizes stateless architecture to ensure PHI is never stored, only transmitted." },
-    earnings: { title: "FMV Protocol", text: "Administrative fees are benchmarked to Fair Market Value standards." },
-    baa: { title: "BAA Terms", text: "Standard Business Associate Agreements are provided for all clinical anchors." },
-    support: { title: "Support", text: "Contact support@scalphealthalliance.com for technical assistance." }
-};
+        // This object MUST contain every ID used in your onclick="openModal('ID')"
+        const complianceData = {
+            legal: { 
+                title: "Legal Separation", 
+                text: "Our MSO structure isolates business management from clinical services, eliminating liability risks for hair professionals." 
+            },
+            data: { 
+                title: "Zero-Risk Data Protocol", 
+                text: "Stateless architecture ensures PHI is never warehoused; data is dissolved immediately post-delivery to the provider." 
+            },
+            earnings: { 
+                title: "Protected Earnings", 
+                text: "Transparent, automated triage fees processed via Stripe to ensure total regulatory compliance with AKS and Stark Law." 
+            },
+            hipaa: { 
+                title: "HIPAA Policy", 
+                text: "SHA utilizes a stateless 'bridge' architecture to ensure HL7 FHIR compliance without data warehousing." 
+            },
+            baa: { 
+                title: "BAA Terms", 
+                text: "Standard Business Associate Agreements are provided for all clinical anchors to ensure federal security standards." 
+            },
+            support: { 
+                title: "Support", 
+                text: "For technical assistance or partnership inquiries, contact support@scalphealthalliance.com." 
+            }
+        };
         
         function openModal(type) {
-            const data = complianceData[type] || complianceData['legal'];
-            document.getElementById('modalContent').innerHTML = `<h2 class="text-3xl font-serif text-oxford mb-6 font-bold">${data.title}</h2><p class="text-slate-600 leading-relaxed text-lg">${data.text}</p>`;
-            document.getElementById('complianceModal').classList.remove('hidden');
+            const data = complianceData[type];
+            // Check if the data exists before trying to write it
+            if (data) {
+                document.getElementById('modalContent').innerHTML = `
+                    <h2 class="text-3xl font-serif text-oxford mb-6 font-bold leading-tight">${data.title}</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg">${data.text}</p>
+                `;
+                document.getElementById('complianceModal').classList.remove('hidden');
+            } else {
+                console.error("Modal content not found for key: " + type);
+            }
         }
-        function closeModal() { document.getElementById('complianceModal').classList.add('hidden'); }
+
+        function closeModal() { 
+            document.getElementById('complianceModal').classList.add('hidden'); 
+        }
         
         document.getElementById('sha-form').addEventListener('submit', function(e) {
             e.preventDefault();
