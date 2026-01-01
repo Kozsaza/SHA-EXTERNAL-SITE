@@ -140,51 +140,66 @@
         </div>
     </section>
 
-    <section id="innovation" class="py-24 bg-oxford relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 relative z-10 space-y-16">
-            
+ <section id="innovation" class="py-12 px-6">
+    <div class="max-w-7xl mx-auto space-y-12">
+        
+        <div class="text-center md:text-left border-l-4 border-mist pl-6 py-2">
+            <h2 class="text-4xl font-serif text-oxford font-bold leading-tight">Institutional Protection</h2>
+            <p class="text-slate-500 text-lg mt-1">Technical and legal safeguards for the Scalp Health ecosystem.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div onclick="openModal('legal')" class="group cursor-pointer bg-white p-8 rounded-[32px] border border-slate-200 hover:border-mist transition-all hover:shadow-xl">
+                <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-mist/10 transition-colors">
+                    <i class="fas fa-gavel text-mist text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-oxford mb-2">Legal Separation</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Our MSO structure isolates business management from clinical services, eliminating liability risks.</p>
+                <div class="mt-4 flex items-center gap-2 text-[10px] font-black text-mist uppercase tracking-widest">
+                    <span>Review Framework</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <div onclick="openModal('data')" class="group cursor-pointer bg-white p-8 rounded-[32px] border border-slate-200 hover:border-champagne transition-all hover:shadow-xl">
+                <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-champagne/10 transition-colors">
+                    <i class="fas fa-shield-halved text-champagne text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-oxford mb-2">Zero-Risk Data</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Stateless architecture ensures PHI is never warehoused, dissolving data immediately post-delivery.</p>
+                <div class="mt-4 flex items-center gap-2 text-[10px] font-black text-champagne uppercase tracking-widest">
+                    <span>Review Protocol</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <div onclick="openModal('earnings')" class="group cursor-pointer bg-white p-8 rounded-[32px] border border-slate-200 hover:border-oxford transition-all hover:shadow-xl">
+                <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-oxford/10 transition-colors">
+                    <i class="fas fa-hand-holding-dollar text-oxford text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-oxford mb-2">Protected Earnings</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Transparent, automated triage fees processed via Stripe to ensure total regulatory compliance.</p>
+                <div class="mt-4 flex items-center gap-2 text-[10px] font-black text-oxford uppercase tracking-widest">
+                    <span>Review Compliance</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
             <div class="text-center">
-                <h2 class="text-4xl lg:text-5xl font-serif text-white mb-4">Institutional Protection</h2>
-                <p class="text-silver/60 text-lg max-w-2xl mx-auto">Technical and legal safeguards engineered to protect the Scalp Health ecosystem.</p>
+                <h2 class="text-3xl lg:text-4xl font-serif text-oxford font-bold leading-tight">A Conduit, <span class="italic text-mist">Not a Warehouse</span></h2>
+                <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-medium uppercase tracking-wider">Zero-Knowledge Architecture | Impossible to Reverse Engineer</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div onclick="openCompliance('legal')" class="group cursor-pointer bg-white/5 p-8 rounded-[32px] border border-white/10 hover:border-mist transition-all hover:shadow-xl">
-                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-mist/10 transition-colors">
-                        <i class="fas fa-gavel text-mist text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Legal Separation</h3>
-                    <p class="text-silver/60 text-sm leading-relaxed">Our MSO structure isolates business management from clinical decisions, eliminating liability risks.</p>
-                </div>
-
-                <div onclick="openCompliance('data')" class="group cursor-pointer bg-white/5 p-8 rounded-[32px] border border-white/10 hover:border-champagne transition-all hover:shadow-xl">
-                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-champagne/10 transition-colors">
-                        <i class="fas fa-shield-halved text-champagne text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Zero-Risk Data</h3>
-                    <p class="text-silver/60 text-sm leading-relaxed">Stateless architecture ensures PHI is never warehoused, dissolving data immediately post-delivery.</p>
-                </div>
-
-                <div onclick="openCompliance('earnings')" class="group cursor-pointer bg-white/5 p-8 rounded-[32px] border border-white/10 hover:border-white transition-all hover:shadow-xl">
-                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors">
-                        <i class="fas fa-hand-holding-dollar text-white text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Protected Earnings</h3>
-                    <p class="text-silver/60 text-sm leading-relaxed">Transparent, automated triage fees processed via Stripe to ensure total regulatory compliance.</p>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <h2 class="text-4xl lg:text-5xl font-serif text-white mb-4">A Conduit, <span class="text-mist italic">Not a Warehouse</span></h2>
-            </div>
-
-            <div class="glass-panel rounded-[40px] p-10 md:p-16 text-white relative border border-white/5">
+            <div class="bg-oxford rounded-[40px] p-10 md:p-16 text-white relative border border-white/5 shadow-2xl">
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-12 relative">
+                    
                     <div class="w-full lg:w-1/4 text-center">
-                        <div class="w-20 h-20 rounded-3xl bg-oxford border border-mist/30 flex items-center justify-center text-mist mx-auto mb-4">
+                        <div class="w-20 h-20 rounded-3xl bg-oxford border border-mist/30 flex items-center justify-center text-mist mx-auto mb-4 shadow-2xl">
                             <i class="fas fa-user-tie text-3xl"></i>
                         </div>
-                        <h4 class="text-xs font-black uppercase tracking-widest text-white">Hair Professional</h4>
+                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white">Hair Professional</h4>
                         <span class="text-[10px] text-silver/40 font-mono mt-1 block">Point of Observation</span>
                     </div>
 
@@ -192,32 +207,41 @@
                         <div class="relative bg-black/40 rounded-2xl p-6 border border-white/10">
                             <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
                                 <span class="text-[10px] font-mono text-mist font-black uppercase tracking-widest">Active Stateless Conduit</span>
-                            </div>
-                            <div class="flex items-center gap-6">
-                                <div class="w-10 h-10 bg-mist/20 rounded-xl flex items-center justify-center"><i class="fas fa-lock text-mist"></i></div>
-                                <div class="flex-1 overflow-hidden">
-                                    <div class="text-[11px] font-mono text-white font-bold">Encrypted_PHI_Package</div>
-                                    <div class="text-[9px] font-mono text-mist/60 truncate">RSA_4096: 0x7F82...44A9_SECURE</div>
+                                <div class="flex gap-2">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-mist animate-pulse"></span>
+                                    <span class="h-1.5 w-1.5 rounded-full bg-mist/30"></span>
                                 </div>
                             </div>
+                            
+                            <div class="flex items-center gap-6">
+                                <div class="w-10 h-10 bg-mist/20 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-lock text-mist"></i>
+                                </div>
+                                <div class="flex-1 overflow-hidden">
+                                    <div class="text-[11px] font-mono text-white font-bold">Encrypted_Zero_Knowledge_Packet</div>
+                                    <div class="text-[9px] font-mono text-mist/60 truncate tracking-tighter">NON-REVERSIBLE_HASH: 0x4F...9E21</div>
+                                </div>
+                            </div>
+
                             <div class="mt-6 flex items-center justify-center gap-4 bg-white/5 py-3 rounded-xl border border-white/5">
                                 <i class="fas fa-wind text-champagne text-xs"></i>
-                                <span class="text-[10px] font-mono text-champagne font-black uppercase tracking-tighter">Verified Handshake: Auto-Purge Engaged</span>
+                                <span class="text-[10px] font-mono text-champagne font-black uppercase tracking-tighter">Immediate Memory Purge Engaged</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="w-full lg:w-1/4 text-center">
-                        <div class="w-20 h-20 rounded-3xl bg-oxford border border-champagne/30 flex items-center justify-center text-champagne mx-auto mb-4">
+                        <div class="w-20 h-20 rounded-3xl bg-oxford border border-champagne/30 flex items-center justify-center text-champagne mx-auto mb-4 shadow-2xl">
                             <i class="fas fa-user-md text-3xl"></i>
                         </div>
-                        <h4 class="text-xs font-black uppercase tracking-widest text-white">Dermatologist</h4>
+                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white">Dermatologist</h4>
                         <span class="text-[10px] text-silver/40 font-mono mt-1 block">Clinical Suite (EMR)</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="apply" class="py-24 bg-slate-100">
         <div class="max-w-4xl mx-auto px-4">
