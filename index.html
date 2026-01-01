@@ -232,7 +232,7 @@
     </section>
 
     <!-- Application Portal -->
-    <section id="apply" class="py-24 bg-slate-100">
+   <section id="apply" class="py-24 bg-slate-100">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-oxford font-serif text-5xl mb-6">Join the Alliance</h2>
@@ -253,7 +253,7 @@
                 </div>
 
                 <div class="px-8 pb-10">
-                    <form id="sha-form" action="mailto:join@scalphealthalliance.com" method="post" enctype="text/plain" class="space-y-6">
+                    <form id="sha-form" class="space-y-6">
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-400 mb-2 tracking-widest">Full Name</label>
@@ -302,93 +302,129 @@
         </div>
     </section>
 
-    <!-- Footer -->
-<footer class="bg-oxford text-white pt-10 pb-8 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-6">
-        
-        <div class="flex flex-col items-center mb-8 text-center">
-            <img src="logo.svg" alt="SHA Logo" class="h-16 w-auto mb-4 brightness-0 invert opacity-90">
-            <h1 class="text-3xl font-black tracking-tighter text-white leading-none mb-2">
-                SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
-            </h1>
-            <p class="text-silver text-[11px] uppercase tracking-[0.5em] font-bold">2026 Clinical Leadership</p>
-        </div>
-
-        <div class="max-w-3xl mx-auto mb-10 py-5 px-8 bg-white/5 rounded-2xl border border-white/10">
-            <p class="text-[12px] text-silver/80 leading-relaxed uppercase tracking-wider font-mono text-center">
-                <span class="text-champagne font-bold">Regulatory & Compliance Notice:</span> Scalp Health Alliance, LLC operates as a Management Services Organization (MSO). We provide non-clinical administrative and technological support to clinical partners for a fixed monthly fee based on Fair Market Value (FMV). SHA does not provide medical advice, diagnosis, or treatment, and does not engage in patient brokering or per-referral compensation.
-            </p>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/5 pt-6">
-            <div class="text-silver/40 text-[11px] uppercase tracking-[0.3em] font-mono">
-                Stateless Bridge v2.5 | HL7 FHIR Compliant | © 2026 SHA, LLC
+    <footer class="bg-oxford text-white pt-10 pb-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col items-center mb-8 text-center">
+                <img src="logo.svg" alt="SHA Logo" class="h-16 w-auto mb-4 brightness-0 invert opacity-90">
+                <h1 class="text-3xl font-black tracking-tighter text-white leading-none mb-2">
+                    SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
+                </h1>
+                <p class="text-silver text-[11px] uppercase tracking-[0.5em] font-bold">2026 Clinical Leadership</p>
             </div>
-            
-            <div class="flex flex-wrap justify-center gap-8 text-silver text-[12px] font-bold uppercase tracking-[0.2em]">
-                <a href="javascript:void(0)" onclick="openCompliance('hipaa')" class="hover:text-champagne transition-all cursor-pointer">HIPAA Policy</a>
-                <a href="javascript:void(0)" onclick="openCompliance('fmv')" class="hover:text-champagne transition-all cursor-pointer">FMV Protocol</a>
-                <a href="javascript:void(0)" onclick="openCompliance('baa')" class="hover:text-champagne transition-all cursor-pointer">BAA Terms</a>
-                <a href="javascript:void(0)" onclick="openCompliance('support')" class="hover:text-champagne transition-all cursor-pointer">Support</a>
+
+            <div class="max-w-3xl mx-auto mb-10 py-5 px-8 bg-white/5 rounded-2xl border border-white/10">
+                <p class="text-[12px] text-silver/80 leading-relaxed uppercase tracking-wider font-mono text-center">
+                    <span class="text-champagne font-bold">Regulatory & Compliance Notice:</span> Scalp Health Alliance, LLC operates as a Management Services Organization (MSO). We provide non-clinical administrative and technological support to clinical partners for a fixed monthly fee based on Fair Market Value (FMV). SHA does not provide medical advice, diagnosis, or treatment, and does not engage in patient brokering or per-referral compensation.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/5 pt-6">
+                <div class="text-silver/40 text-[11px] uppercase tracking-[0.3em] font-mono">
+                    Stateless Bridge v2.5 | HL7 FHIR Compliant | © 2026 SHA, LLC
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 text-silver text-[12px] font-bold uppercase tracking-[0.2em]">
+                    <a href="javascript:void(0)" onclick="openCompliance('hipaa')" class="hover:text-champagne transition-all cursor-pointer">HIPAA Policy</a>
+                    <a href="javascript:void(0)" onclick="openCompliance('fmv')" class="hover:text-champagne transition-all cursor-pointer">FMV Protocol</a>
+                    <a href="javascript:void(0)" onclick="openCompliance('baa')" class="hover:text-champagne transition-all cursor-pointer">BAA Terms</a>
+                    <a href="javascript:void(0)" onclick="openCompliance('support')" class="hover:text-champagne transition-all cursor-pointer">Support</a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<div id="complianceModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-oxford/90 backdrop-blur-sm" onclick="closeModal()"></div>
-    <div class="relative bg-white w-full max-w-2xl rounded-
-    <script>
-const complianceData = {
-    hipaa: {
-        title: "HIPAA & Data Privacy",
-        text: "Scalp Health Alliance utilizes a 'Stateless Bridge' architecture. We facilitate the secure transit of clinical data through end-to-end encryption (AES-256). No Protected Health Information (PHI) is stored on local mobile devices or SHA permanent servers. Data is purged immediately following successful clinical hand-off."
-    },
-    fmv: {
-        title: "FMV Protocol",
-        text: "Our Management Services fees are established through an independent Fair Market Value (FMV) audit. This fee structure covers administrative labor reduction, technical infrastructure, and professional network recruitment. Our fixed-fee model ensures strict compliance with the Anti-Kickback Statute (AKS) and Stark Law."
-    },
-    baa: {
-        title: "BAA Terms",
-        text: "SHA operates as a 'Business Associate' under HIPAA regulations. We provide a standardized Business Associate Agreement (BAA) to all Clinical Anchors. This contract formalizes our commitment to data safeguarding, breach notification protocols, and regulatory adherence."
-    },
-    support: {
-        title: "Partner Support",
-        text: "For technical assistance with the 'Gallery Guard' PWA or credentialing issues, please contact our Support Desk at <strong>join@scalphealthalliance.com</strong>. A dedicated Provider Relations Manager will respond within 4 business hours."
-    }
-};
-
-function openCompliance(type) {
-    const modal = document.getElementById('complianceModal');
-    const content = document.getElementById('modalContent');
-    const data = complianceData[type];
-    
-    content.innerHTML = `
-        <h2 class="text-3xl font-serif text-oxford mb-6">${data.title}</h2>
-        <p class="text-slate-600 leading-relaxed text-lg">${data.text}</p>
-    `;
-    
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; 
-}
-
-function closeModal() {
-    document.getElementById('complianceModal').classList.add('hidden');
-    document.body.style.overflow = 'auto';
-}
-    </script>
     <div id="complianceModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-oxford/90 backdrop-blur-sm" onclick="closeModal()"></div>
-    <div class="relative bg-white w-full max-w-2xl rounded-[32px] p-8 lg:p-12 shadow-2xl border border-champagne/20">
-        <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-oxford">
-            <i class="fas fa-times text-xl"></i>
-        </button>
-        <div id="modalContent">
+        <div class="absolute inset-0 bg-oxford/90 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative bg-white w-full max-w-2xl rounded-[32px] p-8 lg:p-12 shadow-2xl border border-champagne/20">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-oxford">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div id="modalContent"></div>
+            <div class="mt-10 pt-6 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal()" class="bg-oxford text-white px-8 py-3 rounded-xl text-sm font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Close</button>
             </div>
-        <div class="mt-10 pt-6 border-t border-slate-100 flex justify-end">
-            <button onclick="closeModal()" class="bg-oxford text-white px-8 py-3 rounded-xl text-sm font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Close</button>
         </div>
     </div>
-</div>
+
+    <script>
+        // Form Persona Toggles
+        function toggleForm(type) {
+            const btns = {
+                hp: document.getElementById('btn-hp'),
+                derm: document.getElementById('btn-derm'),
+                general: document.getElementById('btn-general')
+            };
+            const fields = {
+                hp: document.getElementById('hp-fields'),
+                derm: document.getElementById('derm-fields'),
+                general: document.getElementById('general-fields')
+            };
+
+            Object.values(btns).forEach(b => b.classList.remove('active'));
+            Object.values(fields).forEach(f => f.classList.add('hidden-content'));
+
+            btns[type].classList.add('active');
+            fields[type].classList.remove('hidden-content');
+        }
+
+        // Form Submit Simulation
+        document.getElementById('sha-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.opacity = '0';
+            setTimeout(() => {
+                this.classList.add('hidden-content');
+                document.getElementById('success-message').classList.remove('hidden-content');
+            }, 300);
+        });
+
+        // Compliance Modal Logic
+        const complianceData = {
+            hipaa: {
+                title: "HIPAA & Data Privacy",
+                text: "Scalp Health Alliance utilizes a 'Stateless Bridge' architecture. We facilitate the secure transit of clinical data through end-to-end encryption (AES-256). No Protected Health Information (PHI) is stored on local mobile devices or SHA permanent servers. Data is purged immediately following successful clinical hand-off."
+            },
+            fmv: {
+                title: "FMV Protocol",
+                text: "Our Management Services fees are established through an independent Fair Market Value (FMV) audit. This fee structure covers administrative labor reduction, technical infrastructure, and professional network recruitment. Our fixed-fee model ensures strict compliance with the Anti-Kickback Statute (AKS) and Stark Law."
+            },
+            baa: {
+                title: "BAA Terms",
+                text: "SHA operates as a 'Business Associate' under HIPAA regulations. We provide a standardized Business Associate Agreement (BAA) to all Clinical Anchors. This contract formalizes our commitment to data safeguarding, breach notification protocols, and regulatory adherence."
+            },
+            support: {
+                title: "Partner Support",
+                text: "For technical assistance with the 'Gallery Guard' PWA or credentialing issues, please contact our Support Desk at <strong>join@scalphealthalliance.com</strong>. A dedicated Provider Relations Manager will respond within 4 business hours."
+            }
+        };
+
+        function openCompliance(type) {
+            const modal = document.getElementById('complianceModal');
+            const content = document.getElementById('modalContent');
+            const data = complianceData[type];
+            content.innerHTML = `
+                <h2 class="text-3xl font-serif text-oxford mb-6">${data.title}</h2>
+                <p class="text-slate-600 leading-relaxed text-lg">${data.text}</p>
+            `;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            document.getElementById('complianceModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-3');
+            }
+        });
+    </script>
 </body>
 </html>
