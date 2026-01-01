@@ -118,7 +118,7 @@
                     <li class="flex gap-3"><i class="fas fa-award text-champagne mt-1"></i> <span><strong>LMS Certification:</strong> 90-minute medical literacy course designed by dermatologists.</span></li>
                     <li class="flex gap-3"><i class="fas fa-user-shield text-champagne mt-1"></i> <span><strong>Gallery Guard:</strong> Secure tools keep clinical photos out of your personal phone gallery.</span></li>
                 </ul>
-                <a href="#" class="text-center bg-champagne text-oxford py-4 rounded-xl font-black uppercase tracking-widest text-sm">Complete HP Questionnaire</a>
+                <a href="https://forms.gle/NAuhv6Bkvanzhmg78" class="text-center bg-champagne text-oxford py-4 rounded-xl font-black uppercase tracking-widest text-sm">Complete HP Questionnaire</a>
             </div>
 
             <div class="bg-white p-10 rounded-[32px] border border-slate-200 border-l-4 border-mist flex flex-col shadow-xl">
@@ -130,7 +130,7 @@
                     <li class="flex gap-3"><i class="fas fa-shield-halved text-mist mt-1"></i> <span><strong>Regulatory Moat:</strong> Fixed-fee MSO structure (AKS and Stark Law compliant).</span></li>
                     <li class="flex gap-3"><i class="fas fa-link text-mist mt-1"></i> <span><strong>EMR Integration:</strong> Seamless JSON/FHIR packets for ModMed and Epic.</span></li>
                 </ul>
-                <a href="#" class="text-center bg-mist text-oxford py-4 rounded-xl font-black uppercase tracking-widest text-sm">Complete Clinical Questionnaire</a>
+                <a href="https://forms.gle/1zW57BaT1owYeGtY7" class="text-center bg-mist text-oxford py-4 rounded-xl font-black uppercase tracking-widest text-sm">Complete Clinical Questionnaire</a>
             </div>
         </div>
     </section>
@@ -239,33 +239,35 @@
             </div>
         </div>
     </section>
-
-    <footer class="bg-oxford text-white pt-16 pb-12 border-t border-white/10 px-6">
-        <div class="flex flex-col items-center mb-8 text-center">
-    <img src="logo.svg" alt="SHA Logo" class="h-24 w-auto mb-6 brightness-0 invert opacity-90">
-    <h1 class="text-5xl font-black tracking-tighter text-white leading-none mb-3">
-        SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
-    </h1>
-    <p class="text-silver text-[13px] uppercase tracking-[0.5em] font-bold">2026 Community & Clinical Leadership</p>
-</div>
-            
-           <div class="max-w-2xl mx-auto mb-10 py-6 px-10 bg-white/5 rounded-2xl border border-white/10">
-    <p class="text-sm text-silver/80 leading-relaxed uppercase tracking-wider font-mono text-center">
-        <span class="text-champagne font-bold">COMPLIANCE:</span> MSO MODEL UTILIZING ZERO-KNOWLEDGE ARCHITECTURE. ALL FEES ARE FMV COMPLIANT. SHA DOES NOT PROVIDE MEDICAL DIAGNOSIS OR STORE PHI.
-    </p>
-                <p class="text-[11px] text-silver/40 font-mono tracking-[0.3em]">
-                    Stateless Bridge | HL7 FHIR | © 2026 Scalp Health Alliance
-                </p>
-            </div>
-
-           <div class="flex flex-wrap justify-center gap-10 text-silver text-sm font-bold uppercase tracking-[0.2em]">
-    <a href="javascript:void(0)" onclick="openCompliance('hipaa')" class="hover:text-champagne transition-all cursor-pointer">HIPAA Policy</a>
-    <a href="javascript:void(0)" onclick="openCompliance('fmv')" class="hover:text-champagne transition-all cursor-pointer">FMV Protocol</a>
-    <a href="javascript:void(0)" onclick="openCompliance('baa')" class="hover:text-champagne transition-all cursor-pointer">BAA Terms</a>
-    <a href="javascript:void(0)" onclick="openCompliance('support')" class="hover:text-champagne transition-all cursor-pointer">Support</a>
-</div>
+<footer class="bg-oxford text-white pt-16 pb-12 border-t border-white/10 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+        <div class="flex flex-col items-center mb-10">
+            <img src="logo.svg" alt="SHA Logo" class="w-[90px] h-[90px] rounded-2xl mb-6 brightness-0 invert opacity-90">
+            <h1 class="text-5xl font-black tracking-tighter text-white leading-none mb-3">
+                SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
+            </h1>
+            <span class="text-[12px] text-champagne/70 font-bold uppercase tracking-[0.5em]">
+                2026 Community & Clinical Leadership
+            </span>
         </div>
-    </footer>
+        
+        <div class="max-w-2xl mx-auto py-6 px-10 bg-white/5 rounded-2xl border border-white/10 mb-10">
+            <p class="text-[13px] text-silver/80 uppercase tracking-wider leading-relaxed font-mono">
+                <span class="text-champagne font-bold">Compliance:</span> MSO model utilizing Zero-Knowledge architecture. All fees are FMV compliant. SHA does not provide medical diagnosis or store PHI.
+            </p>
+            <p class="text-[10px] text-silver/40 font-mono tracking-[0.3em] mt-4">
+                Stateless Bridge | HL7 FHIR | © 2026 Scalp Health Alliance
+            </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4 text-[13px] font-black uppercase tracking-[0.2em] text-silver/60">
+            <a href="javascript:void(0)" onclick="openModal('legal')" class="hover:text-champagne transition-colors">HIPAA Policy</a>
+            <a href="javascript:void(0)" onclick="openModal('earnings')" class="hover:text-champagne transition-colors">FMV Protocol</a>
+            <a href="javascript:void(0)" onclick="openModal('legal')" class="hover:text-champagne transition-colors">BAA Terms</a>
+            <a href="javascript:void(0)" onclick="openModal('legal')" class="hover:text-champagne transition-colors">Support</a>
+        </div>
+    </div>
+</footer>
 <div id="complianceModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-oxford/90 backdrop-blur-sm" onclick="closeModal()"></div>
     <div class="relative bg-white w-full max-w-2xl rounded-[32px] p-8 lg:p-12 shadow-2xl border border-champagne/20">
@@ -291,7 +293,7 @@
             legal: { title: "Compliance Notice", text: "SHA operates under a Management Services Organization (MSO) model. We ensure all interactions and data transits meet federal standards." },
             data: { title: "Zero-Risk Protocol", text: "PHI is never stored. Data exists only as a transient signal during transit to the clinical provider." },
             earnings: { title: "FMV Protocol", text: "All administrative fees are benchmarked against Fair Market Value (FMV) to ensure compliance with AKS and Stark Law." }
-        };
+            support: { title: "Alliance Support",text: "For technical assistance or partnership inquiries, please contact our 2026 Vanguard Support team at support@scalphealthalliance.com."};
         
         function openModal(type) {
             const data = complianceData[type] || complianceData['legal'];
