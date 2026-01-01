@@ -142,32 +142,43 @@
                 <p class="text-slate-500 text-lg mt-1">Technical and legal safeguards for the Scalp Health ecosystem.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div onclick="openModal('legal')" class="group cursor-pointer bg-white p-8 rounded-[32px] border border-slate-200 hover:border-mist transition-all hover:shadow-xl">
-                    <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-mist/10">
-                        <i class="fas fa-gavel text-mist text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-oxford mb-2">Legal Separation</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">The Scalp Health Alliance operates under a strictly governed Management Services Organization (MSO) model. This framework creates a definitive legal "firewall" between the wellness professional and the clinical provider.
+            <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    <div onclick="openModal('legal')" class="group cursor-pointer bg-white p-10 rounded-[40px] border border-slate-200 hover:border-mist transition-all hover:shadow-2xl">
+        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-mist/10">
+            <i class="fas fa-gavel text-mist text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-oxford mb-2">Legal Separation</h3>
+        <p class="text-mist font-bold text-xs uppercase tracking-widest mb-4">Structural Liability Shield</p>
+        <p class="text-slate-500 text-base leading-relaxed mb-8">Isolating business management from clinical services to eliminate professional risks.</p>
+        <div class="text-[11px] font-black uppercase tracking-[0.2em] text-mist flex items-center gap-2 group-hover:gap-4 transition-all">
+            Review Framework <i class="fas fa-arrow-right"></i>
+        </div>
+    </div>
 
-By decoupling business administration from medical diagnosis, we ensure that hair professionals function exclusively as "Community Observers" and wellness advocates. This structure eliminates medical malpractice risk for the salon professional while providing the Dermatologist with a pre-vetted, legally compliant intake stream.</p>
-                </div>
-                <div onclick="openModal('data')" class="group cursor-pointer bg-white p-8 rounded-[32px] border border-slate-200 hover:border-champagne transition-all hover:shadow-xl">
-                    <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-champagne/10">
-                        <i class="fas fa-shield-halved text-champagne text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-oxford mb-2">Zero-Risk Data</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Stateless architecture ensures PHI is never warehoused, dissolving data immediately post-delivery.</p>
-                </div>
-                <div onclick="openModal('earnings')" class="group cursor-pointer bg-white p-8 rounded-[32px] border border-slate-200 hover:border-oxford transition-all hover:shadow-xl">
-                    <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-oxford/10">
-                        <i class="fas fa-hand-holding-dollar text-oxford text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-oxford mb-2">Protected Earnings</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Transparent, automated triage fees processed via Stripe to ensure total regulatory compliance.</p>
-                </div>
-            </div>
+    <div onclick="openModal('data')" class="group cursor-pointer bg-white p-10 rounded-[40px] border border-slate-200 hover:border-champagne transition-all hover:shadow-2xl">
+        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-champagne/10">
+            <i class="fas fa-shield-halved text-champagne text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-oxford mb-2">Zero-Risk Data</h3>
+        <p class="text-champagne font-bold text-xs uppercase tracking-widest mb-4">Stateless Security Protocol</p>
+        <p class="text-slate-500 text-base leading-relaxed mb-8">Eliminating data warehousing to ensure patient information is never at rest.</p>
+        <div class="text-[11px] font-black uppercase tracking-[0.2em] text-champagne flex items-center gap-2 group-hover:gap-4 transition-all">
+            Review Protocol <i class="fas fa-arrow-right"></i>
+        </div>
+    </div>
 
+    <div onclick="openModal('earnings')" class="group cursor-pointer bg-white p-10 rounded-[40px] border border-slate-200 hover:border-oxford transition-all hover:shadow-2xl">
+        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-oxford/10">
+            <i class="fas fa-hand-holding-dollar text-oxford text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-oxford mb-2">Protected Earnings</h3>
+        <p class="text-oxford font-bold text-xs uppercase tracking-widest mb-4">Regulatory Revenue Moat</p>
+        <p class="text-slate-500 text-base leading-relaxed mb-8">FMV-compliant triage fees processed via automated, transparent systems.</p>
+        <div class="text-[11px] font-black uppercase tracking-[0.2em] text-oxford flex items-center gap-2 group-hover:gap-4 transition-all">
+            Review Compliance <i class="fas fa-arrow-right"></i>
+        </div>
+    </div>
+</div>
             <div class="space-y-8">
                 <div class="text-center">
                     <h2 class="text-3xl lg:text-4xl font-serif text-oxford font-bold leading-tight">A Conduit, <span class="italic text-mist">Not a Warehouse</span></h2>
@@ -291,31 +302,31 @@ By decoupling business administration from medical diagnosis, we ensure that hai
         
         // This object MUST contain every ID used in your onclick="openModal('ID')"
         const complianceData = {
-            legal: { 
-                title: "Legal Separation", 
-                text: "Our MSO structure isolates business management from clinical services, eliminating liability risks for hair professionals." 
-            },
-            data: { 
-                title: "Zero-Risk Data Protocol", 
-                text: "Stateless architecture ensures PHI is never warehoused; data is dissolved immediately post-delivery to the provider." 
-            },
-            earnings: { 
-                title: "Protected Earnings", 
-                text: "Transparent, automated triage fees processed via Stripe to ensure total regulatory compliance with AKS and Stark Law." 
-            },
-            hipaa: { 
-                title: "HIPAA Policy", 
-                text: "SHA utilizes a stateless 'bridge' architecture to ensure HL7 FHIR compliance without data warehousing." 
-            },
-            baa: { 
-                title: "BAA Terms", 
-                text: "Standard Business Associate Agreements are provided for all clinical anchors to ensure federal security standards." 
-            },
-            support: { 
-                title: "Support", 
-                text: "For technical assistance or partnership inquiries, contact support@scalphealthalliance.com." 
-            }
-        };
+    legal: { 
+        title: "Structural Integrity & Liability Shield", 
+        text: "The Scalp Health Alliance operates under a strictly governed Management Services Organization (MSO) model. This framework creates a definitive legal 'firewall' between the wellness professional and the clinical provider. By decoupling business administration from medical diagnosis, we ensure that hair professionals function exclusively as wellness advocates, eliminating malpractice risk for the pro while providing the doctor with a compliant intake stream." 
+    },
+    data: { 
+        title: "Zero-Knowledge Stateless Architecture", 
+        text: "Unlike traditional platforms that 'warehouse' sensitive information, SHA utilizes a stateless conduit. Patient data is treated as a transient electrical signal—processed in volatile memory and dissolved immediately upon delivery to the clinical EMR. Because we do not maintain a central database of PHI, there is no 'honey pot' for hackers. We don't just secure data; we eliminate the risk by refusing to own it." 
+    },
+    earnings: { 
+        title: "Fair Market Value (FMV) Compliance", 
+        text: "To ensure absolute adherence to the Anti-Kickback Statute (AKS) and Stark Law, our financial ecosystem is built on transparency. All triage fees are strictly benchmarked against independent Fair Market Value (FMV) standards. Payments are automated via Stripe Connect and are never 'per-referral' in a way that violates federal law, providing a clean, auditable paper trail for all members." 
+    },
+    hipaa: { 
+        title: "HIPAA & HL7 FHIR Standards", 
+        text: "SHA is fully HIPAA-compliant, utilizing AES-256 encryption for all data in transit. We leverage the HL7 FHIR standard to ensure technical compatibility with hospital-grade EMRs like ModMed and Epic. Our 'Gallery Guard' technology ensures clinical images never touch a professional’s personal photo library." 
+    },
+    baa: { 
+        title: "Business Associate Agreements", 
+        text: "We provide a standardized BAA for every clinical anchor. This document clearly defines our role as a Business Associate and outlines our technical responsibilities in protecting the data stream, allowing the Dermatologist to focus on diagnosis while we handle the secure transport of observations." 
+    },
+    support: { 
+        title: "Vanguard Concierge Support", 
+        text: "Membership includes access to our Vanguard Success Team. We provide ongoing medical literacy training, technical troubleshooting, and partnership growth strategy to ensure your participation in the 2026 recruitment cycle is seamless and profitable." 
+    }
+};
         
         function openModal(type) {
             const data = complianceData[type];
