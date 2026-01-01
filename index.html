@@ -303,26 +303,26 @@
     </section>
 
     <!-- Footer -->
-<footer class="bg-oxford text-white pt-16 pb-10 border-t border-white/10">
+<footer class="bg-oxford text-white pt-10 pb-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-6">
         
-        <div class="flex flex-col items-center mb-12 text-center">
-            <img src="logo.svg" alt="SHA Logo" class="h-14 w-auto mb-6 brightness-0 invert opacity-90">
-            <h1 class="text-2xl font-black tracking-tighter text-white leading-none mb-2">
+        <div class="flex flex-col items-center mb-8 text-center">
+            <img src="logo.svg" alt="SHA Logo" class="h-16 w-auto mb-4 brightness-0 invert opacity-90">
+            <h1 class="text-3xl font-black tracking-tighter text-white leading-none mb-2">
                 SCALP HEALTH <span class="text-champagne font-light italic">ALLIANCE</span>
             </h1>
-            <p class="text-silver text-[10px] uppercase tracking-[0.4em] font-bold">2026 Clinical Leadership</p>
+            <p class="text-silver text-[11px] uppercase tracking-[0.5em] font-bold">2026 Clinical Leadership</p>
         </div>
 
-        <div class="max-w-3xl mx-auto mb-12 py-6 px-8 bg-white/5 rounded-2xl border border-white/10">
+        <div class="max-w-3xl mx-auto mb-10 py-5 px-8 bg-white/5 rounded-2xl border border-white/10">
             <p class="text-[12px] text-silver/80 leading-relaxed uppercase tracking-wider font-mono text-center">
                 <span class="text-champagne font-bold">Regulatory & Compliance Notice:</span> Scalp Health Alliance, LLC operates as a Management Services Organization (MSO). We provide non-clinical administrative and technological support to clinical partners for a fixed monthly fee based on Fair Market Value (FMV). SHA does not provide medical advice, diagnosis, or treatment, and does not engage in patient brokering or per-referral compensation.
             </p>
         </div>
 
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/5 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/5 pt-6">
             <div class="text-silver/40 text-[11px] uppercase tracking-[0.3em] font-mono">
-                Stateless Bridge | HL7 FHIR Compliant | © 2026 Scalp Health Alliance, LLC
+                Stateless Bridge v2.5 | HL7 FHIR Compliant | © 2026 SHA, LLC
             </div>
             
             <div class="flex flex-wrap justify-center gap-8 text-silver text-[12px] font-bold uppercase tracking-[0.2em]">
@@ -334,6 +334,10 @@
         </div>
     </div>
 </footer>
+
+<div id="complianceModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-oxford/90 backdrop-blur-sm" onclick="closeModal()"></div>
+    <div class="relative bg-white w-full max-w-2xl rounded-
     <script>
         const complianceData = {
     hipaa: {
