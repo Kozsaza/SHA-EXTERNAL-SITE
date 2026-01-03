@@ -93,7 +93,7 @@ async function startSelfCapture() {
 }
 
 // 3. The Take Photo function
-function takePhoto() {
+async function takePhoto() {
     const video = document.getElementById('viewfinder');
     const canvas = document.getElementById('photo-buffer');
     const context = canvas.getContext('2d');
@@ -102,15 +102,15 @@ function takePhoto() {
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
+    // Capture the frame as a high-quality JPEG string
     const imageData = canvas.toDataURL('image/jpeg', 0.8);
     
-    // This is where the image lives in RAM right now
-    console.log("Captured image string length:", imageData.length);
-    alert("Captured! Bridge Transfer Initializing...");
-    
+    // Stop the camera to save battery/privacy
     stopCamera();
-}
 
+    // Trigger the upload to the Worker
+    await uploadToBridge(imageData);
+}
 // 4. The Stop function
 function stopCamera() {
     if (stream) {
@@ -120,6 +120,33 @@ function stopCamera() {
     document.getElementById('choice-ui').style.display = 'block';
 }
         window.onload = validate;
+        async function uploadToBridge(base64Image) {
+    document.getElementById('status').innerText = "Uploading to Secure Bridge...";
+    
+    const payload = {
+        session_id: sessionId,
+        image_data: base64Image, // This is the raw image string
+        timestamp: new Date().toISOString()
+    };
+
+    try {
+        const response = await fetch(`${workerUrl}/handshake`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert("Upload Successful! Your clinical data is secured.");
+            document.getElementById('status').innerText = "Transfer Complete.";
+        } else {
+            throw new Error("Bridge connection failed.");
+        }
+    } catch (err) {
+        console.error(err);
+        document.getElementById('status').innerText = "Upload Error: " + err.message;
+    }
+}
     </script>
 </body>
 </html>
