@@ -39,24 +39,19 @@
     <p id="status-msg"></p>
 
     <script>
-        // CONFIG
         const workerUrl = "https://sha-lsr-engine.kozsaza.workers.dev";
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('s');
         let stream = null;
 
-        // 1. INITIAL VALIDATION
         async function validate() {
-            console.log("Validation started for session:", sessionId);
             if (!sessionId) {
                 document.getElementById('status-msg').innerText = "Error: No Session ID found.";
                 return;
             }
-
             try {
                 const res = await fetch(`${workerUrl}/validate-session?s=${sessionId}`);
                 const data = await res.json();
-
                 if (data.valid) {
                     document.getElementById('gatekeeper-ui').style.display = 'none';
                     document.getElementById('choice-ui').style.display = 'block';
@@ -65,14 +60,63 @@
                     document.getElementById('gatekeeper-text').innerText = "This link may have expired.";
                 }
             } catch (e) {
-                console.error("Fetch error:", e);
                 document.getElementById('status-msg').innerText = "Connection error. Worker may be offline.";
             }
         }
 
-        // 2. CAMERA CONTROLS
         async function startSelfCapture() {
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ 
                     video: { facingMode: "environment" }, 
-                    audio:
+                    audio: false 
+                });
+                document.getElementById('viewfinder').srcObject = stream;
+                document.getElementById('choice-ui').style.display = 'none';
+                document.getElementById('camera-ui').style.display = 'block';
+            } catch (err) {
+                alert("Camera Error: Please allow camera access.");
+            }
+        }
+
+        function stopCamera() {
+            if (stream) stream.getTracks().forEach(t => t.stop());
+            document.getElementById('camera-ui').style.display = 'none';
+            document.getElementById('choice-ui').style.display = 'block';
+        }
+
+        async function takePhoto() {
+            const video = document.getElementById('viewfinder');
+            const canvas = document.getElementById('photo-buffer');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg', 0.8);
+            stopCamera();
+            await uploadToBridge(imageData);
+        }
+
+        async function uploadToBridge(base64Image) {
+            document.getElementById('choice-ui').style.display = 'none';
+            document.getElementById('gatekeeper-ui').style.display = 'block';
+            document.getElementById('gatekeeper-title').innerText = "Securing Data...";
+            try {
+                const response = await fetch(`${workerUrl}/handshake`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId, image_data: base64Image })
+                });
+                if (response.ok) {
+                    document.body.innerHTML = `<div class="card" style="margin-top:20%"><h2>✅ Data Secured</h2><p>Relayed to vault. Session closed.</p></div>`;
+                } else { throw new Error("Upload failed"); }
+            } catch (err) {
+                alert("Upload Error: " + err.message);
+                document.getElementById('choice-ui').style.display = 'block';
+                document.getElementById('gatekeeper-ui').style.display = 'none';
+            }
+        }
+
+        window.onload = validate;
+    </script>
+</body>
+</html>
