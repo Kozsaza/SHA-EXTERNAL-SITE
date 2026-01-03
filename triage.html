@@ -72,21 +72,4 @@
                     audio: false 
                 });
                 document.getElementById('viewfinder').srcObject = stream;
-                document.getElementById('choice-ui').style.display = 'none';
-                document.getElementById('camera-ui').style.display = 'block';
-            } catch (err) {
-                alert("Camera access denied. Please check site permissions.");
-            }
-        }
-
-        function stopCamera() {
-            if (stream) stream.getTracks().forEach(t => t.stop());
-            document.getElementById('camera-ui').style.display = 'none';
-            document.getElementById('choice-ui').style.display = 'block';
-        }
-
-        // 3. CAPTURE AND RELAY
-        async function takePhoto() {
-            const video = document.getElementById('viewfinder');
-            const canvas = document.getElementById('photo-buffer');
-            const context = canvas.getContext('2
+                document.getElementById('
