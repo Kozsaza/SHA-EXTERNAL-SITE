@@ -10,22 +10,22 @@
         button { width: 100%; padding: 1rem; margin: 0.5rem 0; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         .primary { background: #000; color: #fff; }
         .secondary { background: #e0e0e0; color: #333; }
-        #status { color: #666; margin-top: 1rem; font-size: 0.9rem; }
+        #status-msg { color: #666; margin-top: 1rem; font-size: 0.9rem; }
         video { width: 100%; border-radius: 10px; background: #000; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <div class="card" id="gatekeeper-ui">
-        <h2>Verifying Session...</h2>
-        <p>Please wait while we secure your bridge.</p>
+        <h2 id="gatekeeper-title">Verifying Session...</h2>
+        <p id="gatekeeper-text">Please wait while we secure your bridge.</p>
     </div>
 
     <div class="card" id="choice-ui" style="display:none;">
         <h2>Scalp Triage</h2>
-        <p>Your privacy is protected. No images are saved to this device.</p>
+        <p>No images are saved to your device gallery.</p>
         <button class="primary" onclick="startSelfCapture()">I'll take the photos myself</button>
-        <button class="secondary" onclick="alert('HP Assist Mode coming soon')">Help me take photos</button>
+        <button class="secondary" onclick="alert('Professional Assist Mode coming soon')">Help me take photos</button>
     </div>
 
     <div class="card" id="camera-ui" style="display:none;">
@@ -36,40 +36,43 @@
         <button class="secondary" onclick="stopCamera()">Cancel</button>
     </div>
 
-    <p id="status"></p>
+    <p id="status-msg"></p>
 
     <script>
+        // CONFIG
         const workerUrl = "https://sha-lsr-engine.kozsaza.workers.dev";
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('s');
         let stream = null;
 
-        // 1. SESSION VALIDATION ON LOAD
+        // 1. INITIAL VALIDATION
         async function validate() {
+            console.log("Validation started for session:", sessionId);
             if (!sessionId) {
-                document.getElementById('status').innerText = "No session found. Please scan QR code.";
+                document.getElementById('status-msg').innerText = "Error: No Session ID found.";
                 return;
             }
+
             try {
                 const res = await fetch(`${workerUrl}/validate-session?s=${sessionId}`);
                 const data = await res.json();
+
                 if (data.valid) {
                     document.getElementById('gatekeeper-ui').style.display = 'none';
                     document.getElementById('choice-ui').style.display = 'block';
                 } else {
-                    window.location.href = "index.html?error=invalid_session";
+                    document.getElementById('gatekeeper-title').innerText = "Session Invalid";
+                    document.getElementById('gatekeeper-text').innerText = "This link may have expired.";
                 }
             } catch (e) {
-                document.getElementById('status').innerText = "Connection error. Retrying...";
+                console.error("Fetch error:", e);
+                document.getElementById('status-msg').innerText = "Connection error. Worker may be offline.";
             }
         }
 
-        // 2. CAMERA LOGIC
+        // 2. CAMERA CONTROLS
         async function startSelfCapture() {
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ 
                     video: { facingMode: "environment" }, 
-                    audio: false 
-                });
-                document.getElementById('viewfinder').srcObject = stream;
-                document.getElementById('
+                    audio:
