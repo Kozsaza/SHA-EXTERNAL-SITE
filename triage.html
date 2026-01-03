@@ -1,0 +1,36 @@
+<script>
+    // 1. GATEKEEPER: Check for session
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionToken = urlParams.get('s'); // The Session ID
+    const hpId = urlParams.get('hp');      // Associated Professional
+
+    if (!sessionToken || !hpId) {
+        window.location.href = "index.html"; // Redirect if no code
+    }
+
+    function handleChoice(choice) {
+        if (choice === 'help') {
+            // Generates the 4-digit code for the HP's device
+            document.getElementById('choice-ui').style.display = 'none';
+            document.getElementById('tether-ui').style.display = 'block';
+            generateTetherCode();
+        } else {
+            // Unlocks the Gallery Guard on the Client's phone
+            startGalleryGuard();
+        }
+    }
+</script>
+
+<div id="choice-ui">
+    <h2>Welcome to your Scalp Triage</h2>
+    <p>How would you like to capture your clinical images?</p>
+    <button onclick="handleChoice('self')">I'll do it myself (Private)</button>
+    <button onclick="handleChoice('help')">Help me take photos (Professional Assistant)</button>
+</div>
+
+<div id="tether-ui" style="display:none;">
+    <h3>Professional Assistance Mode</h3>
+    <p>Give this code to your Hair Professional:</p>
+    <h1 id="token-display">----</h1>
+    <p>Your session is active. Once they take the photos, they will appear here for YOUR review.</p>
+</div>
