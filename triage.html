@@ -26,6 +26,13 @@
         <button class="primary" onclick="startSelfCapture()">I'll take the photos myself</button>
         <button class="secondary" onclick="requestHPAssist()">Help me take photos</button>
     </div>
+    <div class="card" id="camera-ui" style="display:none;">
+    <h3>Gallery Guard Active</h3>
+    <video id="viewfinder" autoplay playsinline style="width: 100%; border-radius: 10px;"></video>
+    <canvas id="photo-buffer" style="display:none;"></canvas>
+    <button class="primary" onclick="takePhoto()">Capture Image</button>
+    <button class="secondary" onclick="stopCamera()">Cancel</button>
+</div>
 
     <div class="card" id="tether-ui" style="display:none;">
         <h3>Professional Assistance</h3>
