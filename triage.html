@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHA | Secure Triage</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 2rem; background: #f4f4f9; }
-        .card { background: white; padding: 2rem; border-radius: 15px; shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
-        button { width: 100%; padding: 1rem; margin: 0.5rem 0; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        body { font-family: sans-serif; text-align: center; padding: 2rem; background: #f4f4f9; color: #333; }
+        .card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
+        button { width: 100%; padding: 1rem; margin: 0.5rem 0; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         .primary { background: #000; color: #fff; }
         .secondary { background: #e0e0e0; color: #333; }
-        #status { color: red; margin-top: 1rem; }
+        #status { color: #666; margin-top: 1rem; font-size: 0.9rem; }
+        video { width: 100%; border-radius: 10px; background: #000; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -22,23 +23,17 @@
 
     <div class="card" id="choice-ui" style="display:none;">
         <h2>Scalp Triage</h2>
-        <p>Your privacy is protected. No images are saved.</p>
-        <button class="primary" onclick="startSelfCapture()">I'll take the photos myself (my personal device)</button>
-        <button class="secondary" onclick="requestHPAssist()">Help me take photos (Hair Professional's trusted device)</button>
+        <p>Your privacy is protected. No images are saved to this device.</p>
+        <button class="primary" onclick="startSelfCapture()">I'll take the photos myself</button>
+        <button class="secondary" onclick="alert('HP Assist Mode coming soon')">Help me take photos</button>
     </div>
-    <div class="card" id="camera-ui" style="display:none;">
-    <h3>Gallery Guard Active</h3>
-    <video id="viewfinder" autoplay playsinline style="width: 100%; border-radius: 10px;"></video>
-    <canvas id="photo-buffer" style="display:none;"></canvas>
-    <button class="primary" onclick="takePhoto()">Capture Image</button>
-    <button class="secondary" onclick="stopCamera()">Cancel</button>
-</div>
 
-    <div class="card" id="tether-ui" style="display:none;">
-        <h3>Professional Assistance</h3>
-        <p>Give this code to your Hair Professional:</p>
-        <h1 id="tether-code">----</h1>
-        <p>Stay on this page. Your photos will appear here for review once they are captured.</p>
+    <div class="card" id="camera-ui" style="display:none;">
+        <h3>Gallery Guard Active</h3>
+        <video id="viewfinder" autoplay playsinline></video>
+        <canvas id="photo-buffer" style="display:none;"></canvas>
+        <button class="primary" onclick="takePhoto()">Capture Image</button>
+        <button class="secondary" onclick="stopCamera()">Cancel</button>
     </div>
 
     <p id="status"></p>
@@ -47,18 +42,17 @@
         const workerUrl = "https://sha-lsr-engine.kozsaza.workers.dev";
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('s');
+        let stream = null;
 
-        // 1. VALIDATE SESSION ON LOAD
+        // 1. SESSION VALIDATION ON LOAD
         async function validate() {
             if (!sessionId) {
                 document.getElementById('status').innerText = "No session found. Please scan QR code.";
                 return;
             }
-
             try {
                 const res = await fetch(`${workerUrl}/validate-session?s=${sessionId}`);
                 const data = await res.json();
-
                 if (data.valid) {
                     document.getElementById('gatekeeper-ui').style.display = 'none';
                     document.getElementById('choice-ui').style.display = 'block';
@@ -66,87 +60,33 @@
                     window.location.href = "index.html?error=invalid_session";
                 }
             } catch (e) {
-                document.getElementById('status').innerText = "Connection error. Try again.";
+                document.getElementById('status').innerText = "Connection error. Retrying...";
             }
         }
 
-// 1. Move the stream variable to the top (outside any functions)
-let stream = null;
-
-// 2. The REAL start function (Async)
-async function startSelfCapture() {
-    try {
-        // Request the back camera
-        stream = await navigator.mediaDevices.getUserMedia({ 
-            video: { facingMode: "environment" }, 
-            audio: false 
-        });
-        
-        const video = document.getElementById('viewfinder');
-        video.srcObject = stream;
-        
-        document.getElementById('choice-ui').style.display = 'none';
-        document.getElementById('camera-ui').style.display = 'block';
-    } catch (err) {
-        alert("Camera access denied. Please check your browser settings.");
-    }
-}
-
-// 3. The Take Photo function
-async function takePhoto() {
-    const video = document.getElementById('viewfinder');
-    const canvas = document.getElementById('photo-buffer');
-    const context = canvas.getContext('2d');
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    // Capture the frame as a high-quality JPEG string
-    const imageData = canvas.toDataURL('image/jpeg', 0.8);
-    
-    // Stop the camera to save battery/privacy
-    stopCamera();
-
-    // Trigger the upload to the Worker
-    await uploadToBridge(imageData);
-}
-// 4. The Stop function
-function stopCamera() {
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-    }
-    document.getElementById('camera-ui').style.display = 'none';
-    document.getElementById('choice-ui').style.display = 'block';
-}
-        window.onload = validate;
-        async function uploadToBridge(base64Image) {
-    document.getElementById('status').innerText = "Uploading to Secure Bridge...";
-    
-    const payload = {
-        session_id: sessionId,
-        image_data: base64Image, // This is the raw image string
-        timestamp: new Date().toISOString()
-    };
-
-    try {
-        const response = await fetch(`${workerUrl}/handshake`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (response.ok) {
-            alert("Upload Successful! Your clinical data is secured.");
-            document.getElementById('status').innerText = "Transfer Complete.";
-        } else {
-            throw new Error("Bridge connection failed.");
+        // 2. CAMERA LOGIC
+        async function startSelfCapture() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: "environment" }, 
+                    audio: false 
+                });
+                document.getElementById('viewfinder').srcObject = stream;
+                document.getElementById('choice-ui').style.display = 'none';
+                document.getElementById('camera-ui').style.display = 'block';
+            } catch (err) {
+                alert("Camera access denied. Please check site permissions.");
+            }
         }
-    } catch (err) {
-        console.error(err);
-        document.getElementById('status').innerText = "Upload Error: " + err.message;
-    }
-}
-    </script>
-</body>
-</html>
+
+        function stopCamera() {
+            if (stream) stream.getTracks().forEach(t => t.stop());
+            document.getElementById('camera-ui').style.display = 'none';
+            document.getElementById('choice-ui').style.display = 'block';
+        }
+
+        // 3. CAPTURE AND RELAY
+        async function takePhoto() {
+            const video = document.getElementById('viewfinder');
+            const canvas = document.getElementById('photo-buffer');
+            const context = canvas.getContext('2
