@@ -70,14 +70,13 @@
             }
         }
 
-        function startSelfCapture() {
-            alert("Gallery Guard Camera Initializing...");
-            // We will add the camera logic in the next step
-            let stream = null;
+// 1. Move the stream variable to the top (outside any functions)
+let stream = null;
 
+// 2. The REAL start function (Async)
 async function startSelfCapture() {
     try {
-        // Request the back camera specifically for clinical clarity
+        // Request the back camera
         stream = await navigator.mediaDevices.getUserMedia({ 
             video: { facingMode: "environment" }, 
             audio: false 
@@ -89,32 +88,30 @@ async function startSelfCapture() {
         document.getElementById('choice-ui').style.display = 'none';
         document.getElementById('camera-ui').style.display = 'block';
     } catch (err) {
-        alert("Camera access denied. Please allow camera permissions for triage.");
+        alert("Camera access denied. Please check your browser settings.");
     }
 }
 
+// 3. The Take Photo function
 function takePhoto() {
     const video = document.getElementById('viewfinder');
     const canvas = document.getElementById('photo-buffer');
     const context = canvas.getContext('2d');
 
-    // Set canvas size to match video feed
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-
-    // Draw the current frame to the buffer (RAM)
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    // Convert to a data string (Never hits the disk/gallery)
     const imageData = canvas.toDataURL('image/jpeg', 0.8);
     
-    console.log("Image captured to memory buffer.");
-    alert("Photo captured! Sending to SHA Bridge...");
+    // This is where the image lives in RAM right now
+    console.log("Captured image string length:", imageData.length);
+    alert("Captured! Bridge Transfer Initializing...");
     
-    // In the next step, we will add the function to POST this to the Bridge
     stopCamera();
 }
 
+// 4. The Stop function
 function stopCamera() {
     if (stream) {
         stream.getTracks().forEach(track => track.stop());
@@ -122,16 +119,6 @@ function stopCamera() {
     document.getElementById('camera-ui').style.display = 'none';
     document.getElementById('choice-ui').style.display = 'block';
 }
-        }
-
-        function requestHPAssist() {
-            // Generate a random 4-digit code for the HP
-            const code = Math.floor(1000 + Math.random() * 9000);
-            document.getElementById('choice-ui').style.display = 'none';
-            document.getElementById('tether-ui').style.display = 'block';
-            document.getElementById('tether-code').innerText = code;
-        }
-
         window.onload = validate;
     </script>
 </body>
