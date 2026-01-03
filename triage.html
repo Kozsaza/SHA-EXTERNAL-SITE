@@ -23,8 +23,8 @@
     <div class="card" id="choice-ui" style="display:none;">
         <h2>Scalp Triage</h2>
         <p>Your privacy is protected. No images are saved to your phone.</p>
-        <button class="primary" onclick="startSelfCapture()">I'll take the photos myself</button>
-        <button class="secondary" onclick="requestHPAssist()">Help me take photos</button>
+        <button class="primary" onclick="startSelfCapture()">I'll take the photos myself on my personal device</button>
+        <button class="secondary" onclick="requestHPAssist()">Help me take photos with my Hair Professional's trusted device</button>
     </div>
     <div class="card" id="camera-ui" style="display:none;">
     <h3>Gallery Guard Active</h3>
@@ -73,6 +73,55 @@
         function startSelfCapture() {
             alert("Gallery Guard Camera Initializing...");
             // We will add the camera logic in the next step
+            let stream = null;
+
+async function startSelfCapture() {
+    try {
+        // Request the back camera specifically for clinical clarity
+        stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { facingMode: "environment" }, 
+            audio: false 
+        });
+        
+        const video = document.getElementById('viewfinder');
+        video.srcObject = stream;
+        
+        document.getElementById('choice-ui').style.display = 'none';
+        document.getElementById('camera-ui').style.display = 'block';
+    } catch (err) {
+        alert("Camera access denied. Please allow camera permissions for triage.");
+    }
+}
+
+function takePhoto() {
+    const video = document.getElementById('viewfinder');
+    const canvas = document.getElementById('photo-buffer');
+    const context = canvas.getContext('2d');
+
+    // Set canvas size to match video feed
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    // Draw the current frame to the buffer (RAM)
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Convert to a data string (Never hits the disk/gallery)
+    const imageData = canvas.toDataURL('image/jpeg', 0.8);
+    
+    console.log("Image captured to memory buffer.");
+    alert("Photo captured! Sending to SHA Bridge...");
+    
+    // In the next step, we will add the function to POST this to the Bridge
+    stopCamera();
+}
+
+function stopCamera() {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+    }
+    document.getElementById('camera-ui').style.display = 'none';
+    document.getElementById('choice-ui').style.display = 'block';
+}
         }
 
         function requestHPAssist() {
