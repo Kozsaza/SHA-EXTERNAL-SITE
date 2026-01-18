@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/Button'
 
 interface ThankYouPageProps {
-  searchParams: { segment?: string }
+  searchParams: { segment?: string; interview?: string }
 }
 
 const segmentContent = {
@@ -37,6 +37,7 @@ const segmentContent = {
 export default function ThankYouPage({ searchParams }: ThankYouPageProps) {
   const segment = searchParams.segment as keyof typeof segmentContent
   const content = segmentContent[segment] || segmentContent.client
+  const showInterviewConfirmation = searchParams.interview === 'true'
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -70,11 +71,24 @@ export default function ThankYouPage({ searchParams }: ThankYouPageProps) {
               {content.message}
             </p>
 
-            <p className="text-gray-500 mb-8">
+            <p className="text-gray-500 mb-4">
               {content.nextStep}
             </p>
 
-            <div className="border-t border-gray-200 pt-8">
+            {showInterviewConfirmation && (
+              <div className="mt-6 p-4 bg-white/50 rounded-lg border border-white">
+                <p className={`${content.textColor} font-medium`}>Interview Interest Received!</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  We&apos;ll reach out soon to schedule your 15-minute conversation.
+                </p>
+              </div>
+            )}
+
+            <p className="text-sm text-gray-500 mt-6">
+              Thanks for helping build SHA. You&apos;ll be among the first to use it when we launch.
+            </p>
+
+            <div className="border-t border-gray-200 pt-8 mt-8">
               <p className="text-sm text-gray-500 mb-6">
                 Want to spread the word? Share SHA with others who might benefit.
               </p>

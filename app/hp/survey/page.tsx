@@ -9,10 +9,10 @@ import { QuestionBlock } from '@/components/survey/QuestionBlock'
 import { RadioGroup } from '@/components/ui/RadioGroup'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import { hpSurveySchema, type HpSurveyData } from '@/types/survey'
+import { hpSurveySchema, type HpSurveyData, STATE_OPTIONS } from '@/types/survey'
 import { submitSurvey } from '@/lib/actions'
 
-const TOTAL_STEPS = 8
+const TOTAL_STEPS = 9
 
 const professionalTypeOptions = [
   { value: 'hairstylist', label: 'Hairstylist / Cosmetologist' },
@@ -70,8 +70,8 @@ export default function HPSurveyPage() {
     handleSubmit,
     formState: { errors },
     trigger,
-    getValues,
     setValue,
+    watch,
   } = useForm<HpSurveyData>({
     resolver: zodResolver(hpSurveySchema),
     defaultValues: {
@@ -81,16 +81,24 @@ export default function HPSurveyPage() {
       scalpConditionFrequency: '',
       currentAction: [],
       clientReaction: '',
-      referralToolInterest: '',
+      connectionToolInterest: '',
       trainingInterest: '',
+      zipCode: '',
+      state: '',
+      wantsUpdates: false,
+      wantsInterview: false,
       contact: {
         name: '',
         email: '',
         phone: '',
-        wantsUpdates: false,
+        preferredContact: '',
+        availability: [],
       },
     },
   })
+
+  const watchUpdates = watch('wantsUpdates')
+  const watchInterview = watch('wantsInterview')
 
   const handleNext = async () => {
     const fieldsToValidate: (keyof HpSurveyData)[] = []
@@ -112,10 +120,13 @@ export default function HPSurveyPage() {
         fieldsToValidate.push('clientReaction')
         break
       case 6:
-        fieldsToValidate.push('referralToolInterest')
+        fieldsToValidate.push('connectionToolInterest')
         break
       case 7:
         fieldsToValidate.push('trainingInterest')
+        break
+      case 8:
+        fieldsToValidate.push('state')
         break
     }
 
@@ -142,7 +153,9 @@ export default function HPSurveyPage() {
     try {
       const result = await submitSurvey(data)
       if (result.success) {
-        router.push('/thank-you?segment=hp')
+        const params = new URLSearchParams({ segment: 'hp' })
+        if (data.wantsInterview) params.append('interview', 'true')
+        router.push(`/thank-you?${params.toString()}`)
       } else {
         console.error('Submission failed:', result.error)
         alert('There was an error submitting your response. Please try again.')
@@ -282,12 +295,12 @@ export default function HPSurveyPage() {
 
         {step === 6 && (
           <QuestionBlock
-            question="How interested would you be in a secure tool that helps you refer clients to dermatologists?"
+            question="Would you be interested in a tool that helps you connect clients with dermatologists for scalp issues?"
             description="A tool that protects your liability and helps clients get care faster"
             required
           >
             <Controller
-              name="referralToolInterest"
+              name="connectionToolInterest"
               control={control}
               render={({ field }) => (
                 <RadioGroup
@@ -295,7 +308,7 @@ export default function HPSurveyPage() {
                   options={interestOptions}
                   value={field.value}
                   onValueChange={field.onChange}
-                  error={errors.referralToolInterest?.message}
+                  error={errors.connectionToolInterest?.message}
                 />
               )}
             />
@@ -326,63 +339,197 @@ export default function HPSurveyPage() {
 
         {step === 8 && (
           <QuestionBlock
-            question="Would you like to stay updated on SHA?"
-            description="Optional - leave your contact info to hear about launch and early access"
+            question="Your Location"
+            description="This helps us understand where demand exists. Your survey responses remain anonymous."
           >
             <div className="space-y-4">
               <Controller
-                name="contact.name"
+                name="zipCode"
                 control={control}
                 render={({ field }) => (
                   <Input
                     {...field}
-                    label="Name"
-                    placeholder="Your name"
+                    label="ZIP Code"
+                    placeholder="e.g., 02101"
+                    maxLength={10}
                   />
                 )}
               />
-              <Controller
-                name="contact.email"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="email"
-                    label="Email"
-                    placeholder="your@email.com"
-                    error={errors.contact?.email?.message}
-                  />
-                )}
-              />
-              <Controller
-                name="contact.phone"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="tel"
-                    label="Phone (optional)"
-                    placeholder="(555) 123-4567"
-                  />
-                )}
-              />
-              <label className="flex items-center gap-3 cursor-pointer">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  State <span className="text-coral">*</span>
+                </label>
                 <Controller
-                  name="contact.wantsUpdates"
+                  name="state"
                   control={control}
                   render={({ field }) => (
-                    <input
-                      type="checkbox"
-                      checked={field.value}
-                      onChange={field.onChange}
-                      className="h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
-                    />
+                    <select
+                      {...field}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                    >
+                      <option value="">Select your state</option>
+                      {STATE_OPTIONS.map((state) => (
+                        <option key={state.value} value={state.value}>
+                          {state.label}
+                        </option>
+                      ))}
+                    </select>
                   )}
                 />
-                <span className="text-sm text-gray-600">
-                  Yes, send me updates about SHA launch and early access
-                </span>
-              </label>
+                {errors.state && (
+                  <p className="mt-1 text-sm text-coral">{errors.state.message}</p>
+                )}
+              </div>
+            </div>
+          </QuestionBlock>
+        )}
+
+        {step === 9 && (
+          <QuestionBlock
+            question="Stay Connected (Optional)"
+            description="Your survey responses above are anonymous. Only fill this out if you'd like us to contact you."
+          >
+            <div className="space-y-4">
+              <div className="space-y-3">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <Controller
+                    name="wantsUpdates"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
+                      />
+                    )}
+                  />
+                  <span className="text-sm text-gray-700">
+                    Keep me updated on SHA launch news
+                  </span>
+                </label>
+
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <Controller
+                    name="wantsInterview"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
+                      />
+                    )}
+                  />
+                  <div>
+                    <span className="text-sm text-gray-700">
+                      I&apos;m interested in a 15-minute interview to share more
+                    </span>
+                    <p className="text-xs text-gold mt-1">✓ Be first in line to use SHA when we launch</p>
+                  </div>
+                </label>
+              </div>
+
+              {(watchUpdates || watchInterview) && (
+                <div className="space-y-4 p-4 bg-cream rounded-lg mt-4">
+                  <p className="text-sm text-gray-600">Please provide your contact information:</p>
+
+                  <Controller
+                    name="contact.name"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        label="Name"
+                        placeholder="Your name"
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="contact.email"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="email"
+                        label="Email"
+                        placeholder="your@email.com"
+                        required
+                        error={errors.contact?.email?.message}
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="contact.phone"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="tel"
+                        label="Phone (optional)"
+                        placeholder="(555) 123-4567"
+                      />
+                    )}
+                  />
+
+                  {watchInterview && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Preferred contact method</label>
+                        <Controller
+                          name="contact.preferredContact"
+                          control={control}
+                          render={({ field }) => (
+                            <select
+                              {...field}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                            >
+                              <option value="">Select preference</option>
+                              <option value="email">Email</option>
+                              <option value="phone">Phone call</option>
+                              <option value="text">Text message</option>
+                            </select>
+                          )}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Best times to reach you</label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {["Weekday mornings", "Weekday afternoons", "Weekday evenings", "Weekends"].map((time) => (
+                            <Controller
+                              key={time}
+                              name="contact.availability"
+                              control={control}
+                              render={({ field }) => (
+                                <label className="flex items-center gap-2 text-sm">
+                                  <input
+                                    type="checkbox"
+                                    checked={field.value?.includes(time) || false}
+                                    onChange={(e) => {
+                                      const current = field.value || []
+                                      if (e.target.checked) {
+                                        field.onChange([...current, time])
+                                      } else {
+                                        field.onChange(current.filter((t: string) => t !== time))
+                                      }
+                                    }}
+                                    className="h-4 w-4 text-gold rounded border-gray-300 focus:ring-gold"
+                                  />
+                                  {time}
+                                </label>
+                              )}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </QuestionBlock>
         )}

@@ -9,10 +9,10 @@ import { QuestionBlock } from '@/components/survey/QuestionBlock'
 import { RadioGroup } from '@/components/ui/RadioGroup'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import { clientSurveySchema, type ClientSurveyData } from '@/types/survey'
+import { clientSurveySchema, type ClientSurveyData, STATE_OPTIONS } from '@/types/survey'
 import { submitSurvey } from '@/lib/actions'
 
-const TOTAL_STEPS = 9
+const TOTAL_STEPS = 10
 
 const experienceOptions = [
   { value: 'yes_current', label: 'Yes, currently dealing with one' },
@@ -56,11 +56,12 @@ const trustOptions = [
   { value: 'not_trust', label: 'Not really - prefer to go straight to a doctor' },
 ]
 
-const willingnessOptions = [
-  { value: 'yes_definitely', label: 'Yes, definitely worth it' },
-  { value: 'yes_reasonable', label: 'Yes, if the price is reasonable' },
-  { value: 'maybe', label: 'Maybe, depends on the situation' },
-  { value: 'no', label: 'No, I expect insurance to cover it' },
+const serviceInterestOptions = [
+  { value: 'definitely_yes', label: 'Definitely yes' },
+  { value: 'probably_yes', label: 'Probably yes' },
+  { value: 'not_sure', label: 'Not sure' },
+  { value: 'probably_not', label: 'Probably not' },
+  { value: 'definitely_not', label: 'Definitely not' },
 ]
 
 const photoComfortOptions = [
@@ -93,8 +94,8 @@ export default function ClientSurveyPage() {
     handleSubmit,
     formState: { errors },
     trigger,
-    getValues,
     setValue,
+    watch,
   } = useForm<ClientSurveyData>({
     resolver: zodResolver(clientSurveySchema),
     defaultValues: {
@@ -103,18 +104,26 @@ export default function ClientSurveyPage() {
       conditionTypes: [],
       previousActions: [],
       dermWaitTime: '',
-      trustHpReferral: '',
-      willingnessToPay: '',
+      trustHpObservation: '',
+      serviceInterest: '',
       photoSharingComfort: '',
       photoComfortFactors: [],
+      zipCode: '',
+      state: '',
+      wantsUpdates: false,
+      wantsInterview: false,
       contact: {
         name: '',
         email: '',
         phone: '',
-        wantsUpdates: false,
+        preferredContact: '',
+        availability: [],
       },
     },
   })
+
+  const watchUpdates = watch('wantsUpdates')
+  const watchInterview = watch('wantsInterview')
 
   const handleNext = async () => {
     const fieldsToValidate: (keyof ClientSurveyData)[] = []
@@ -124,13 +133,16 @@ export default function ClientSurveyPage() {
         fieldsToValidate.push('hasExperience')
         break
       case 5:
-        fieldsToValidate.push('trustHpReferral')
+        fieldsToValidate.push('trustHpObservation')
         break
       case 6:
-        fieldsToValidate.push('willingnessToPay')
+        fieldsToValidate.push('serviceInterest')
         break
       case 7:
         fieldsToValidate.push('photoSharingComfort')
+        break
+      case 9:
+        fieldsToValidate.push('state')
         break
     }
 
@@ -173,7 +185,9 @@ export default function ClientSurveyPage() {
     try {
       const result = await submitSurvey(data)
       if (result.success) {
-        router.push('/thank-you?segment=client')
+        const params = new URLSearchParams({ segment: 'client' })
+        if (data.wantsInterview) params.append('interview', 'true')
+        router.push(`/thank-you?${params.toString()}`)
       } else {
         console.error('Submission failed:', result.error)
         alert('There was an error submitting your response. Please try again.')
@@ -297,7 +311,7 @@ export default function ClientSurveyPage() {
             required
           >
             <Controller
-              name="trustHpReferral"
+              name="trustHpObservation"
               control={control}
               render={({ field }) => (
                 <RadioGroup
@@ -305,7 +319,7 @@ export default function ClientSurveyPage() {
                   options={trustOptions}
                   value={field.value}
                   onValueChange={field.onChange}
-                  error={errors.trustHpReferral?.message}
+                  error={errors.trustHpObservation?.message}
                 />
               )}
             />
@@ -314,20 +328,19 @@ export default function ClientSurveyPage() {
 
         {step === 6 && (
           <QuestionBlock
-            question="Would you pay a small fee for faster access to a dermatologist for a scalp concern?"
-            description="For example, to skip a months-long wait"
+            question="Would you use a service that connects you to a dermatologist faster through your hair professional?"
             required
           >
             <Controller
-              name="willingnessToPay"
+              name="serviceInterest"
               control={control}
               render={({ field }) => (
                 <RadioGroup
                   {...field}
-                  options={willingnessOptions}
+                  options={serviceInterestOptions}
                   value={field.value}
                   onValueChange={field.onChange}
-                  error={errors.willingnessToPay?.message}
+                  error={errors.serviceInterest?.message}
                 />
               )}
             />
@@ -385,63 +398,197 @@ export default function ClientSurveyPage() {
 
         {step === 9 && (
           <QuestionBlock
-            question="Would you like to stay updated on SHA?"
-            description="Optional - leave your contact info to hear about launch and early access"
+            question="Your Location"
+            description="This helps us understand where demand exists. Your survey responses remain anonymous."
           >
             <div className="space-y-4">
               <Controller
-                name="contact.name"
+                name="zipCode"
                 control={control}
                 render={({ field }) => (
                   <Input
                     {...field}
-                    label="Name"
-                    placeholder="Your name"
+                    label="ZIP Code"
+                    placeholder="e.g., 02101"
+                    maxLength={10}
                   />
                 )}
               />
-              <Controller
-                name="contact.email"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="email"
-                    label="Email"
-                    placeholder="your@email.com"
-                    error={errors.contact?.email?.message}
-                  />
-                )}
-              />
-              <Controller
-                name="contact.phone"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="tel"
-                    label="Phone (optional)"
-                    placeholder="(555) 123-4567"
-                  />
-                )}
-              />
-              <label className="flex items-center gap-3 cursor-pointer">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  State <span className="text-coral">*</span>
+                </label>
                 <Controller
-                  name="contact.wantsUpdates"
+                  name="state"
                   control={control}
                   render={({ field }) => (
-                    <input
-                      type="checkbox"
-                      checked={field.value}
-                      onChange={field.onChange}
-                      className="h-4 w-4 text-coral border-gray-300 rounded focus:ring-coral"
-                    />
+                    <select
+                      {...field}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition-all"
+                    >
+                      <option value="">Select your state</option>
+                      {STATE_OPTIONS.map((state) => (
+                        <option key={state.value} value={state.value}>
+                          {state.label}
+                        </option>
+                      ))}
+                    </select>
                   )}
                 />
-                <span className="text-sm text-gray-600">
-                  Yes, send me updates about SHA launch
-                </span>
-              </label>
+                {errors.state && (
+                  <p className="mt-1 text-sm text-coral">{errors.state.message}</p>
+                )}
+              </div>
+            </div>
+          </QuestionBlock>
+        )}
+
+        {step === 10 && (
+          <QuestionBlock
+            question="Stay Connected (Optional)"
+            description="Your survey responses above are anonymous. Only fill this out if you'd like us to contact you."
+          >
+            <div className="space-y-4">
+              <div className="space-y-3">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <Controller
+                    name="wantsUpdates"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 h-4 w-4 text-coral border-gray-300 rounded focus:ring-coral"
+                      />
+                    )}
+                  />
+                  <span className="text-sm text-gray-700">
+                    Keep me updated on SHA launch news
+                  </span>
+                </label>
+
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <Controller
+                    name="wantsInterview"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 h-4 w-4 text-coral border-gray-300 rounded focus:ring-coral"
+                      />
+                    )}
+                  />
+                  <div>
+                    <span className="text-sm text-gray-700">
+                      I&apos;m interested in a 15-minute interview to share more
+                    </span>
+                    <p className="text-xs text-coral mt-1">✓ Be first in line to use SHA when we launch</p>
+                  </div>
+                </label>
+              </div>
+
+              {(watchUpdates || watchInterview) && (
+                <div className="space-y-4 p-4 bg-coral/5 rounded-lg mt-4">
+                  <p className="text-sm text-gray-600">Please provide your contact information:</p>
+
+                  <Controller
+                    name="contact.name"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        label="Name"
+                        placeholder="Your name"
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="contact.email"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="email"
+                        label="Email"
+                        placeholder="your@email.com"
+                        required
+                        error={errors.contact?.email?.message}
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="contact.phone"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="tel"
+                        label="Phone (optional)"
+                        placeholder="(555) 123-4567"
+                      />
+                    )}
+                  />
+
+                  {watchInterview && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Preferred contact method</label>
+                        <Controller
+                          name="contact.preferredContact"
+                          control={control}
+                          render={({ field }) => (
+                            <select
+                              {...field}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition-all"
+                            >
+                              <option value="">Select preference</option>
+                              <option value="email">Email</option>
+                              <option value="phone">Phone call</option>
+                              <option value="text">Text message</option>
+                            </select>
+                          )}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Best times to reach you</label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {["Weekday mornings", "Weekday afternoons", "Weekday evenings", "Weekends"].map((time) => (
+                            <Controller
+                              key={time}
+                              name="contact.availability"
+                              control={control}
+                              render={({ field }) => (
+                                <label className="flex items-center gap-2 text-sm">
+                                  <input
+                                    type="checkbox"
+                                    checked={field.value?.includes(time) || false}
+                                    onChange={(e) => {
+                                      const current = field.value || []
+                                      if (e.target.checked) {
+                                        field.onChange([...current, time])
+                                      } else {
+                                        field.onChange(current.filter((t: string) => t !== time))
+                                      }
+                                    }}
+                                    className="h-4 w-4 text-coral rounded border-gray-300 focus:ring-coral"
+                                  />
+                                  {time}
+                                </label>
+                              )}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </QuestionBlock>
         )}

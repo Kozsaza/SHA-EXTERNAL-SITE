@@ -41,7 +41,7 @@ export default function Home() {
               <DiscoveryCard
                 title="Hair Professionals"
                 subtitle="Community Observers"
-                description="You're on the frontlines of scalp health. Share how you currently handle client concerns and what would help you serve them better."
+                description="You see scalp conditions every day. Help us build tools that turn observations into action."
                 href="/hp"
                 icon={<ScissorsIcon />}
                 accentColor="gold"
@@ -50,7 +50,7 @@ export default function Home() {
               <DiscoveryCard
                 title="Dermatologists"
                 subtitle="Clinical Anchors"
-                description="Help us understand your practice challenges and what an ideal patient referral pipeline would look like for scalp conditions."
+                description="Build a qualified patient pipeline on your terms. Tell us what matters to you."
                 href="/derm"
                 icon={<StethoscopeIcon />}
                 accentColor="teal"
@@ -59,7 +59,7 @@ export default function Home() {
               <DiscoveryCard
                 title="Clients"
                 subtitle="Care Seekers"
-                description="Your experience matters. Tell us about your journey with scalp health concerns and what would make getting care easier."
+                description="Tired of waiting months for answers? Help us fix the broken system."
                 href="/client"
                 icon={<UserIcon />}
                 accentColor="coral"

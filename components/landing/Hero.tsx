@@ -10,11 +10,11 @@ export function Hero() {
           Customer Discovery Survey
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif mb-6 leading-tight">
-          The Bridge That <br className="hidden sm:block" />
-          <span className="gold-gradient">Benefits Everyone</span>
+          We&apos;re Building the Future of <br className="hidden sm:block" />
+          <span className="gold-gradient">Scalp Health Care</span>
         </h1>
         <p className="max-w-3xl mx-auto text-lg lg:text-xl text-gray-300 mb-8 font-light leading-relaxed">
-          Help us build the future of scalp health. Share your experience and perspective
+          Help build SHA and be first in line to use it. Share your experience and perspective
           to shape a platform that connects hair professionals, dermatologists, and clients
           for better outcomes.
         </p>

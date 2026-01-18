@@ -9,10 +9,10 @@ import { QuestionBlock } from '@/components/survey/QuestionBlock'
 import { RadioGroup } from '@/components/ui/RadioGroup'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import { dermSurveySchema, type DermSurveyData } from '@/types/survey'
+import { dermSurveySchema, type DermSurveyData, STATE_OPTIONS } from '@/types/survey'
 import { submitSurvey } from '@/lib/actions'
 
-const TOTAL_STEPS = 10
+const TOTAL_STEPS = 9
 
 const practiceTypeOptions = [
   { value: 'general_derm', label: 'General Dermatology' },
@@ -37,14 +37,6 @@ const patientVolumeOptions = [
   { value: 'over_150', label: 'Over 150 patients' },
 ]
 
-const acquisitionCostOptions = [
-  { value: 'under_50', label: 'Under $50' },
-  { value: '50_100', label: '$50-$100' },
-  { value: '100_200', label: '$100-$200' },
-  { value: 'over_200', label: 'Over $200' },
-  { value: 'unknown', label: "Don't know" },
-]
-
 const noShowRateOptions = [
   { value: 'under_5', label: 'Under 5%' },
   { value: '5_10', label: '5-10%' },
@@ -64,14 +56,6 @@ const asyncFitOptions = [
   { value: 'good_fit', label: 'Good fit for some cases' },
   { value: 'maybe', label: 'Maybe - need to learn more' },
   { value: 'not_fit', label: 'Not a fit for my practice' },
-]
-
-const maxFeeOptions = [
-  { value: 'under_100', label: 'Under $100/month' },
-  { value: '100_250', label: '$100-$250/month' },
-  { value: '250_500', label: '$250-$500/month' },
-  { value: 'over_500', label: 'Over $500/month' },
-  { value: 'performance', label: 'Prefer performance-based' },
 ]
 
 const emrOptions = [
@@ -94,6 +78,7 @@ export default function DermSurveyPage() {
     handleSubmit,
     formState: { errors },
     trigger,
+    watch,
   } = useForm<DermSurveyData>({
     resolver: zodResolver(dermSurveySchema),
     defaultValues: {
@@ -101,20 +86,26 @@ export default function DermSurveyPage() {
       practiceType: '',
       practiceSetting: '',
       patientVolume: '',
-      acquisitionCost: '',
       noShowRate: '',
-      referralInterest: '',
+      pipelineInterest: '',
       asyncReviewFit: '',
-      maxMonthlyFee: '',
       emrSystem: '',
+      zipCode: '',
+      state: '',
+      wantsUpdates: false,
+      wantsInterview: false,
       contact: {
         name: '',
         email: '',
         phone: '',
-        wantsUpdates: false,
+        preferredContact: '',
+        availability: [],
       },
     },
   })
+
+  const watchUpdates = watch('wantsUpdates')
+  const watchInterview = watch('wantsInterview')
 
   const handleNext = async () => {
     const fieldsToValidate: (keyof DermSurveyData)[] = []
@@ -130,22 +121,19 @@ export default function DermSurveyPage() {
         fieldsToValidate.push('patientVolume')
         break
       case 4:
-        fieldsToValidate.push('acquisitionCost')
-        break
-      case 5:
         fieldsToValidate.push('noShowRate')
         break
-      case 6:
-        fieldsToValidate.push('referralInterest')
+      case 5:
+        fieldsToValidate.push('pipelineInterest')
         break
-      case 7:
+      case 6:
         fieldsToValidate.push('asyncReviewFit')
         break
-      case 8:
-        fieldsToValidate.push('maxMonthlyFee')
-        break
-      case 9:
+      case 7:
         fieldsToValidate.push('emrSystem')
+        break
+      case 8:
+        fieldsToValidate.push('state')
         break
     }
 
@@ -164,7 +152,9 @@ export default function DermSurveyPage() {
     try {
       const result = await submitSurvey(data)
       if (result.success) {
-        router.push('/thank-you?segment=derm')
+        const params = new URLSearchParams({ segment: 'derm' })
+        if (data.wantsInterview) params.append('interview', 'true')
+        router.push(`/thank-you?${params.toString()}`)
       } else {
         console.error('Submission failed:', result.error)
         alert('There was an error submitting your response. Please try again.')
@@ -251,28 +241,6 @@ export default function DermSurveyPage() {
 
         {step === 4 && (
           <QuestionBlock
-            question="What is your estimated patient acquisition cost?"
-            description="Approximate cost to acquire a new patient through marketing/referrals"
-            required
-          >
-            <Controller
-              name="acquisitionCost"
-              control={control}
-              render={({ field }) => (
-                <RadioGroup
-                  {...field}
-                  options={acquisitionCostOptions}
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  error={errors.acquisitionCost?.message}
-                />
-              )}
-            />
-          </QuestionBlock>
-        )}
-
-        {step === 5 && (
-          <QuestionBlock
             question="What is your current no-show rate for new patients?"
             required
           >
@@ -292,14 +260,14 @@ export default function DermSurveyPage() {
           </QuestionBlock>
         )}
 
-        {step === 6 && (
+        {step === 5 && (
           <QuestionBlock
-            question="How interested are you in receiving pre-screened scalp condition referrals?"
-            description="Patients observed by trained hair professionals with documented concerns"
+            question="How interested are you in receiving patients from trained observers?"
+            description="Patients observed by hair professionals with documented scalp concerns"
             required
           >
             <Controller
-              name="referralInterest"
+              name="pipelineInterest"
               control={control}
               render={({ field }) => (
                 <RadioGroup
@@ -307,16 +275,16 @@ export default function DermSurveyPage() {
                   options={interestOptions}
                   value={field.value}
                   onValueChange={field.onChange}
-                  error={errors.referralInterest?.message}
+                  error={errors.pipelineInterest?.message}
                 />
               )}
             />
           </QuestionBlock>
         )}
 
-        {step === 7 && (
+        {step === 6 && (
           <QuestionBlock
-            question="How well would async/store-and-forward review fit your workflow?"
+            question="Would reviewing patient images asynchronously fit into your workflow?"
             description="Reviewing documented images and observations before scheduling"
             required
           >
@@ -336,29 +304,7 @@ export default function DermSurveyPage() {
           </QuestionBlock>
         )}
 
-        {step === 8 && (
-          <QuestionBlock
-            question="What would you pay monthly for a quality referral pipeline?"
-            description="For a steady stream of pre-vetted, high-intent patients"
-            required
-          >
-            <Controller
-              name="maxMonthlyFee"
-              control={control}
-              render={({ field }) => (
-                <RadioGroup
-                  {...field}
-                  options={maxFeeOptions}
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  error={errors.maxMonthlyFee?.message}
-                />
-              )}
-            />
-          </QuestionBlock>
-        )}
-
-        {step === 9 && (
+        {step === 7 && (
           <QuestionBlock
             question="What EMR/EHR system does your practice use?"
             required
@@ -379,65 +325,199 @@ export default function DermSurveyPage() {
           </QuestionBlock>
         )}
 
-        {step === 10 && (
+        {step === 8 && (
           <QuestionBlock
-            question="Would you like to stay updated on SHA?"
-            description="Optional - leave your contact info to hear about launch and clinical anchor opportunities"
+            question="Your Practice Location"
+            description="This helps us understand where demand exists. Your survey responses remain anonymous."
           >
             <div className="space-y-4">
               <Controller
-                name="contact.name"
+                name="zipCode"
                 control={control}
                 render={({ field }) => (
                   <Input
                     {...field}
-                    label="Name"
-                    placeholder="Your name"
+                    label="Practice ZIP Code"
+                    placeholder="e.g., 02101"
+                    maxLength={10}
                   />
                 )}
               />
-              <Controller
-                name="contact.email"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="email"
-                    label="Email"
-                    placeholder="your@email.com"
-                    error={errors.contact?.email?.message}
-                  />
-                )}
-              />
-              <Controller
-                name="contact.phone"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="tel"
-                    label="Phone (optional)"
-                    placeholder="(555) 123-4567"
-                  />
-                )}
-              />
-              <label className="flex items-center gap-3 cursor-pointer">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  State <span className="text-coral">*</span>
+                </label>
                 <Controller
-                  name="contact.wantsUpdates"
+                  name="state"
                   control={control}
                   render={({ field }) => (
-                    <input
-                      type="checkbox"
-                      checked={field.value}
-                      onChange={field.onChange}
-                      className="h-4 w-4 text-teal border-gray-300 rounded focus:ring-teal"
-                    />
+                    <select
+                      {...field}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent transition-all"
+                    >
+                      <option value="">Select your state</option>
+                      {STATE_OPTIONS.map((state) => (
+                        <option key={state.value} value={state.value}>
+                          {state.label}
+                        </option>
+                      ))}
+                    </select>
                   )}
                 />
-                <span className="text-sm text-gray-600">
-                  Yes, send me updates about SHA launch and clinical anchor opportunities
-                </span>
-              </label>
+                {errors.state && (
+                  <p className="mt-1 text-sm text-coral">{errors.state.message}</p>
+                )}
+              </div>
+            </div>
+          </QuestionBlock>
+        )}
+
+        {step === 9 && (
+          <QuestionBlock
+            question="Stay Connected (Optional)"
+            description="Your survey responses above are anonymous. Only fill this out if you'd like us to contact you."
+          >
+            <div className="space-y-4">
+              <div className="space-y-3">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <Controller
+                    name="wantsUpdates"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 h-4 w-4 text-teal border-gray-300 rounded focus:ring-teal"
+                      />
+                    )}
+                  />
+                  <span className="text-sm text-gray-700">
+                    Keep me updated on SHA launch and clinical anchor opportunities
+                  </span>
+                </label>
+
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <Controller
+                    name="wantsInterview"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        checked={field.value}
+                        onChange={field.onChange}
+                        className="mt-1 h-4 w-4 text-teal border-gray-300 rounded focus:ring-teal"
+                      />
+                    )}
+                  />
+                  <div>
+                    <span className="text-sm text-gray-700">
+                      I&apos;m interested in a 15-minute interview to share more
+                    </span>
+                    <p className="text-xs text-teal mt-1">✓ Be first in line to use SHA when we launch</p>
+                  </div>
+                </label>
+              </div>
+
+              {(watchUpdates || watchInterview) && (
+                <div className="space-y-4 p-4 bg-teal/5 rounded-lg mt-4">
+                  <p className="text-sm text-gray-600">Please provide your contact information:</p>
+
+                  <Controller
+                    name="contact.name"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        label="Name"
+                        placeholder="Your name"
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="contact.email"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="email"
+                        label="Email"
+                        placeholder="your@email.com"
+                        required
+                        error={errors.contact?.email?.message}
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="contact.phone"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="tel"
+                        label="Phone (optional)"
+                        placeholder="(555) 123-4567"
+                      />
+                    )}
+                  />
+
+                  {watchInterview && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Preferred contact method</label>
+                        <Controller
+                          name="contact.preferredContact"
+                          control={control}
+                          render={({ field }) => (
+                            <select
+                              {...field}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent transition-all"
+                            >
+                              <option value="">Select preference</option>
+                              <option value="email">Email</option>
+                              <option value="phone">Phone call</option>
+                              <option value="text">Text message</option>
+                            </select>
+                          )}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Best times to reach you</label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {["Weekday mornings", "Weekday afternoons", "Weekday evenings", "Weekends"].map((time) => (
+                            <Controller
+                              key={time}
+                              name="contact.availability"
+                              control={control}
+                              render={({ field }) => (
+                                <label className="flex items-center gap-2 text-sm">
+                                  <input
+                                    type="checkbox"
+                                    checked={field.value?.includes(time) || false}
+                                    onChange={(e) => {
+                                      const current = field.value || []
+                                      if (e.target.checked) {
+                                        field.onChange([...current, time])
+                                      } else {
+                                        field.onChange(current.filter((t: string) => t !== time))
+                                      }
+                                    }}
+                                    className="h-4 w-4 text-teal rounded border-gray-300 focus:ring-teal"
+                                  />
+                                  {time}
+                                </label>
+                              )}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </QuestionBlock>
         )}
