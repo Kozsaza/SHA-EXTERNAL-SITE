@@ -20,9 +20,6 @@ body {
 
 @layer components {
   .gold-gradient {
-    background: linear-gradient(135deg, #C9A227 0%, #E8D59A 50%, #C9A227 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #C9A227;
   }
 }

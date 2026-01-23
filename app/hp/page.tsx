@@ -65,7 +65,7 @@ export default function HPInfoPage() {
 
         <section className="py-16 bg-cream">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-navy mb-8">Why Your Voice Matters</h2>
+            <h2 className="text-2xl font-bold text-navy mb-8">Your Input Shapes the Future of Scalp Health</h2>
 
             <div className="space-y-6 mb-12">
               <div className="flex gap-4">
@@ -76,7 +76,7 @@ export default function HPInfoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-navy text-lg">Strengthen Client Relationships</h3>
-                  <p className="text-gray-600">Turn awkward moments into trust-building opportunities. Help your clients get the care they need.</p>
+                  <p className="text-gray-600">Transform sensitive moments into opportunities for care. When clients face embarrassing scalp concerns, you become their trusted advocate for positive change.</p>
                 </div>
               </div>
 
@@ -108,7 +108,7 @@ export default function HPInfoPage() {
             <div className="bg-white rounded-2xl p-6 border border-gray-100 mb-8">
               <p className="text-center text-gray-600">
                 <span className="font-semibold text-navy">1.2M+</span> hair professionals in the US see{' '}
-                <span className="font-semibold text-navy">2-4 scalp conditions</span> per week on average
+                <span className="font-semibold text-navy">2-4 scalps needing health help</span> per week on average
               </p>
             </div>
 

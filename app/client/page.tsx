@@ -53,7 +53,7 @@ export default function ClientInfoPage() {
               For Clients
             </div>
             <h1 className="text-4xl sm:text-5xl font-serif mb-6">
-              You Shouldn&apos;t Have to Wait Months for Answers
+              Don&apos;t Wait Months for Answers
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl">
               Noticed something unusual on your scalp? You&apos;re not alone. Many people struggle

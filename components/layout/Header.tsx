@@ -15,8 +15,8 @@ export function Header() {
               className="rounded-xl"
             />
             <div className="flex flex-col text-left">
-              <h1 className="text-xl font-black tracking-tight text-[#1B365D] leading-none">
-                SCALP HEALTH <span className="text-[#C9A227] font-light italic">ALLIANCE</span>
+              <h1 className="text-xl font-bold tracking-tight text-[#1B365D] leading-none">
+                SCALP HEALTH <span className="text-[#C9A227]">ALLIANCE</span>
               </h1>
               <span className="text-[10px] text-[#1B365D]/70 font-bold uppercase tracking-[0.3em] mt-1.5 leading-none hidden sm:block">
                 Customer Discovery

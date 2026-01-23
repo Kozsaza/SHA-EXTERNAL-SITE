@@ -53,19 +53,19 @@ export default function DermInfoPage() {
               For Dermatologists
             </div>
             <h1 className="text-4xl sm:text-5xl font-serif mb-6">
-              A Better Patient Pipeline
+              A Stronger Patient Pipeline
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl">
-              What if your new patient pipeline was filled with people who actually show up?
-              Patients who&apos;ve already been observed by trained professionals and are ready
-              for clinical evaluation.
+              What if your new patient pipeline consisted of clients who actually attend their appointments?
+              Patients who&apos;ve already been observed by trained professionals and are actively seeking
+              clinical evaluation and care.
             </p>
           </div>
         </section>
 
         <section className="py-16 bg-cream">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-navy mb-8">Why Your Input Matters</h2>
+            <h2 className="text-2xl font-bold text-navy mb-8">Grow Your Practice Revenue</h2>
 
             <div className="space-y-6 mb-12">
               <div className="flex gap-4">
@@ -103,6 +103,7 @@ export default function DermInfoPage() {
                   <p className="text-gray-600">Seamless data packets designed for ModMed, Epic, and other major systems.</p>
                 </div>
               </div>
+
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
