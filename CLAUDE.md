@@ -5,7 +5,7 @@
 
 ---
 
-## TEAM PROTOCOL: COORDINATED AI DEVELOPMENT
+## 🤝 TEAM PROTOCOL: COORDINATED AI DEVELOPMENT
 
 This document is the "Project Brain" - the single source of truth for all Claude AI instances working on this codebase.
 
@@ -43,7 +43,7 @@ Update this CLAUDE.md file immediately:
 
 ---
 
-## PROJECT OVERVIEW
+## 📋 PROJECT OVERVIEW
 
 **SHA Customer Discovery Site** is the pre-launch platform for Scalp Health Alliance. It serves as a multi-segment survey and lead capture system designed to gather insights from three key user groups.
 
@@ -62,7 +62,7 @@ Update this CLAUDE.md file immediately:
 
 ---
 
-## TECH STACK
+## 🛠️ TECH STACK
 
 | Category | Technology |
 |----------|------------|
@@ -76,11 +76,11 @@ Update this CLAUDE.md file immediately:
 
 ---
 
-## PROJECT STRUCTURE
+## 📁 PROJECT STRUCTURE
 
 ```
 SHA-EXTERNAL-SITE/
-├── app/                        # Next.js App Router pages
+├── app/
 │   ├── layout.tsx              # Root layout with fonts & metadata
 │   ├── page.tsx                # Landing page (segment selection)
 │   ├── globals.css             # Global styles & Tailwind imports
@@ -143,9 +143,9 @@ SHA-EXTERNAL-SITE/
 
 ---
 
-## SUPABASE & DATABASE RULES
+## 🗄️ SUPABASE & DATABASE RULES
 
-### CRITICAL: Rules for Claude AI
+### ⚠️ CRITICAL: Rules for Claude AI
 
 | Rule | Description |
 |------|-------------|
@@ -186,7 +186,7 @@ CREATE POLICY "Allow authenticated reads" ON discovery_responses FOR SELECT USIN
 
 ---
 
-## USER SEGMENTS
+## 👥 USER SEGMENTS
 
 ### Hair Professional (HP)
 - **Route:** `/hp` (info) → `/hp/survey` (survey)
@@ -209,7 +209,7 @@ CREATE POLICY "Allow authenticated reads" ON discovery_responses FOR SELECT USIN
 
 ---
 
-## BRAND COLORS
+## 🎨 BRAND COLORS
 
 ```typescript
 // tailwind.config.ts
@@ -228,7 +228,7 @@ colors: {
 
 ---
 
-## DATA FLOW
+## 📊 DATA FLOW
 
 ```
 Landing Page (/)
@@ -252,7 +252,7 @@ Info Page (/hp, /derm, /client)
 
 ---
 
-## ENVIRONMENT VARIABLES
+## ⚙️ ENVIRONMENT VARIABLES
 
 ```env
 # Required - Supabase
@@ -272,7 +272,7 @@ NEXT_PUBLIC_APP_URL=https://scalphealthalliance.com
 
 ---
 
-## COMMON COMMANDS
+## 💻 COMMON COMMANDS
 
 ```bash
 # Development
@@ -290,7 +290,7 @@ npm run start         # Start production server
 
 ---
 
-## CODE CONVENTIONS
+## 📝 CODE CONVENTIONS
 
 ### Component Patterns
 
@@ -364,21 +364,9 @@ export async function submitSurvey(data: SurveyData): Promise<{ success: boolean
 
 ---
 
-## IMPORTANT FILES
+## 🔧 COMMON TASKS
 
-| File | Purpose |
-|------|---------|
-| `types/survey.ts` | All TypeScript types and Zod validation schemas |
-| `lib/actions.ts` | Server actions for database submissions |
-| `lib/supabase.ts` | Supabase client configuration |
-| `tailwind.config.ts` | Brand colors and theme extensions |
-| `supabase-schema.sql` | Database table and policy definitions |
-
----
-
-## COMMON TASKS
-
-### Adding a New Survey Question
+### Add a New Survey Question
 
 1. Add field to Zod schema in `types/survey.ts`
 2. Add to `defaultValues` in survey page
@@ -386,20 +374,11 @@ export async function submitSurvey(data: SurveyData): Promise<{ success: boolean
 4. Create step UI with `QuestionBlock` wrapper
 5. Update `TOTAL_STEPS` constant
 
-### Modifying Brand Colors
+### Modify Segment Colors
 
-1. Update `tailwind.config.ts` colors object
-2. Update CSS variables in `app/globals.css` if applicable
-3. Verify component usage of color classes
+Edit `tailwind.config.ts` and update the segment page's accent classes.
 
-### Adding New UI Components
-
-1. Create in `components/ui/` directory
-2. Use `forwardRef` for form-compatible components
-3. Include variant and size props where applicable
-4. Export with `displayName` for DevTools
-
-### Adding New Segment
+### Add New Segment
 
 1. Create `/app/[segment]/page.tsx` (info page)
 2. Create `/app/[segment]/survey/page.tsx` (survey form)
@@ -410,17 +389,43 @@ export async function submitSurvey(data: SurveyData): Promise<{ success: boolean
 
 ---
 
-## TESTING CONSIDERATIONS
+## 📋 PENDING CHANGES
 
-- Ensure all three survey flows complete successfully
-- Verify Supabase connection with valid credentials
-- Test responsive layouts (mobile, tablet, desktop)
-- Validate form error states and required field messaging
-- Test interview-only submission vs full survey submission
+### Landing Page Updates (from change request)
+
+| Section | Change |
+|---------|--------|
+| Logo | Remove bold/italic split, remove white glare |
+| HP | "awkward" → compassionate language |
+| HP | "What We Build" → "Your Input Shapes the Future of Scalp Health" |
+| HP | "2-4 scalp conditions" → "2-4 scalps needing health help per week" |
+| Derm | "Better" → "Stronger" |
+| Derm | Make revenue the section HEADER |
+| Client | "shouldn't have" → "Don't Wait Months for Answers" |
 
 ---
 
-## CURRENT SPRINT: I-CORPS VALIDATION
+## 🔄 DAILY COORDINATION ROUTINE
+
+```bash
+# Morning
+git pull origin main                    # Get latest code + CLAUDE.md
+git checkout -b feature/my-task         # Create branch
+
+# Work session
+claude                                  # Start Claude Code
+# "Check CLAUDE.md for latest project rules."
+
+# Evening
+git add .
+git commit -m "feat: description (updated CLAUDE.md if applicable)"
+git push origin feature/my-task
+# Create PR on GitHub for review
+```
+
+---
+
+## 🎯 CURRENT SPRINT: I-CORPS VALIDATION
 
 ### Key Hypotheses to Test
 
@@ -438,7 +443,17 @@ export async function submitSurvey(data: SurveyData): Promise<{ success: boolean
 
 ---
 
-## NOTES FOR AI ASSISTANTS
+## ✅ TESTING CONSIDERATIONS
+
+- Ensure all three survey flows complete successfully
+- Verify Supabase connection with valid credentials
+- Test responsive layouts (mobile, tablet, desktop)
+- Validate form error states and required field messaging
+- Test interview-only submission vs full survey submission
+
+---
+
+## 🗒️ NOTES FOR AI ASSISTANTS
 
 - This is a customer discovery tool, not the main SHA product
 - Survey responses are stored as JSONB for flexibility
@@ -449,7 +464,7 @@ export async function submitSurvey(data: SurveyData): Promise<{ success: boolean
 
 ---
 
-## RESOURCES
+## 📞 RESOURCES
 
 | Resource | Location |
 |----------|----------|
